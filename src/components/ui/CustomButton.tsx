@@ -12,7 +12,7 @@ const CustomButton = React.forwardRef<HTMLButtonElement, CustomButtonProps>(
     return (
       <button
         className={cn(
-          'font-comic uppercase tracking-wider transition-all duration-200 active:translate-y-1 pixel-border',
+          'uppercase tracking-wider transition-all duration-200 active:translate-y-1 pixel-border',
           {
             'bg-dream-purple text-white hover:bg-opacity-90': variant === 'primary',
             'bg-dream-blue text-white hover:bg-opacity-90': variant === 'secondary',

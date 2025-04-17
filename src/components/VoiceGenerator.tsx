@@ -6,9 +6,10 @@ import CustomButton from './ui/CustomButton';
 interface VoiceGeneratorProps {
   text: string;
   onVoiceSelected: (options: SpeechOptions) => void;
+  isPremium?: boolean;
 }
 
-const VoiceGenerator: React.FC<VoiceGeneratorProps> = ({ text, onVoiceSelected }) => {
+const VoiceGenerator: React.FC<VoiceGeneratorProps> = ({ text, onVoiceSelected, isPremium = false }) => {
   const [options, setOptions] = useState<SpeechOptions>({ text });
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -85,9 +86,21 @@ const VoiceGenerator: React.FC<VoiceGeneratorProps> = ({ text, onVoiceSelected }
     setOptions(prev => ({ ...prev, pitch }));
   };
 
+  // Filter voices based on subscription status
+  const filteredVoices = isPremium 
+    ? voices 
+    : voices.filter((voice, index) => index < 3); // Limit non-premium users to 3 voices
+
   return (
     <div className="bg-white/80 backdrop-blur-sm p-4 rounded-lg pixel-border">
-      <h2 className="text-xl font-comic mb-4 text-dream-purple retro-text">Voice Generator</h2>
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-xl text-dream-purple retro-text">Voice Generator</h2>
+        {isPremium && (
+          <span className="bg-yellow-300 text-xs font-bold px-2 py-1 rounded">
+            PlotPlus Active
+          </span>
+        )}
+      </div>
       
       <div className="mb-4">
         <label className="block text-sm font-bold mb-1">Preview Text</label>
@@ -104,12 +117,17 @@ const VoiceGenerator: React.FC<VoiceGeneratorProps> = ({ text, onVoiceSelected }
             value={options.voiceIndex || 0}
             onChange={handleVoiceChange}
           >
-            {voices.map((voice, index) => (
+            {filteredVoices.map((voice, index) => (
               <option key={`${voice.name}-${index}`} value={index}>
                 {voice.name} ({voice.lang})
               </option>
             ))}
           </select>
+          {!isPremium && (
+            <p className="text-xs text-dream-purple mt-1">
+              Subscribe to PlotPlus for {voices.length - 3} more human-sounding voices!
+            </p>
+          )}
         </div>
         
         <div>

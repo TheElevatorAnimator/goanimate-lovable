@@ -13,6 +13,7 @@ const Index = () => {
   const [activeTab, setActiveTab] = useState<'characters' | 'editor' | 'voice' | 'preview'>('characters');
   const [savedVoices, setSavedVoices] = useState<Record<string, SpeechOptions>>({});
   const [selectedSequence, setSelectedSequence] = useState<AnimationSequence | null>(null);
+  const [isSubscribed, setIsSubscribed] = useState<boolean>(false);
 
   // Initialize speech synthesis
   useEffect(() => {
@@ -65,14 +66,19 @@ const Index = () => {
     }
   };
 
+  const handleSubscribe = () => {
+    // This would connect to a payment processor in a real app
+    setIsSubscribed(true);
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-dream-purple/20 to-dream-blue/20">
       {/* Header */}
       <header className="p-4 bg-dream-purple text-white shadow-md">
         <div className="container mx-auto">
-          <h1 className="text-4xl font-comic text-center retro-text relative">
-            <span className="glitch-effect" data-text="DreamWeave Motion Forge">
-              DreamWeave Motion Forge
+          <h1 className="text-4xl text-center retro-text relative">
+            <span className="glitch-effect" data-text="PlotagonMimic">
+              PlotagonMimic
             </span>
           </h1>
           <p className="text-center text-dream-yellow animate-wobble">
@@ -83,6 +89,25 @@ const Index = () => {
       
       {/* Main Content */}
       <main className="flex-grow container mx-auto p-4">
+        {/* Subscription Banner */}
+        {!isSubscribed && (
+          <div className="mb-6 bg-white/80 backdrop-blur-sm p-4 rounded-lg pixel-border">
+            <div className="flex flex-col sm:flex-row items-center justify-between">
+              <div>
+                <h2 className="text-xl font-bold text-dream-purple mb-2">Upgrade to PlotPlus</h2>
+                <p className="text-sm text-gray-600">Get access to more human-sounding voices and premium features!</p>
+              </div>
+              <CustomButton 
+                variant="accent" 
+                className="mt-3 sm:mt-0"
+                onClick={handleSubscribe}
+              >
+                Subscribe Now
+              </CustomButton>
+            </div>
+          </div>
+        )}
+        
         {/* Tabs */}
         <div className="mb-6 flex flex-wrap gap-2">
           <CustomButton
@@ -133,6 +158,7 @@ const Index = () => {
             <VoiceGenerator 
               text={selectedSequence.speech}
               onVoiceSelected={handleVoiceSelected}
+              isPremium={isSubscribed}
             />
           )}
           
@@ -147,9 +173,10 @@ const Index = () => {
       
       {/* Footer */}
       <footer className="p-4 bg-gray-800 text-white text-center">
-        <p className="font-comic animate-pulse">
-          DreamWeave Motion Forge - Making Bad Animations Since 2025
+        <p className="animate-pulse">
+          PlotagonMimic - Making Bad Animations Since 2025
         </p>
+        {isSubscribed && <p className="text-xs text-yellow-300 mt-1">PlotPlus Subscriber</p>}
       </footer>
     </div>
   );

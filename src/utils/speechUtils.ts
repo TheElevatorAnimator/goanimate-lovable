@@ -47,6 +47,17 @@ export const generateBadVoice = (text: string): SpeechOptions => {
   };
 };
 
+// For premium voices (PlotPlus subscribers)
+export const generateBetterVoice = (text: string): SpeechOptions => {
+  // Use more moderate parameters for better sounding voices
+  return {
+    text,
+    rate: 1.0,
+    pitch: 1.0,
+    voiceIndex: 0, // Default to first voice, but user can select
+  };
+};
+
 export const stopSpeaking = (): void => {
   window.speechSynthesis.cancel();
 };
