@@ -79,12 +79,12 @@ export default {
 				// GoAnimate theme colors
 				goanimate: {
 					comedyWorld: '#FF9966',
-					business: '#336699',
-					whiteboard: '#FFFFFF',
 					anime: '#FF6699',
 					ninjaAnime: '#333333',
 					space: '#3366CC',
 					lil: '#FF6600',
+					domo: '#F2FCE2',
+					'2016VideoMaker': '#8B5CF6',
 				},
 			},
 			borderRadius: {

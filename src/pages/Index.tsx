@@ -14,6 +14,8 @@ const Index = () => {
   const [savedVoices, setSavedVoices] = useState<Record<string, SpeechOptions>>({});
   const [selectedSequence, setSelectedSequence] = useState<AnimationSequence | null>(null);
   const [isSubscribed, setIsSubscribed] = useState<boolean>(false);
+  const [trialActive, setTrialActive] = useState<boolean>(false);
+  const [trialDaysRemaining, setTrialDaysRemaining] = useState<number>(21);
 
   // Initialize speech synthesis
   useEffect(() => {
@@ -67,8 +69,12 @@ const Index = () => {
   };
 
   const handleSubscribe = () => {
-    // This would connect to a payment processor in a real app
+    // Start the trial
+    setTrialActive(true);
     setIsSubscribed(true);
+    
+    // In a real app, we would track when the trial started
+    // For now, we'll just show the 21-day countdown
   };
 
   return (
@@ -90,23 +96,39 @@ const Index = () => {
       {/* Main Content */}
       <main className="flex-grow container mx-auto p-4">
         {/* Subscription Banner */}
-        {!isSubscribed && (
+        {!isSubscribed ? (
           <div className="mb-6 bg-white/80 backdrop-blur-sm p-4 rounded-lg pixel-border">
             <div className="flex flex-col sm:flex-row items-center justify-between">
               <div>
                 <h2 className="text-xl font-bold text-dream-purple mb-2">Upgrade to PlotPlus</h2>
-                <p className="text-sm text-gray-600">Get access to more human-sounding voices and premium features!</p>
+                <p className="text-sm text-gray-600">Get access to more human-sounding voices and premium features! Start with a 3-week free trial.</p>
               </div>
               <CustomButton 
                 variant="accent" 
                 className="mt-3 sm:mt-0"
                 onClick={handleSubscribe}
               >
-                Subscribe Now
+                Start Free Trial
               </CustomButton>
             </div>
           </div>
-        )}
+        ) : trialActive ? (
+          <div className="mb-6 bg-yellow-100 p-4 rounded-lg pixel-border">
+            <div className="flex flex-col sm:flex-row items-center justify-between">
+              <div>
+                <h2 className="text-xl font-bold text-dream-purple mb-2">PlotPlus Trial Active</h2>
+                <p className="text-sm text-gray-600">Your free trial ends in {trialDaysRemaining} days. You'll be automatically billed after the trial period.</p>
+              </div>
+              <CustomButton 
+                variant="secondary" 
+                className="mt-3 sm:mt-0"
+                onClick={() => console.log("Manage subscription")}
+              >
+                Manage Subscription
+              </CustomButton>
+            </div>
+          </div>
+        ) : null}
         
         {/* Tabs */}
         <div className="mb-6 flex flex-wrap gap-2">
@@ -176,7 +198,11 @@ const Index = () => {
         <p className="animate-pulse">
           PlotagonMimic - Making Bad Animations Since 2025
         </p>
-        {isSubscribed && <p className="text-xs text-yellow-300 mt-1">PlotPlus Subscriber</p>}
+        {trialActive ? (
+          <p className="text-xs text-yellow-300 mt-1">PlotPlus Trial - {trialDaysRemaining} days remaining</p>
+        ) : isSubscribed ? (
+          <p className="text-xs text-yellow-300 mt-1">PlotPlus Subscriber</p>
+        ) : null}
       </footer>
     </div>
   );

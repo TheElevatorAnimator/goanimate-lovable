@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { speakText, stopSpeaking, generateBadVoice, getAvailableVoices, SpeechOptions } from '@/utils/speechUtils';
+import { speakText, stopSpeaking, generateBadVoice, getAvailableVoices, SpeechOptions, GOANIMATE_THEMES, getThemeLabel, GoAnimateTheme } from '@/utils/speechUtils';
 import CustomButton from './ui/CustomButton';
 
 interface VoiceGeneratorProps {
@@ -13,6 +13,7 @@ const VoiceGenerator: React.FC<VoiceGeneratorProps> = ({ text, onVoiceSelected, 
   const [options, setOptions] = useState<SpeechOptions>({ text });
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [selectedTheme, setSelectedTheme] = useState<GoAnimateTheme>(null);
 
   useEffect(() => {
     // Load available voices
@@ -65,10 +66,14 @@ const VoiceGenerator: React.FC<VoiceGeneratorProps> = ({ text, onVoiceSelected, 
   const handleRandomize = () => {
     const badVoice = generateBadVoice(text);
     setOptions(badVoice);
+    setSelectedTheme(null);
   };
 
   const handleSave = () => {
-    onVoiceSelected(options);
+    onVoiceSelected({
+      ...options,
+      theme: selectedTheme
+    });
   };
 
   const handleVoiceChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -86,18 +91,31 @@ const VoiceGenerator: React.FC<VoiceGeneratorProps> = ({ text, onVoiceSelected, 
     setOptions(prev => ({ ...prev, pitch }));
   };
 
+  const handleThemeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const theme = e.target.value as GoAnimateTheme;
+    setSelectedTheme(theme === "null" ? null : theme);
+    setOptions(prev => ({ ...prev, theme: theme === "null" ? null : theme }));
+  };
+
   // Filter voices based on subscription status
   const filteredVoices = isPremium 
     ? voices 
     : voices.filter((voice, index) => index < 3); // Limit non-premium users to 3 voices
 
+  // Calculate days remaining in trial (for demo purposes - fixed at 21 days)
+  const trialDaysRemaining = 21;
+
   return (
     <div className="bg-white/80 backdrop-blur-sm p-4 rounded-lg pixel-border">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl text-dream-purple retro-text">Voice Generator</h2>
-        {isPremium && (
+        {isPremium ? (
           <span className="bg-yellow-300 text-xs font-bold px-2 py-1 rounded">
-            PlotPlus Active
+            PlotPlus Active - Trial ends in {trialDaysRemaining} days
+          </span>
+        ) : (
+          <span className="bg-gray-200 text-xs font-bold px-2 py-1 rounded">
+            Free Version
           </span>
         )}
       </div>
@@ -109,7 +127,7 @@ const VoiceGenerator: React.FC<VoiceGeneratorProps> = ({ text, onVoiceSelected, 
         </div>
       </div>
       
-      <div className="grid grid-cols-2 gap-4 mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
         <div>
           <label className="block text-sm font-bold mb-1">Voice</label>
           <select 
@@ -129,6 +147,27 @@ const VoiceGenerator: React.FC<VoiceGeneratorProps> = ({ text, onVoiceSelected, 
             </p>
           )}
         </div>
+        
+        {isPremium && (
+          <div>
+            <label className="block text-sm font-bold mb-1">Theme</label>
+            <select
+              className="w-full p-2 border rounded"
+              value={selectedTheme || "null"}
+              onChange={handleThemeChange}
+            >
+              <option value="null">No Theme</option>
+              {GOANIMATE_THEMES.map((theme) => (
+                <option key={theme} value={theme}>
+                  {getThemeLabel(theme)}
+                </option>
+              ))}
+            </select>
+            <p className="text-xs text-yellow-600 mt-1">
+              {selectedTheme === '2016VideoMaker' && "Requires Flash - Use Puffin Browser"}
+            </p>
+          </div>
+        )}
         
         <div>
           <label className="block text-sm font-bold mb-1">Randomize Voice</label>
@@ -167,6 +206,13 @@ const VoiceGenerator: React.FC<VoiceGeneratorProps> = ({ text, onVoiceSelected, 
           />
         </div>
       </div>
+      
+      {isPremium && (
+        <div className="mb-4 p-3 bg-yellow-100 rounded-lg text-sm">
+          <p className="font-bold">PlotPlus 3-Week Free Trial</p>
+          <p>Enjoy better voices and premium themes for 21 days. Your subscription will automatically begin after your trial ends.</p>
+        </div>
+      )}
       
       <div className="flex space-x-2">
         {isPlaying ? (

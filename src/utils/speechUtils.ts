@@ -14,33 +14,33 @@ export interface SpeechOptions {
 
 export type GoAnimateTheme = 
   | 'comedyWorld' 
-  | 'business' 
-  | 'whiteboard' 
   | 'anime' 
   | 'ninjaAnime'
   | 'space'
   | 'lil'
+  | 'domo'
+  | '2016VideoMaker'
   | null;
 
 export const GOANIMATE_THEMES: GoAnimateTheme[] = [
   'comedyWorld',
-  'business',
-  'whiteboard',
   'anime',
   'ninjaAnime',
   'space',
-  'lil'
+  'lil',
+  'domo',
+  '2016VideoMaker'
 ];
 
 export const getThemeLabel = (theme: GoAnimateTheme): string => {
   switch(theme) {
     case 'comedyWorld': return 'Comedy World';
-    case 'business': return 'Business Friendly';
-    case 'whiteboard': return 'Whiteboard Animation';
     case 'anime': return 'Anime';
     case 'ninjaAnime': return 'Ninja Anime';
     case 'space': return 'Space Citizens';
     case 'lil': return 'Lil\' Peepz';
+    case 'domo': return 'Domo';
+    case '2016VideoMaker': return '2016 Video Maker (Flash)';
     default: return 'Default';
   }
 };

@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 interface CustomButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'accent' | 'outline' | 'theme';
   size?: 'sm' | 'md' | 'lg';
-  theme?: 'comedyWorld' | 'business' | 'whiteboard' | 'anime' | 'ninjaAnime' | 'space' | 'lil';
+  theme?: 'comedyWorld' | 'anime' | 'ninjaAnime' | 'space' | 'lil' | 'domo' | '2016VideoMaker';
 }
 
 const CustomButton = React.forwardRef<HTMLButtonElement, CustomButtonProps>(
@@ -23,12 +23,12 @@ const CustomButton = React.forwardRef<HTMLButtonElement, CustomButtonProps>(
             
             // GoAnimate theme styling
             'bg-goanimate-comedyWorld text-white hover:bg-opacity-90': variant === 'theme' && theme === 'comedyWorld',
-            'bg-goanimate-business text-white hover:bg-opacity-90': variant === 'theme' && theme === 'business',
-            'bg-goanimate-whiteboard text-black border-black hover:bg-gray-100': variant === 'theme' && theme === 'whiteboard',
             'bg-goanimate-anime text-white hover:bg-opacity-90': variant === 'theme' && theme === 'anime',
             'bg-goanimate-ninjaAnime text-white hover:bg-opacity-90': variant === 'theme' && theme === 'ninjaAnime',
             'bg-goanimate-space text-white hover:bg-opacity-90': variant === 'theme' && theme === 'space',
             'bg-goanimate-lil text-white hover:bg-opacity-90': variant === 'theme' && theme === 'lil',
+            'bg-goanimate-domo text-white hover:bg-opacity-90': variant === 'theme' && theme === 'domo',
+            'bg-goanimate-2016VideoMaker text-white hover:bg-opacity-90': variant === 'theme' && theme === '2016VideoMaker',
             
             'text-sm px-3 py-1': size === 'sm',
             'text-base px-4 py-2': size === 'md',
