@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,16 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// Custom colors for our app
+				dream: {
+					purple: '#8A2BE2',
+					blue: '#4169E1',
+					orange: '#FF7F50',
+					green: '#32CD32',
+					pink: '#FF69B4',
+					yellow: '#FFD700',
+				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,11 +94,28 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'glitch': {
+					'0%, 100%': { transform: 'translateX(0)' },
+					'20%': { transform: 'translateX(-2px)' },
+					'40%': { transform: 'translateX(2px)' },
+					'60%': { transform: 'translateX(-1px)' },
+					'80%': { transform: 'translateX(1px)' }
+				},
+				'wobble': {
+					'0%, 100%': { transform: 'rotate(0deg)' },
+					'25%': { transform: 'rotate(-5deg)' },
+					'75%': { transform: 'rotate(5deg)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'glitch': 'glitch 0.5s ease-in-out infinite',
+				'wobble': 'wobble 2s ease-in-out infinite'
+			},
+			fontFamily: {
+				'comic': ['"Comic Sans MS"', 'cursive'],
 			}
 		}
 	},
