@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { speakText, stopSpeaking, generateBadVoice, getAvailableVoices, SpeechOptions, GOANIMATE_THEMES, getThemeLabel, GoAnimateTheme } from '@/utils/speechUtils';
 import CustomButton from './ui/CustomButton';
@@ -16,7 +15,6 @@ const VoiceGenerator: React.FC<VoiceGeneratorProps> = ({ text, onVoiceSelected, 
   const [selectedTheme, setSelectedTheme] = useState<GoAnimateTheme>(null);
 
   useEffect(() => {
-    // Load available voices
     const loadVoices = () => {
       const availableVoices = getAvailableVoices();
       if (availableVoices.length > 0) {
@@ -24,18 +22,14 @@ const VoiceGenerator: React.FC<VoiceGeneratorProps> = ({ text, onVoiceSelected, 
       }
     };
 
-    // Load voices immediately
     loadVoices();
 
-    // Some browsers load voices asynchronously
     if (window.speechSynthesis) {
       window.speechSynthesis.onvoiceschanged = loadVoices;
     }
 
-    // Set initial text value
     setOptions(prev => ({ ...prev, text }));
 
-    // Clean up
     return () => {
       stopSpeaking();
       if (window.speechSynthesis) {
@@ -49,10 +43,8 @@ const VoiceGenerator: React.FC<VoiceGeneratorProps> = ({ text, onVoiceSelected, 
     speakText(options);
     setIsPlaying(true);
     
-    // Approximating when speech is done
     const wordsCount = text.split(/\s+/).length;
-    const approximateDuration = (wordsCount / 2) * 1000; // Very rough estimate: 2 words per second
-    
+    const approximateDuration = (wordsCount / 2) * 1000;
     setTimeout(() => {
       setIsPlaying(false);
     }, approximateDuration);
@@ -92,17 +84,16 @@ const VoiceGenerator: React.FC<VoiceGeneratorProps> = ({ text, onVoiceSelected, 
   };
 
   const handleThemeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const theme = e.target.value as GoAnimateTheme;
-    setSelectedTheme(theme === "null" ? null : theme);
-    setOptions(prev => ({ ...prev, theme: theme === "null" ? null : theme }));
+    const themeValue = e.target.value;
+    const theme = themeValue === "null" ? null : themeValue as GoAnimateTheme;
+    setSelectedTheme(theme);
+    setOptions(prev => ({ ...prev, theme }));
   };
 
-  // Filter voices based on subscription status
   const filteredVoices = isPremium 
     ? voices 
-    : voices.filter((voice, index) => index < 3); // Limit non-premium users to 3 voices
+    : voices.filter((voice, index) => index < 3);
 
-  // Calculate days remaining in trial (for demo purposes - fixed at 21 days)
   const trialDaysRemaining = 21;
 
   return (
@@ -153,7 +144,7 @@ const VoiceGenerator: React.FC<VoiceGeneratorProps> = ({ text, onVoiceSelected, 
             <label className="block text-sm font-bold mb-1">Theme</label>
             <select
               className="w-full p-2 border rounded"
-              value={selectedTheme || "null"}
+              value={selectedTheme === null ? "null" : selectedTheme}
               onChange={handleThemeChange}
             >
               <option value="null">No Theme</option>

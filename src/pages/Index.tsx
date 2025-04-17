@@ -1,10 +1,10 @@
-
 import React, { useState, useEffect } from 'react';
 import CharacterSelector from '@/components/CharacterSelector';
 import SceneEditor from '@/components/SceneEditor';
 import VoiceGenerator from '@/components/VoiceGenerator';
 import AnimationPreview from '@/components/AnimationPreview';
 import CustomButton from '@/components/ui/CustomButton';
+import Watermark from '@/components/Watermark';
 import { AnimationProject, createNewProject, AnimationSequence } from '@/utils/animationUtils';
 import { SpeechOptions } from '@/utils/speechUtils';
 
@@ -16,11 +16,10 @@ const Index = () => {
   const [isSubscribed, setIsSubscribed] = useState<boolean>(false);
   const [trialActive, setTrialActive] = useState<boolean>(false);
   const [trialDaysRemaining, setTrialDaysRemaining] = useState<number>(21);
+  const [pricingInfo] = useState({ usd: '0.99', gbp: '0.05' });
 
-  // Initialize speech synthesis
   useEffect(() => {
     if ('speechSynthesis' in window) {
-      // Trigger voice loading
       window.speechSynthesis.getVoices();
     }
   }, []);
@@ -35,11 +34,9 @@ const Index = () => {
   };
 
   const handleRemoveCharacter = (characterId: string) => {
-    // Remove character from project
     setProject({
       ...project,
       characters: project.characters.filter(id => id !== characterId),
-      // Also remove any sequences for this character
       sequences: project.sequences.filter(seq => seq.characterId !== characterId),
     });
   };
@@ -47,7 +44,6 @@ const Index = () => {
   const handleUpdateProject = (updatedProject: AnimationProject) => {
     setProject(updatedProject);
     
-    // If a new sequence with speech was added, select it for voice editing
     const newSequence = updatedProject.sequences.find(
       seq => seq.speech && !project.sequences.some(s => s.id === seq.id)
     );
@@ -69,17 +65,14 @@ const Index = () => {
   };
 
   const handleSubscribe = () => {
-    // Start the trial
     setTrialActive(true);
     setIsSubscribed(true);
-    
-    // In a real app, we would track when the trial started
-    // For now, we'll just show the 21-day countdown
   };
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-dream-purple/20 to-dream-blue/20">
-      {/* Header */}
+      <Watermark isSubscribed={isSubscribed} pricingInfo={pricingInfo} />
+      
       <header className="p-4 bg-dream-purple text-white shadow-md">
         <div className="container mx-auto">
           <h1 className="text-4xl text-center retro-text relative">
@@ -93,15 +86,16 @@ const Index = () => {
         </div>
       </header>
       
-      {/* Main Content */}
       <main className="flex-grow container mx-auto p-4">
-        {/* Subscription Banner */}
         {!isSubscribed ? (
           <div className="mb-6 bg-white/80 backdrop-blur-sm p-4 rounded-lg pixel-border">
             <div className="flex flex-col sm:flex-row items-center justify-between">
               <div>
                 <h2 className="text-xl font-bold text-dream-purple mb-2">Upgrade to PlotPlus</h2>
-                <p className="text-sm text-gray-600">Get access to more human-sounding voices and premium features! Start with a 3-week free trial.</p>
+                <p className="text-sm text-gray-600">
+                  Get access to more human-sounding voices and premium features! Start with a 3-week free trial. 
+                  Only {pricingInfo.usd} USD / {pricingInfo.gbp} GBP after trial ends.
+                </p>
               </div>
               <CustomButton 
                 variant="accent" 
@@ -117,7 +111,7 @@ const Index = () => {
             <div className="flex flex-col sm:flex-row items-center justify-between">
               <div>
                 <h2 className="text-xl font-bold text-dream-purple mb-2">PlotPlus Trial Active</h2>
-                <p className="text-sm text-gray-600">Your free trial ends in {trialDaysRemaining} days. You'll be automatically billed after the trial period.</p>
+                <p className="text-sm text-gray-600">Your free trial ends in {trialDaysRemaining} days. You'll be automatically billed {pricingInfo.usd} USD / {pricingInfo.gbp} GBP after the trial period.</p>
               </div>
               <CustomButton 
                 variant="secondary" 
@@ -130,7 +124,6 @@ const Index = () => {
           </div>
         ) : null}
         
-        {/* Tabs */}
         <div className="mb-6 flex flex-wrap gap-2">
           <CustomButton
             variant={activeTab === 'characters' ? 'primary' : 'outline'}
@@ -159,7 +152,6 @@ const Index = () => {
           </CustomButton>
         </div>
         
-        {/* Dynamic Content based on Tab */}
         <div className="grid grid-cols-1 gap-6">
           {activeTab === 'characters' && (
             <CharacterSelector 
@@ -193,7 +185,6 @@ const Index = () => {
         </div>
       </main>
       
-      {/* Footer */}
       <footer className="p-4 bg-gray-800 text-white text-center">
         <p className="animate-pulse">
           PlotagonMimic - Making Bad Animations Since 2025
