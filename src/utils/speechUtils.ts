@@ -9,7 +9,41 @@ export interface SpeechOptions {
   rate?: number;
   pitch?: number;
   voiceIndex?: number;
+  theme?: GoAnimateTheme;
 }
+
+export type GoAnimateTheme = 
+  | 'comedyWorld' 
+  | 'business' 
+  | 'whiteboard' 
+  | 'anime' 
+  | 'ninjaAnime'
+  | 'space'
+  | 'lil'
+  | null;
+
+export const GOANIMATE_THEMES: GoAnimateTheme[] = [
+  'comedyWorld',
+  'business',
+  'whiteboard',
+  'anime',
+  'ninjaAnime',
+  'space',
+  'lil'
+];
+
+export const getThemeLabel = (theme: GoAnimateTheme): string => {
+  switch(theme) {
+    case 'comedyWorld': return 'Comedy World';
+    case 'business': return 'Business Friendly';
+    case 'whiteboard': return 'Whiteboard Animation';
+    case 'anime': return 'Anime';
+    case 'ninjaAnime': return 'Ninja Anime';
+    case 'space': return 'Space Citizens';
+    case 'lil': return 'Lil\' Peepz';
+    default: return 'Default';
+  }
+};
 
 export const getAvailableVoices = (): SpeechSynthesisVoice[] => {
   return window.speechSynthesis.getVoices();
@@ -48,13 +82,14 @@ export const generateBadVoice = (text: string): SpeechOptions => {
 };
 
 // For premium voices (PlotPlus subscribers)
-export const generateBetterVoice = (text: string): SpeechOptions => {
+export const generateBetterVoice = (text: string, theme: GoAnimateTheme = null): SpeechOptions => {
   // Use more moderate parameters for better sounding voices
   return {
     text,
     rate: 1.0,
     pitch: 1.0,
     voiceIndex: 0, // Default to first voice, but user can select
+    theme: theme,
   };
 };
 

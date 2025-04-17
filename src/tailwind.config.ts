@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -20,7 +21,7 @@ export default {
 		extend: {
 			fontFamily: {
 				sans: ['Arial', 'sans-serif'],
-				'comic': ['Arial', 'sans-serif'],
+				comic: ['Comic Sans MS', 'Arial', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -75,6 +76,16 @@ export default {
 					pink: '#FF69B4',
 					yellow: '#FFD700',
 				},
+				// GoAnimate theme colors
+				goanimate: {
+					comedyWorld: '#FF9966',
+					business: '#336699',
+					whiteboard: '#FFFFFF',
+					anime: '#FF6699',
+					ninjaAnime: '#333333',
+					space: '#3366CC',
+					lil: '#FF6600',
+				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -117,9 +128,6 @@ export default {
 				'glitch': 'glitch 0.5s ease-in-out infinite',
 				'wobble': 'wobble 2s ease-in-out infinite'
 			},
-			fontFamily: {
-				'comic': ['Arial', 'sans-serif'],
-			}
 		}
 	},
 	plugins: [require("tailwindcss-animate")],

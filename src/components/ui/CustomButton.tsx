@@ -3,12 +3,13 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 
 interface CustomButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'accent' | 'outline';
+  variant?: 'primary' | 'secondary' | 'accent' | 'outline' | 'theme';
   size?: 'sm' | 'md' | 'lg';
+  theme?: 'comedyWorld' | 'business' | 'whiteboard' | 'anime' | 'ninjaAnime' | 'space' | 'lil';
 }
 
 const CustomButton = React.forwardRef<HTMLButtonElement, CustomButtonProps>(
-  ({ className, variant = 'primary', size = 'md', children, ...props }, ref) => {
+  ({ className, variant = 'primary', size = 'md', theme, children, ...props }, ref) => {
     return (
       <button
         className={cn(
@@ -19,6 +20,16 @@ const CustomButton = React.forwardRef<HTMLButtonElement, CustomButtonProps>(
             'bg-dream-orange text-white hover:bg-opacity-90': variant === 'accent',
             'bg-transparent border-2 border-dream-purple text-dream-purple hover:bg-dream-purple hover:bg-opacity-10': 
               variant === 'outline',
+            
+            // GoAnimate theme styling
+            'bg-goanimate-comedyWorld text-white hover:bg-opacity-90': variant === 'theme' && theme === 'comedyWorld',
+            'bg-goanimate-business text-white hover:bg-opacity-90': variant === 'theme' && theme === 'business',
+            'bg-goanimate-whiteboard text-black border-black hover:bg-gray-100': variant === 'theme' && theme === 'whiteboard',
+            'bg-goanimate-anime text-white hover:bg-opacity-90': variant === 'theme' && theme === 'anime',
+            'bg-goanimate-ninjaAnime text-white hover:bg-opacity-90': variant === 'theme' && theme === 'ninjaAnime',
+            'bg-goanimate-space text-white hover:bg-opacity-90': variant === 'theme' && theme === 'space',
+            'bg-goanimate-lil text-white hover:bg-opacity-90': variant === 'theme' && theme === 'lil',
+            
             'text-sm px-3 py-1': size === 'sm',
             'text-base px-4 py-2': size === 'md',
             'text-lg px-6 py-3': size === 'lg',
