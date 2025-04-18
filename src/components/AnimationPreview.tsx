@@ -89,6 +89,21 @@ const AnimationPreview: React.FC<AnimationPreviewProps> = ({ project, savedVoice
     
     const animationClass = isBackgroundAnimating ? 'animate-pulse' : '';
     
+    if (currentScene.style === 'goanimate' && currentScene.isPremium) {
+      switch (currentScene.background) {
+        case 'school':
+          return `${animationClass} bg-gradient-to-br from-goanimate-comedyWorld to-goanimate-comedyWorld/70`;
+        case 'dojo':
+          return `${animationClass} bg-gradient-to-br from-goanimate-ninjaAnime to-goanimate-anime/70`;
+        case 'space-station':
+          return `${animationClass} bg-gradient-to-br from-goanimate-space to-black`;
+        case 'street':
+          return `${animationClass} bg-gradient-to-br from-goanimate-lil to-goanimate-lil/70`;
+        default:
+          return `${animationClass} bg-gradient-to-br from-purple-200 to-indigo-300`;
+      }
+    }
+    
     switch (currentScene.background) {
       case 'office':
         return `${animationClass} bg-gradient-to-br from-blue-100 to-blue-200`;
@@ -117,11 +132,20 @@ const AnimationPreview: React.FC<AnimationPreviewProps> = ({ project, savedVoice
         <div 
           className={`absolute inset-0 ${getSceneBackground()} flex items-center justify-center transition-all duration-500`}
         >
-          {currentScene && currentScene.background === 'office' && (
+          {currentScene?.style === 'goanimate' && !isSubscribed && (
+            <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+              <div className="text-white text-center p-4">
+                <h3 className="text-xl mb-2">Premium Background</h3>
+                <p>Subscribe to PlotPlus to unlock GoAnimate backgrounds!</p>
+              </div>
+            </div>
+          )}
+          
+          {currentScene && currentScene.background === 'school' && (
             <div className={`absolute inset-0 flex flex-wrap justify-around opacity-20 ${isBackgroundAnimating ? 'animate-bounce' : ''}`}>
-              <div className="w-16 h-20 bg-gray-600 m-2 rounded-sm"></div>
-              <div className="w-24 h-16 bg-gray-800 m-2 rounded-sm"></div>
-              <div className="w-20 h-14 bg-gray-700 m-2 rounded-sm"></div>
+              <div className="w-16 h-20 bg-white m-2 rounded-sm"></div>
+              <div className="w-24 h-16 bg-yellow-500 m-2 rounded-sm"></div>
+              <div className="w-20 h-14 bg-red-500 m-2 rounded-sm"></div>
             </div>
           )}
           

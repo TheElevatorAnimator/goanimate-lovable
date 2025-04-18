@@ -11,6 +11,8 @@ export type Scene = {
   id: string;
   name: string;
   background: string;
+  isPremium?: boolean;
+  style?: 'goanimate' | 'plotagon' | 'default';
 };
 
 export type AnimationSequence = {
@@ -83,26 +85,60 @@ export const AVAILABLE_CHARACTERS: Character[] = [
 
 // Mock data for scene backgrounds
 export const AVAILABLE_SCENES: Scene[] = [
+  // Free scenes
   {
     id: 'scene1',
     name: 'Blocky Office',
     background: 'office',
+    style: 'plotagon'
   },
   {
     id: 'scene2',
     name: 'Pixelated Park',
     background: 'park',
+    style: 'plotagon'
   },
   {
     id: 'scene3',
     name: 'Lowpoly Beach',
     background: 'beach',
+    style: 'plotagon'
   },
   {
     id: 'scene4',
     name: 'Voxel City',
     background: 'city',
+    style: 'plotagon'
   },
+  // Premium GoAnimate scenes
+  {
+    id: 'goanimate1',
+    name: 'Comedy World School',
+    background: 'school',
+    isPremium: true,
+    style: 'goanimate'
+  },
+  {
+    id: 'goanimate2',
+    name: 'Anime Dojo',
+    background: 'dojo',
+    isPremium: true,
+    style: 'goanimate'
+  },
+  {
+    id: 'goanimate3',
+    name: 'Space Citizens Station',
+    background: 'space-station',
+    isPremium: true,
+    style: 'goanimate'
+  },
+  {
+    id: 'goanimate4',
+    name: 'Lil\' Peepz Street',
+    background: 'street',
+    isPremium: true,
+    style: 'goanimate'
+  }
 ];
 
 // Create a new empty animation project
