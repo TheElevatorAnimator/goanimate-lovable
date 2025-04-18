@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { speakText, stopSpeaking, generateBadVoice, getAvailableVoices, SpeechOptions, GOANIMATE_THEMES, getThemeLabel, GoAnimateTheme } from '@/utils/speechUtils';
 import CustomButton from './ui/CustomButton';
@@ -85,6 +86,7 @@ const VoiceGenerator: React.FC<VoiceGeneratorProps> = ({ text, onVoiceSelected, 
 
   const handleThemeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const themeValue = e.target.value;
+    // Fix: properly handle null by checking if the value is "null" string
     const theme = themeValue === "null" ? null : themeValue as GoAnimateTheme;
     setSelectedTheme(theme);
     setOptions(prev => ({ ...prev, theme }));
@@ -144,6 +146,7 @@ const VoiceGenerator: React.FC<VoiceGeneratorProps> = ({ text, onVoiceSelected, 
             <label className="block text-sm font-bold mb-1">Theme</label>
             <select
               className="w-full p-2 border rounded"
+              // Fix: properly stringify the null value for comparison
               value={selectedTheme === null ? "null" : selectedTheme}
               onChange={handleThemeChange}
             >
