@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -106,13 +105,24 @@ export default {
 					'0%, 100%': { transform: 'rotate(0deg)' },
 					'25%': { transform: 'rotate(-5deg)' },
 					'75%': { transform: 'rotate(5deg)' }
+				},
+				wave: {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' },
+				},
+				sway: {
+					'0%, 100%': { transform: 'rotate(-2deg)' },
+					'50%': { transform: 'rotate(2deg)' },
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'glitch': 'glitch 0.5s ease-in-out infinite',
-				'wobble': 'wobble 2s ease-in-out infinite'
+				'wobble': 'wobble 2s ease-in-out infinite',
+				'spin-slow': 'spin 20s linear infinite',
+				'wave': 'wave 2s ease-in-out infinite',
+				'sway': 'sway 4s ease-in-out infinite',
 			},
 			fontFamily: {
 				'comic': ['"Comic Sans MS"', 'cursive'],
