@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { speakText, stopSpeaking, generateBadVoice, getAvailableVoices, SpeechOptions, GOANIMATE_THEMES, getThemeLabel, GoAnimateTheme } from '@/utils/speechUtils';
 import CustomButton from './ui/CustomButton';
@@ -86,7 +85,6 @@ const VoiceGenerator: React.FC<VoiceGeneratorProps> = ({ text, onVoiceSelected, 
 
   const handleThemeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const themeValue = e.target.value;
-    // Fix: properly handle null by checking if the value is "null" string
     const theme = themeValue === "null" ? null : themeValue as GoAnimateTheme;
     setSelectedTheme(theme);
     setOptions(prev => ({ ...prev, theme }));
@@ -146,7 +144,6 @@ const VoiceGenerator: React.FC<VoiceGeneratorProps> = ({ text, onVoiceSelected, 
             <label className="block text-sm font-bold mb-1">Theme</label>
             <select
               className="w-full p-2 border rounded"
-              // Fix: properly stringify the null value for comparison
               value={selectedTheme === null ? "null" : selectedTheme}
               onChange={handleThemeChange}
             >
@@ -157,9 +154,12 @@ const VoiceGenerator: React.FC<VoiceGeneratorProps> = ({ text, onVoiceSelected, 
                 </option>
               ))}
             </select>
-            <p className="text-xs text-yellow-600 mt-1">
-              {selectedTheme === '2016VideoMaker' && "Requires Flash - Use Puffin Browser"}
-            </p>
+            {selectedTheme === '2016VideoMaker' && (
+              <div className="mt-1 p-2 bg-yellow-100 rounded text-xs">
+                <p className="text-yellow-600 font-bold">Flash Required</p>
+                <p>The 2016 Video Maker requires Adobe Flash. Use Puffin Browser for compatibility.</p>
+              </div>
+            )}
           </div>
         )}
         
