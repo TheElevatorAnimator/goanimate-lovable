@@ -1,4 +1,3 @@
-
 // Animation utility functions
 
 export type Character = {
@@ -31,31 +30,54 @@ export type AnimationProject = {
   sequences: AnimationSequence[];
 };
 
-// Mock data for our low-poly characters
+// Mock data for our characters (GoAnimate style)
 export const AVAILABLE_CHARACTERS: Character[] = [
+  // Comedy World Characters
   {
-    id: 'char1',
-    name: 'Blocky Bob',
-    model: 'blocky-male',
-    animations: ['walk', 'talk', 'wave', 'jump'],
+    id: 'comedy1',
+    name: 'Eric (Comedy World)',
+    model: 'comedy-male',
+    animations: ['walk', 'talk', 'wave', 'jump', 'dance', 'angry', 'confused', 'think'],
   },
   {
-    id: 'char2',
-    name: 'Pixie Polygon',
-    model: 'blocky-female',
-    animations: ['walk', 'talk', 'dance', 'sit'],
+    id: 'comedy2',
+    name: 'Julie (Comedy World)',
+    model: 'comedy-female',
+    animations: ['walk', 'talk', 'dance', 'sit', 'cheer', 'cry', 'laugh', 'point'],
+  },
+  // Anime Characters
+  {
+    id: 'anime1',
+    name: 'Kenji (Anime)',
+    model: 'anime-male',
+    animations: ['run', 'talk', 'fight', 'pose', 'special-attack', 'transform'],
   },
   {
-    id: 'char3',
-    name: 'Cube Carl',
-    model: 'cube-person',
-    animations: ['spin', 'talk', 'float', 'fall'],
+    id: 'anime2',
+    name: 'Sakura (Anime)',
+    model: 'anime-female',
+    animations: ['run', 'talk', 'magic', 'heal', 'special-move', 'victory'],
   },
+  // Space Citizens
   {
-    id: 'char4',
-    name: 'Triangula',
-    model: 'triangle-being',
-    animations: ['rotate', 'talk', 'bounce', 'shrink'],
+    id: 'space1',
+    name: 'Commander Zax',
+    model: 'space-male',
+    animations: ['float', 'talk', 'laser', 'jetpack', 'zero-gravity', 'salute'],
+  },
+  // Lil' Peepz
+  {
+    id: 'lil1',
+    name: 'Lil\' Jimmy',
+    model: 'lil-kid',
+    animations: ['skip', 'talk', 'play', 'tantrum', 'giggle', 'hide'],
+  },
+  // Domo Characters
+  {
+    id: 'domo1',
+    name: 'Domo-kun',
+    model: 'domo',
+    animations: ['bounce', 'talk', 'eat', 'rage', 'dance', 'sleep'],
   },
 ];
 

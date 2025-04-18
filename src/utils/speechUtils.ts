@@ -1,4 +1,3 @@
-
 // Speech synthesis utility for our intentionally bad TTS voices
 
 const SPEECH_RATES = [0.5, 0.7, 1.2, 1.5];
@@ -10,6 +9,7 @@ export interface SpeechOptions {
   pitch?: number;
   voiceIndex?: number;
   theme?: GoAnimateTheme;
+  accent?: 'US' | 'UK';
 }
 
 export type GoAnimateTheme = 
@@ -45,17 +45,21 @@ export const getThemeLabel = (theme: GoAnimateTheme): string => {
   }
 };
 
-export const getAvailableVoices = (): SpeechSynthesisVoice[] => {
-  return window.speechSynthesis.getVoices();
+export const getAvailableVoices = (accent?: 'US' | 'UK'): SpeechSynthesisVoice[] => {
+  const voices = window.speechSynthesis.getVoices();
+  if (!accent) return voices;
+  
+  return voices.filter(voice => 
+    accent === 'US' ? voice.lang.includes('en-US') : voice.lang.includes('en-GB')
+  );
 };
 
 export const speakText = (options: SpeechOptions): void => {
-  const { text, rate = 1, pitch = 1, voiceIndex = 0 } = options;
+  const { text, rate = 1, pitch = 1, voiceIndex = 0, accent } = options;
   
   const utterance = new SpeechSynthesisUtterance(text);
-  const voices = getAvailableVoices();
+  const voices = getAvailableVoices(accent);
   
-  // If we have voices available, use the selected one
   if (voices.length > 0) {
     utterance.voice = voices[voiceIndex % voices.length];
   }
@@ -66,11 +70,10 @@ export const speakText = (options: SpeechOptions): void => {
   window.speechSynthesis.speak(utterance);
 };
 
-export const generateBadVoice = (text: string): SpeechOptions => {
-  // Randomly select speech parameters to make it sound intentionally bad
+export const generateBadVoice = (text: string, accent: 'US' | 'UK' = 'US'): SpeechOptions => {
   const randomRate = SPEECH_RATES[Math.floor(Math.random() * SPEECH_RATES.length)];
   const randomPitch = PITCH_VALUES[Math.floor(Math.random() * PITCH_VALUES.length)];
-  const voices = getAvailableVoices();
+  const voices = getAvailableVoices(accent);
   const randomVoiceIndex = Math.floor(Math.random() * Math.max(1, voices.length));
   
   return {
@@ -78,18 +81,19 @@ export const generateBadVoice = (text: string): SpeechOptions => {
     rate: randomRate,
     pitch: randomPitch,
     voiceIndex: randomVoiceIndex,
+    accent,
   };
 };
 
 // For premium voices (PlotPlus subscribers)
-export const generateBetterVoice = (text: string, theme: GoAnimateTheme = null): SpeechOptions => {
-  // Use more moderate parameters for better sounding voices
+export const generateBetterVoice = (text: string, theme: GoAnimateTheme = null, accent: 'US' | 'UK' = 'US'): SpeechOptions => {
   return {
     text,
     rate: 1.0,
     pitch: 1.0,
-    voiceIndex: 0, // Default to first voice, but user can select
-    theme: theme,
+    voiceIndex: 0,
+    theme,
+    accent,
   };
 };
 
