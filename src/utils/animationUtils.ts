@@ -49,6 +49,18 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     model: 'comedy-female',
     animations: ['walk', 'talk', 'dance', 'sit', 'cheer', 'cry', 'laugh', 'point'],
   },
+  {
+    id: 'comedy3',
+    name: 'David (Comedy World)',
+    model: 'comedy-male-2',
+    animations: ['walk', 'talk', 'wave', 'dance', 'jump', 'think', 'celebrate', 'laugh'],
+  },
+  {
+    id: 'comedy4',
+    name: 'Sarah (Comedy World)',
+    model: 'comedy-female-2',
+    animations: ['walk', 'talk', 'dance', 'wave', 'jump', 'cheer', 'sing', 'point'],
+  },
   // Anime Characters
   {
     id: 'anime1',
@@ -61,6 +73,31 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     name: 'Sakura (Anime)',
     model: 'anime-female',
     animations: ['run', 'talk', 'magic', 'heal', 'special-move', 'victory'],
+  },
+  {
+    id: 'anime3',
+    name: 'Yuki (Anime)',
+    model: 'anime-male-2',
+    animations: ['run', 'talk', 'fight', 'jump', 'dash', 'power-up', 'victory'],
+  },
+  {
+    id: 'anime4',
+    name: 'Mei (Anime)',
+    model: 'anime-female-2',
+    animations: ['run', 'talk', 'dance', 'magic', 'heal', 'transform', 'spell'],
+  },
+  // Business Friendly Characters
+  {
+    id: 'business1',
+    name: 'James (Business)',
+    model: 'business-male',
+    animations: ['walk', 'talk', 'present', 'type', 'handshake', 'call', 'meeting'],
+  },
+  {
+    id: 'business2',
+    name: 'Linda (Business)',
+    model: 'business-female',
+    animations: ['walk', 'talk', 'present', 'type', 'organize', 'plan', 'discuss'],
   },
   // Space Citizens
   {
