@@ -1,4 +1,3 @@
-
 // Animation utility functions
 
 export type Character = {
@@ -133,6 +132,24 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     name: 'Penguin',
     model: 'scratch-penguin',
     animations: ['waddle', 'talk', 'slide', 'dive', 'fish', 'dance', 'flap'],
+  },
+  {
+    id: 'scratch9',
+    name: 'MS54',
+    model: 'scratch-ms54',
+    animations: ['walk', 'talk', 'code', 'debug', 'celebrate', 'think', 'type'],
+  },
+  {
+    id: 'scratch10',
+    name: 'Dreamer',
+    model: 'scratch-dreamer',
+    animations: ['walk', 'talk', 'dream', 'float', 'sparkle', 'imagine', 'create'],
+  },
+  {
+    id: 'scratch11',
+    name: 'Big M',
+    model: 'scratch-bigm',
+    animations: ['walk', 'talk', 'dance', 'jump', 'spin', 'flex', 'pose'],
   },
 ];
 
