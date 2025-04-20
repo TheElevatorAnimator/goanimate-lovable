@@ -1,3 +1,4 @@
+
 // Animation utility functions
 
 export type Character = {
@@ -31,6 +32,7 @@ export type AnimationProject = {
   scene: string; // Scene ID
   sequences: AnimationSequence[];
   isPremium?: boolean;
+  videoMaker?: 'goanimate-comedy' | 'goanimate-anime' | 'goanimate-business' | 'plotagon' | 'scratchverse' | 'default';
 };
 
 // Mock data for our characters (GoAnimate style)
@@ -106,6 +108,31 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     name: 'Pico',
     model: 'scratch-pico',
     animations: ['walk', 'talk', 'sing', 'dance', 'drum', 'jump', 'laugh'],
+  },
+  // Additional ScratchVerse characters from the project
+  {
+    id: 'scratch5',
+    name: 'Nano',
+    model: 'scratch-nano',
+    animations: ['walk', 'talk', 'jump', 'flip', 'dance', 'spin', 'wave'],
+  },
+  {
+    id: 'scratch6',
+    name: 'Tera',
+    model: 'scratch-tera',
+    animations: ['walk', 'talk', 'fly', 'magic', 'twirl', 'pose', 'float'],
+  },
+  {
+    id: 'scratch7',
+    name: 'Wizard',
+    model: 'scratch-wizard',
+    animations: ['walk', 'talk', 'cast', 'spell', 'teleport', 'meditate', 'wand'],
+  },
+  {
+    id: 'scratch8',
+    name: 'Penguin',
+    model: 'scratch-penguin',
+    animations: ['waddle', 'talk', 'slide', 'dive', 'fish', 'dance', 'flap'],
   },
 ];
 
@@ -186,6 +213,15 @@ export const AVAILABLE_SCENES: Scene[] = [
   },
 ];
 
+// Available video maker types (for subscription management)
+export const VIDEO_MAKER_TYPES = [
+  { id: 'goanimate-comedy', name: 'GoAnimate Comedy World', isPremium: true },
+  { id: 'goanimate-anime', name: 'GoAnimate Anime', isPremium: true },
+  { id: 'goanimate-business', name: 'GoAnimate Business Friendly', isPremium: true },
+  { id: 'plotagon', name: 'Plotagon', isPremium: false },
+  { id: 'scratchverse', name: 'ScratchVerse', isPremium: false },
+];
+
 // Create a new empty animation project
 export const createNewProject = (name: string): AnimationProject => {
   return {
@@ -194,6 +230,7 @@ export const createNewProject = (name: string): AnimationProject => {
     characters: [],
     scene: AVAILABLE_SCENES[0].id,
     sequences: [],
+    videoMaker: 'plotagon',
   };
 };
 

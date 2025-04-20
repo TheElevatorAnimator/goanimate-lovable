@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import CharacterSelector from '@/components/CharacterSelector';
 import SceneEditor from '@/components/SceneEditor';
@@ -5,6 +6,7 @@ import VoiceGenerator from '@/components/VoiceGenerator';
 import AnimationPreview from '@/components/AnimationPreview';
 import CustomButton from '@/components/ui/CustomButton';
 import Watermark from '@/components/Watermark';
+import SubscriptionManager from '@/components/SubscriptionManager';
 import { AnimationProject, createNewProject, AnimationSequence } from '@/utils/animationUtils';
 import { SpeechOptions } from '@/utils/speechUtils';
 
@@ -17,6 +19,7 @@ const Index = () => {
   const [trialActive, setTrialActive] = useState<boolean>(false);
   const [trialDaysRemaining, setTrialDaysRemaining] = useState<number>(21);
   const [pricingInfo] = useState({ usd: '0.99', gbp: '0.05' });
+  const [isManageSubscriptionOpen, setIsManageSubscriptionOpen] = useState<boolean>(false);
 
   useEffect(() => {
     if ('speechSynthesis' in window) {
@@ -69,6 +72,13 @@ const Index = () => {
     setIsSubscribed(true);
   };
 
+  const handleVideoMakerChange = (videoMaker: string) => {
+    setProject({
+      ...project,
+      videoMaker: videoMaker as AnimationProject['videoMaker'],
+    });
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-dream-purple/20 to-dream-blue/20">
       <Watermark isSubscribed={isSubscribed} pricingInfo={pricingInfo} />
@@ -116,7 +126,7 @@ const Index = () => {
               <CustomButton 
                 variant="secondary" 
                 className="mt-3 sm:mt-0"
-                onClick={() => console.log("Manage subscription")}
+                onClick={() => setIsManageSubscriptionOpen(true)}
               >
                 Manage Subscription
               </CustomButton>
@@ -195,6 +205,15 @@ const Index = () => {
           <p className="text-xs text-yellow-300 mt-1">PlotPlus Subscriber</p>
         ) : null}
       </footer>
+
+      <SubscriptionManager 
+        isSubscribed={isSubscribed}
+        isOpen={isManageSubscriptionOpen}
+        onClose={() => setIsManageSubscriptionOpen(false)}
+        onVideoMakerChange={handleVideoMakerChange}
+        currentVideoMaker={project.videoMaker}
+        trialDaysRemaining={trialActive ? trialDaysRemaining : undefined}
+      />
     </div>
   );
 };
