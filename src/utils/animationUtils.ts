@@ -12,7 +12,7 @@ export type Scene = {
   name: string;
   background: string;
   isPremium?: boolean;
-  style?: 'goanimate' | 'plotagon' | 'default';
+  style?: 'goanimate' | 'plotagon' | 'default' | 'scratchverse';
 };
 
 export type AnimationSequence = {
@@ -30,6 +30,7 @@ export type AnimationProject = {
   characters: string[]; // Character IDs
   scene: string; // Scene ID
   sequences: AnimationSequence[];
+  isPremium?: boolean;
 };
 
 // Mock data for our characters (GoAnimate style)
