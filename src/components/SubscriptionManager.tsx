@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Sheet,
   SheetContent,
@@ -14,6 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useToast } from "@/components/ui/use-toast";
 import CustomButton from './ui/CustomButton';
 import { VIDEO_MAKER_TYPES } from '@/utils/animationUtils';
 
@@ -35,6 +35,23 @@ const SubscriptionManager: React.FC<SubscriptionManagerProps> = ({
   trialDaysRemaining,
 }) => {
   const [selectedVideoMaker, setSelectedVideoMaker] = useState<string>(currentVideoMaker);
+  const { toast } = useToast();
+
+  const isPuffinBrowser = () => {
+    return /Puffin/i.test(navigator.userAgent);
+  };
+
+  const handleVideoMakerChange = (value: string) => {
+    setSelectedVideoMaker(value);
+    
+    if (value.includes('goanimate') && !isPuffinBrowser()) {
+      toast({
+        title: "Browser Compatibility Warning",
+        description: "GoAnimate video makers require Puffin Browser to work properly. Please switch to Puffin Browser for the best experience.",
+        variant: "destructive",
+      });
+    }
+  };
 
   const handleSave = () => {
     onVideoMakerChange(selectedVideoMaker);
@@ -62,7 +79,7 @@ const SubscriptionManager: React.FC<SubscriptionManagerProps> = ({
             
             <Select 
               value={selectedVideoMaker} 
-              onValueChange={setSelectedVideoMaker}
+              onValueChange={handleVideoMakerChange}
             >
               <SelectTrigger>
                 <SelectValue placeholder="Select video maker" />
