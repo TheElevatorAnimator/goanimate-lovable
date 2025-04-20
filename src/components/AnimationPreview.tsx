@@ -104,6 +104,19 @@ const AnimationPreview: React.FC<AnimationPreviewProps> = ({ project, savedVoice
       }
     }
     
+    if (currentScene.style === 'scratchverse') {
+      switch (currentScene.background) {
+        case 'scratch-stage':
+          return `${animationClass} bg-gradient-to-br from-blue-400 to-blue-600`;
+        case 'scratch-park':
+          return `${animationClass} bg-gradient-to-br from-green-400 to-yellow-300`;
+        case 'scratch-city':
+          return `${animationClass} bg-gradient-to-br from-orange-400 to-red-500`;
+        default:
+          return `${animationClass} bg-gradient-to-br from-purple-200 to-indigo-300`;
+      }
+    }
+    
     switch (currentScene.background) {
       case 'office':
         return `${animationClass} bg-gradient-to-br from-blue-100 to-blue-200`;
@@ -132,7 +145,7 @@ const AnimationPreview: React.FC<AnimationPreviewProps> = ({ project, savedVoice
         <div 
           className={`absolute inset-0 ${getSceneBackground()} flex items-center justify-center transition-all duration-500`}
         >
-          {currentScene?.style === 'goanimate' && !isSubscribed && (
+          {currentScene?.style === 'goanimate' && !project.isPremium && (
             <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
               <div className="text-white text-center p-4">
                 <h3 className="text-xl mb-2">Premium Background</h3>
@@ -141,36 +154,27 @@ const AnimationPreview: React.FC<AnimationPreviewProps> = ({ project, savedVoice
             </div>
           )}
           
-          {currentScene && currentScene.background === 'school' && (
+          {currentScene && currentScene.background === 'scratch-stage' && (
             <div className={`absolute inset-0 flex flex-wrap justify-around opacity-20 ${isBackgroundAnimating ? 'animate-bounce' : ''}`}>
-              <div className="w-16 h-20 bg-white m-2 rounded-sm"></div>
-              <div className="w-24 h-16 bg-yellow-500 m-2 rounded-sm"></div>
-              <div className="w-20 h-14 bg-red-500 m-2 rounded-sm"></div>
+              <div className="w-12 h-12 bg-white rounded-full m-2"></div>
+              <div className="w-16 h-16 bg-yellow-400 rounded-full m-2"></div>
+              <div className="w-10 h-10 bg-blue-400 rounded-full m-2"></div>
             </div>
           )}
           
-          {currentScene && currentScene.background === 'park' && (
+          {currentScene && currentScene.background === 'scratch-park' && (
             <div className={`absolute inset-0 flex items-end justify-around ${isBackgroundAnimating ? 'animate-[wave_2s_ease-in-out_infinite]' : ''}`}>
-              <div className="w-20 h-32 bg-green-800 rounded-t-full"></div>
-              <div className="w-16 h-24 bg-green-900 rounded-t-full"></div>
-              <div className="w-24 h-40 bg-green-800 rounded-t-full"></div>
+              <div className="w-16 h-32 bg-green-600 rounded-t-full"></div>
+              <div className="w-12 h-24 bg-green-700 rounded-t-full"></div>
+              <div className="w-20 h-36 bg-green-500 rounded-t-full"></div>
             </div>
           )}
           
-          {currentScene && currentScene.background === 'beach' && (
-            <div className="absolute inset-0">
-              <div className={`absolute bottom-0 w-full h-1/3 bg-yellow-200 ${isBackgroundAnimating ? 'animate-[wave_3s_ease-in-out_infinite]' : ''}`}></div>
-              <div className={`absolute top-4 right-8 w-16 h-16 bg-yellow-300 rounded-full opacity-80 ${isBackgroundAnimating ? 'animate-spin-slow' : ''}`}></div>
-            </div>
-          )}
-          
-          {currentScene && currentScene.background === 'city' && (
+          {currentScene && currentScene.background === 'scratch-city' && (
             <div className={`absolute inset-0 flex items-end justify-around ${isBackgroundAnimating ? 'animate-[sway_4s_ease-in-out_infinite]' : ''}`}>
-              <div className="w-16 h-48 bg-gray-800 m-1"></div>
-              <div className="w-12 h-64 bg-gray-900 m-1"></div>
-              <div className="w-14 h-40 bg-gray-700 m-1"></div>
-              <div className="w-10 h-56 bg-gray-800 m-1"></div>
-              <div className="w-16 h-32 bg-gray-900 m-1"></div>
+              <div className="w-12 h-40 bg-orange-600"></div>
+              <div className="w-16 h-48 bg-red-500"></div>
+              <div className="w-14 h-36 bg-orange-500"></div>
             </div>
           )}
           

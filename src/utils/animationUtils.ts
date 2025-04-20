@@ -81,6 +81,31 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     model: 'domo',
     animations: ['bounce', 'talk', 'eat', 'rage', 'dance', 'sleep'],
   },
+  // ScratchVerse Characters
+  {
+    id: 'scratch1',
+    name: 'Scratch Cat',
+    model: 'scratch-cat',
+    animations: ['walk', 'talk', 'meow', 'dance', 'spin', 'grow', 'shrink'],
+  },
+  {
+    id: 'scratch2',
+    name: 'Gobo',
+    model: 'scratch-gobo',
+    animations: ['walk', 'talk', 'jump', 'dance', 'flip', 'wave', 'think'],
+  },
+  {
+    id: 'scratch3',
+    name: 'Giga',
+    model: 'scratch-giga',
+    animations: ['walk', 'talk', 'roar', 'stomp', 'sleep', 'stretch', 'play'],
+  },
+  {
+    id: 'scratch4',
+    name: 'Pico',
+    model: 'scratch-pico',
+    animations: ['walk', 'talk', 'sing', 'dance', 'drum', 'jump', 'laugh'],
+  },
 ];
 
 // Mock data for scene backgrounds
@@ -138,7 +163,26 @@ export const AVAILABLE_SCENES: Scene[] = [
     background: 'street',
     isPremium: true,
     style: 'goanimate'
-  }
+  },
+  // ScratchVerse scenes
+  {
+    id: 'scratch1',
+    name: 'Scratch Stage',
+    background: 'scratch-stage',
+    style: 'scratchverse'
+  },
+  {
+    id: 'scratch2',
+    name: 'Scratch Park',
+    background: 'scratch-park',
+    style: 'scratchverse'
+  },
+  {
+    id: 'scratch3',
+    name: 'Scratch City',
+    background: 'scratch-city',
+    style: 'scratchverse'
+  },
 ];
 
 // Create a new empty animation project
