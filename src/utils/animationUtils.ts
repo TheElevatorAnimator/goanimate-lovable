@@ -61,6 +61,30 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     model: 'comedy-female-2',
     animations: ['walk', 'talk', 'dance', 'wave', 'jump', 'cheer', 'sing', 'point'],
   },
+  {
+    id: 'comedy5',
+    name: 'Boris (Caillou\'s Dad)',
+    model: 'comedy-dad',
+    animations: ['walk', 'talk', 'angry', 'ground', 'celebrate', 'think', 'point', 'laugh'],
+  },
+  {
+    id: 'comedy6',
+    name: 'Doris (Caillou\'s Mom)',
+    model: 'comedy-mom',
+    animations: ['walk', 'talk', 'comfort', 'hug', 'cook', 'read', 'smile', 'wave'],
+  },
+  {
+    id: 'comedy7',
+    name: 'Rosie (Caillou\'s Sister)',
+    model: 'comedy-sister',
+    animations: ['walk', 'talk', 'dance', 'play', 'jump', 'laugh', 'cry', 'hug'],
+  },
+  {
+    id: 'comedy8',
+    name: 'Custom Character (Requires Puffin Browser)',
+    model: 'comedy-custom',
+    animations: ['walk', 'talk', 'dance', 'jump', 'wave', 'think', 'laugh', 'point'],
+  },
   // Anime Characters
   {
     id: 'anime1',
@@ -85,19 +109,6 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     name: 'Mei (Anime)',
     model: 'anime-female-2',
     animations: ['run', 'talk', 'dance', 'magic', 'heal', 'transform', 'spell'],
-  },
-  // Business Friendly Characters
-  {
-    id: 'business1',
-    name: 'James (Business)',
-    model: 'business-male',
-    animations: ['walk', 'talk', 'present', 'type', 'handshake', 'call', 'meeting'],
-  },
-  {
-    id: 'business2',
-    name: 'Linda (Business)',
-    model: 'business-female',
-    animations: ['walk', 'talk', 'present', 'type', 'organize', 'plan', 'discuss'],
   },
   // Space Citizens
   {
@@ -325,4 +336,9 @@ export const importProject = (jsonString: string): AnimationProject => {
     console.error('Failed to import project:', error);
     throw new Error('Invalid project file');
   }
+};
+
+// Add a helper function to check if browser is Puffin
+export const isPuffinBrowser = () => {
+  return /Puffin/i.test(navigator.userAgent);
 };
