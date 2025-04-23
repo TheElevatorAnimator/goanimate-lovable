@@ -34,6 +34,22 @@ export type AnimationProject = {
   videoMaker?: 'goanimate-comedy' | 'goanimate-anime' | 'goanimate-business' | 'plotagon' | 'scratchverse' | 'default' | '2016-video-maker';
 };
 
+// Character limits for free users
+export const FREE_CHARACTER_LIMITS = {
+  'comedyWorld': 5,
+  'lil': 6,
+  'chibiPeepz': 5,
+  'space': 6,
+  'spacePeepz': 5,
+  'chibiNinjas': 5
+};
+
+// Video length limits (in seconds)
+export const VIDEO_LENGTH_LIMITS = {
+  free: 30,
+  premium: 120 // 2 minutes
+};
+
 // Mock data for our characters (GoAnimate style)
 export const AVAILABLE_CHARACTERS: Character[] = [
   // Comedy World Characters
@@ -116,6 +132,51 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     name: 'Commander Zax',
     model: 'space-male',
     animations: ['float', 'talk', 'laser', 'jetpack', 'zero-gravity', 'salute'],
+  },
+  {
+    id: 'space2',
+    name: 'Captain Nova',
+    model: 'space-female',
+    animations: ['float', 'talk', 'scan', 'repair', 'combat', 'pilot'],
+  },
+  // Chibi Peepz
+  {
+    id: 'chibi1',
+    name: 'Chibi Hero',
+    model: 'chibi-hero',
+    animations: ['run', 'jump', 'attack', 'pose', 'victory', 'defeat'],
+  },
+  {
+    id: 'chibi2',
+    name: 'Chibi Mage',
+    model: 'chibi-mage',
+    animations: ['cast', 'float', 'magic', 'meditate', 'teleport', 'celebrate'],
+  },
+  // Space Peepz
+  {
+    id: 'spacePeepz1',
+    name: 'Star Explorer',
+    model: 'space-peepz-explorer',
+    animations: ['explore', 'scan', 'collect', 'communicate', 'research', 'analyze'],
+  },
+  {
+    id: 'spacePeepz2',
+    name: 'Alien Friend',
+    model: 'space-peepz-alien',
+    animations: ['float', 'greet', 'dance', 'teleport', 'transform', 'wave'],
+  },
+  // Chibi Ninjas
+  {
+    id: 'chibiNinja1',
+    name: 'Shadow Warrior',
+    model: 'chibi-ninja-warrior',
+    animations: ['stealth', 'attack', 'throw', 'climb', 'meditate', 'disappear'],
+  },
+  {
+    id: 'chibiNinja2',
+    name: 'Swift Kunoichi',
+    model: 'chibi-ninja-kunoichi',
+    animations: ['dash', 'slice', 'jump', 'hide', 'reveal', 'victory'],
   },
   // Lil' Peepz
   {
@@ -278,13 +339,40 @@ export const AVAILABLE_SCENES: Scene[] = [
   },
 ];
 
-// Available video maker types (for subscription management)
+// Updated VIDEO_MAKER_TYPES with more detailed information
 export const VIDEO_MAKER_TYPES = [
-  { id: 'goanimate-comedy', name: 'GoAnimate Comedy World', isPremium: true },
-  { id: 'goanimate-anime', name: 'GoAnimate Anime', isPremium: true },
-  { id: '2016-video-maker', name: 'GoAnimate 2016 Video Maker', isPremium: true },
-  { id: 'plotagon', name: 'Plotagon', isPremium: false },
-  { id: 'scratchverse', name: 'ScratchVerse', isPremium: false },
+  { 
+    id: 'goanimate-comedy', 
+    name: 'GoAnimate Comedy World', 
+    isPremium: true,
+    maxCharacters: 'Unlimited with PlotPlus',
+    assetCount: '100,000+ community characters'
+  },
+  { 
+    id: '2016-video-maker', 
+    name: 'GoAnimate 2016 Video Maker', 
+    isPremium: true,
+    description: 'Flash-based editor with millions of character combinations',
+    requirements: 'Requires Puffin Browser',
+    assets: {
+      backgrounds: '100+',
+      props: '1,000+',
+      characters: '100,000+',
+      music: 'Included'
+    }
+  },
+  { 
+    id: 'plotagon', 
+    name: 'Plotagon', 
+    isPremium: false,
+    maxVideoLength: 30
+  },
+  { 
+    id: 'scratchverse', 
+    name: 'ScratchVerse', 
+    isPremium: false,
+    maxVideoLength: 30
+  },
 ];
 
 // Create a new empty animation project

@@ -47,11 +47,8 @@ export const getThemeLabel = (theme: GoAnimateTheme): string => {
 
 export const getAvailableVoices = (accent?: 'US' | 'UK'): SpeechSynthesisVoice[] => {
   const voices = window.speechSynthesis.getVoices();
-  if (!accent) return voices;
-  
-  return voices.filter(voice => 
-    accent === 'US' ? voice.lang.includes('en-US') : voice.lang.includes('en-GB')
-  );
+  // Default to US English voices for free users
+  return voices.filter(voice => voice.lang.includes('en-US'));
 };
 
 export const speakText = (options: SpeechOptions): void => {
