@@ -31,7 +31,7 @@ export type AnimationProject = {
   scene: string; // Scene ID
   sequences: AnimationSequence[];
   isPremium?: boolean;
-  videoMaker?: 'goanimate-comedy' | 'goanimate-anime' | 'goanimate-business' | 'plotagon' | 'scratchverse' | 'default';
+  videoMaker?: 'goanimate-comedy' | 'goanimate-anime' | 'goanimate-business' | 'plotagon' | 'scratchverse' | 'default' | '2016-video-maker';
 };
 
 // Mock data for our characters (GoAnimate style)
@@ -282,7 +282,7 @@ export const AVAILABLE_SCENES: Scene[] = [
 export const VIDEO_MAKER_TYPES = [
   { id: 'goanimate-comedy', name: 'GoAnimate Comedy World', isPremium: true },
   { id: 'goanimate-anime', name: 'GoAnimate Anime', isPremium: true },
-  { id: 'goanimate-business', name: 'GoAnimate Business Friendly', isPremium: true },
+  { id: '2016-video-maker', name: 'GoAnimate 2016 Video Maker', isPremium: true },
   { id: 'plotagon', name: 'Plotagon', isPremium: false },
   { id: 'scratchverse', name: 'ScratchVerse', isPremium: false },
 ];
