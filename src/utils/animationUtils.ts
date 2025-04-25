@@ -260,6 +260,18 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     model: 'scratch-bigm',
     animations: ['walk', 'talk', 'dance', 'jump', 'spin', 'flex', 'pose'],
   },
+  {
+    id: 'scratch12',
+    name: 'LF97',
+    model: 'scratch-lf97',
+    animations: ['walk', 'talk', 'dance', 'jump', 'wave', 'spin', 'pose'],
+  },
+  {
+    id: 'scratch13',
+    name: 'LF98',
+    model: 'scratch-lf98',
+    animations: ['walk', 'talk', 'run', 'jump', 'dance', 'wave', 'point'],
+  },
 ];
 
 // Mock data for scene backgrounds
