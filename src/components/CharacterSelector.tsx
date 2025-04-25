@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { AVAILABLE_CHARACTERS, Character } from '@/utils/animationUtils';
+import { Character } from '@/types/animation';
+import { AVAILABLE_CHARACTERS } from '@/constants/characters';
 import CustomButton from './ui/CustomButton';
 
 interface CharacterSelectorProps {

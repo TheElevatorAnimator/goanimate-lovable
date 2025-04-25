@@ -1,10 +1,11 @@
+
 import React, { useState, useEffect } from 'react';
 import { 
   AnimationProject, 
-  AVAILABLE_SCENES,
-  AVAILABLE_CHARACTERS,
-  AnimationSequence
-} from '@/utils/animationUtils';
+  AnimationSequence 
+} from '@/types/animation';
+import { AVAILABLE_SCENES } from '@/constants/scenes';
+import { AVAILABLE_CHARACTERS } from '@/constants/characters';
 import { speakText, stopSpeaking, SpeechOptions } from '@/utils/speechUtils';
 import CustomButton from './ui/CustomButton';
 

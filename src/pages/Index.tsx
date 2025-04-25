@@ -1,5 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
+import { AnimationProject } from '@/types/animation';
+import { createNewProject } from '@/utils/animationUtils';
 import CharacterSelector from '@/components/CharacterSelector';
 import SceneEditor from '@/components/SceneEditor';
 import VoiceGenerator from '@/components/VoiceGenerator';
@@ -7,14 +8,13 @@ import AnimationPreview from '@/components/AnimationPreview';
 import CustomButton from '@/components/ui/CustomButton';
 import Watermark from '@/components/Watermark';
 import SubscriptionManager from '@/components/SubscriptionManager';
-import { AnimationProject, createNewProject, AnimationSequence } from '@/utils/animationUtils';
 import { SpeechOptions } from '@/utils/speechUtils';
 
 const Index = () => {
   const [project, setProject] = useState<AnimationProject>(() => createNewProject('My Animation'));
   const [activeTab, setActiveTab] = useState<'characters' | 'editor' | 'voice' | 'preview'>('characters');
   const [savedVoices, setSavedVoices] = useState<Record<string, SpeechOptions>>({});
-  const [selectedSequence, setSelectedSequence] = useState<AnimationSequence | null>(null);
+  const [selectedSequence, setSelectedSequence] = useState<AnimationProject['sequences'][number] | null>(null);
   const [isSubscribed, setIsSubscribed] = useState<boolean>(false);
   const [trialActive, setTrialActive] = useState<boolean>(false);
   const [trialDaysRemaining, setTrialDaysRemaining] = useState<number>(21);

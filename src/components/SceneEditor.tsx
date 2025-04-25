@@ -1,12 +1,12 @@
 
 import React from 'react';
 import { 
-  AVAILABLE_SCENES, 
-  AVAILABLE_CHARACTERS, 
   AnimationProject, 
-  AnimationSequence,
-  addSequence
-} from '@/utils/animationUtils';
+  AnimationSequence 
+} from '@/types/animation';
+import { AVAILABLE_SCENES } from '@/constants/scenes';
+import { AVAILABLE_CHARACTERS } from '@/constants/characters';
+import { addSequence } from '@/utils/animationUtils';
 import CustomButton from './ui/CustomButton';
 
 interface SceneEditorProps {
