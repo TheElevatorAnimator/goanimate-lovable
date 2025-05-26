@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/select";
 import { useToast } from "@/components/ui/use-toast";
 import CustomButton from './ui/CustomButton';
-import { VIDEO_MAKER_TYPES } from '@/utils/animationUtils';
+import { VIDEO_MAKER_TYPES } from '@/constants/videoMakers';
 
 interface SubscriptionManagerProps {
   isSubscribed: boolean;
