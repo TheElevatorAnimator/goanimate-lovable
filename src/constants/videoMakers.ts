@@ -1,3 +1,4 @@
+
 // Video length limits (in seconds)
 export const VIDEO_LENGTH_LIMITS = {
   free: 30,
@@ -36,5 +37,13 @@ export const VIDEO_MAKER_TYPES = [
     name: 'ScratchVerse', 
     isPremium: false,
     maxVideoLength: 30
+  },
+  { 
+    id: 'inanimate-insanity', 
+    name: 'Inanimate Insanity Invitational', 
+    isPremium: false,
+    maxVideoLength: 30,
+    description: 'Create animations with II Season 3 characters',
+    features: ['Object Show Style', '8 Unique Characters', 'Competition Scenes']
   },
 ];

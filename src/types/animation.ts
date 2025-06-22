@@ -30,5 +30,5 @@ export type AnimationProject = {
   scene: string; // Scene ID
   sequences: AnimationSequence[];
   isPremium?: boolean;
-  videoMaker?: 'goanimate-comedy' | 'goanimate-anime' | 'goanimate-business' | 'plotagon' | 'scratchverse' | 'default' | '2016-video-maker';
+  videoMaker?: 'goanimate-comedy' | 'goanimate-anime' | 'goanimate-business' | 'plotagon' | 'scratchverse' | 'inanimate-insanity' | 'default' | '2016-video-maker';
 };

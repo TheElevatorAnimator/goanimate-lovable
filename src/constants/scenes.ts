@@ -1,3 +1,4 @@
+
 import { Scene } from '../types/animation';
 
 export const AVAILABLE_SCENES: Scene[] = [
@@ -73,5 +74,30 @@ export const AVAILABLE_SCENES: Scene[] = [
     name: 'Scratch City',
     background: 'scratch-city',
     style: 'scratchverse'
+  },
+  // NEW: Inanimate Insanity Invitational Scenes (Free)
+  {
+    id: 'ii1',
+    name: 'Hotel OJ Lobby',
+    background: 'hotel-lobby',
+    style: 'default'
+  },
+  {
+    id: 'ii2',
+    name: 'Competition Ground',
+    background: 'competition-area',
+    style: 'default'
+  },
+  {
+    id: 'ii3',
+    name: 'Elimination Area',
+    background: 'elimination-stage',
+    style: 'default'
+  },
+  {
+    id: 'ii4',
+    name: 'Challenge Arena',
+    background: 'challenge-field',
+    style: 'default'
   },
 ];

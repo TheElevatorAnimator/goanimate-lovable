@@ -1,3 +1,4 @@
+
 import { Character } from '../types/animation';
 
 // Character limits for free users
@@ -7,7 +8,8 @@ export const FREE_CHARACTER_LIMITS = {
   'chibiPeepz': 5,
   'space': 6,
   'spacePeepz': 5,
-  'chibiNinjas': 5
+  'chibiNinjas': 5,
+  'inanimateInsanity': 8
 };
 
 // Mock data for our characters (GoAnimate style)
@@ -177,7 +179,6 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     model: 'scratch-pico',
     animations: ['walk', 'talk', 'sing', 'dance', 'drum', 'jump', 'laugh'],
   },
-  // Additional ScratchVerse characters from the project
   {
     id: 'scratch5',
     name: 'Nano',
@@ -231,5 +232,54 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     name: 'LF98',
     model: 'scratch-lf98',
     animations: ['walk', 'talk', 'run', 'jump', 'dance', 'wave', 'point'],
+  },
+  // NEW: Inanimate Insanity Invitational Characters (Season 3)
+  {
+    id: 'ii1',
+    name: 'Bot',
+    model: 'ii-bot',
+    animations: ['walk', 'talk', 'compute', 'beep', 'analyze', 'malfunction', 'reboot', 'scan'],
+  },
+  {
+    id: 'ii2',
+    name: 'Cabby',
+    model: 'ii-cabby',
+    animations: ['walk', 'talk', 'organize', 'file', 'research', 'present', 'explain', 'sort'],
+  },
+  {
+    id: 'ii3',
+    name: 'Test Tube',
+    model: 'ii-testtube',
+    animations: ['walk', 'talk', 'experiment', 'bubble', 'react', 'explode', 'mix', 'pour'],
+  },
+  {
+    id: 'ii4',
+    name: 'Fan',
+    model: 'ii-fan',
+    animations: ['walk', 'talk', 'spin', 'blow', 'cool', 'overheat', 'whir', 'flutter'],
+  },
+  {
+    id: 'ii5',
+    name: 'Lightbulb',
+    model: 'ii-lightbulb',
+    animations: ['walk', 'talk', 'glow', 'flicker', 'brighten', 'dim', 'spark', 'illuminate'],
+  },
+  {
+    id: 'ii6',
+    name: 'Paintbrush',
+    model: 'ii-paintbrush',
+    animations: ['walk', 'talk', 'paint', 'create', 'splash', 'drip', 'stroke', 'color'],
+  },
+  {
+    id: 'ii7',
+    name: 'Silver Spoon',
+    model: 'ii-silverspoon',
+    animations: ['walk', 'talk', 'stir', 'scoop', 'serve', 'polish', 'shine', 'elegant'],
+  },
+  {
+    id: 'ii8',
+    name: 'Candle',
+    model: 'ii-candle',
+    animations: ['walk', 'talk', 'melt', 'flicker', 'burn', 'drip', 'glow', 'extinguish'],
   },
 ];
