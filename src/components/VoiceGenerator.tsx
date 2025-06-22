@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { speakText, stopSpeaking, generateBadVoice, getAvailableVoices, SpeechOptions, GOANIMATE_THEMES, getThemeLabel, GoAnimateTheme } from '@/utils/speechUtils';
+import { speakText, stopSpeaking, generateBadVoice, generateGoAnimateVoice, getAvailableVoices, SpeechOptions, GOANIMATE_THEMES, getThemeLabel, GoAnimateTheme, GOANIMATE_VOICES, getIpadOptimizedVoices } from '@/utils/speechUtils';
 import CustomButton from './ui/CustomButton';
 
 interface VoiceGeneratorProps {
@@ -13,8 +13,14 @@ const VoiceGenerator: React.FC<VoiceGeneratorProps> = ({ text, onVoiceSelected, 
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedTheme, setSelectedTheme] = useState<GoAnimateTheme>(null);
-
+  const [selectedGoAnimateVoice, setSelectedGoAnimateVoice] = useState<string>('');
+  const [isIpad, setIsIpad] = useState(false);
+  
   useEffect(() => {
+    // Detect iPad
+    const detectIpad = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    setIsIpad(detectIpad);
+    
     const loadVoices = () => {
       const availableVoices = getAvailableVoices();
       if (availableVoices.length > 0) {
@@ -59,12 +65,20 @@ const VoiceGenerator: React.FC<VoiceGeneratorProps> = ({ text, onVoiceSelected, 
     const badVoice = generateBadVoice(text);
     setOptions(badVoice);
     setSelectedTheme(null);
+    setSelectedGoAnimateVoice('');
+  };
+
+  const handleGoAnimateRandomize = () => {
+    const goAnimateVoice = generateGoAnimateVoice(text, selectedTheme);
+    setOptions(goAnimateVoice);
+    setSelectedGoAnimateVoice(goAnimateVoice.goAnimateVoiceId || '');
   };
 
   const handleSave = () => {
     onVoiceSelected({
       ...options,
-      theme: selectedTheme
+      theme: selectedTheme,
+      goAnimateVoiceId: selectedGoAnimateVoice
     });
   };
 
@@ -90,16 +104,40 @@ const VoiceGenerator: React.FC<VoiceGeneratorProps> = ({ text, onVoiceSelected, 
     setOptions(prev => ({ ...prev, theme }));
   };
 
+  const handleGoAnimateVoiceChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const voiceId = e.target.value;
+    setSelectedGoAnimateVoice(voiceId);
+    
+    if (voiceId) {
+      const goAnimateVoice = GOANIMATE_VOICES.find(v => v.id === voiceId);
+      if (goAnimateVoice) {
+        setOptions(prev => ({
+          ...prev,
+          rate: goAnimateVoice.rate,
+          pitch: goAnimateVoice.pitch,
+          accent: goAnimateVoice.accent,
+          goAnimateVoiceId: voiceId
+        }));
+      }
+    }
+  };
+
   const filteredVoices = isPremium 
     ? voices 
     : voices.filter((voice, index) => index < 3);
 
+  const availableGoAnimateVoices = isIpad ? getIpadOptimizedVoices() : GOANIMATE_VOICES;
   const trialDaysRemaining = 21;
 
   return (
-    <div className="bg-white/80 backdrop-blur-sm p-4 rounded-lg pixel-border">
+    <div className="bg-gradient-to-b from-orange-100 to-orange-200 p-4 rounded-lg border-4 border-orange-400 shadow-xl">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl text-dream-purple retro-text">Voice Generator</h2>
+        <h2 className="text-2xl font-bold text-orange-800 drop-shadow-md">🎤 GoAnimate Voice Studio</h2>
+        {isIpad && (
+          <span className="bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+            📱 iPad Optimized
+          </span>
+        )}
         {isPremium ? (
           <span className="bg-yellow-300 text-xs font-bold px-2 py-1 rounded">
             PlotPlus Active - Trial ends in {trialDaysRemaining} days
@@ -111,16 +149,49 @@ const VoiceGenerator: React.FC<VoiceGeneratorProps> = ({ text, onVoiceSelected, 
         )}
       </div>
       
-      <div className="mb-4">
-        <label className="block text-sm font-bold mb-1">Preview Text</label>
+      <div className="mb-4 bg-white/80 p-3 rounded-lg border-2 border-orange-300">
+        <label className="block text-sm font-bold mb-1 text-orange-800">Preview Text</label>
         <div className="p-3 bg-gray-100 rounded min-h-[60px] border border-gray-300">
           {text || "No text provided. Add speech text to a character first!"}
         </div>
       </div>
       
+      {/* GoAnimate Voice Selection */}
+      <div className="mb-4 bg-gradient-to-r from-blue-200 to-purple-200 p-3 rounded-lg border-2 border-blue-400">
+        <h3 className="font-bold text-blue-800 mb-2">🎭 GoAnimate Character Voices</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div>
+            <label className="block text-sm font-bold mb-1">Character Voice</label>
+            <select 
+              className="w-full p-2 border rounded bg-white"
+              value={selectedGoAnimateVoice}
+              onChange={handleGoAnimateVoiceChange}
+            >
+              <option value="">Select a GoAnimate Voice</option>
+              {availableGoAnimateVoices.map((voice) => (
+                <option key={voice.id} value={voice.id}>
+                  {voice.name} ({voice.theme})
+                </option>
+              ))}
+            </select>
+          </div>
+          
+          <div>
+            <label className="block text-sm font-bold mb-1">Random GoAnimate Voice</label>
+            <CustomButton 
+              variant="accent" 
+              className="w-full bg-purple-500 hover:bg-purple-600 text-white font-bold"
+              onClick={handleGoAnimateRandomize}
+            >
+              🎲 Random Character Voice
+            </CustomButton>
+          </div>
+        </div>
+      </div>
+      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
         <div>
-          <label className="block text-sm font-bold mb-1">Voice</label>
+          <label className="block text-sm font-bold mb-1">System Voice</label>
           <select 
             className="w-full p-2 border rounded"
             value={options.voiceIndex || 0}
@@ -133,8 +204,8 @@ const VoiceGenerator: React.FC<VoiceGeneratorProps> = ({ text, onVoiceSelected, 
             ))}
           </select>
           {!isPremium && (
-            <p className="text-xs text-dream-purple mt-1">
-              Subscribe to PlotPlus for {voices.length - 3} more human-sounding voices!
+            <p className="text-xs text-orange-600 mt-1">
+              Subscribe to PlotPlus for {voices.length - 3} more voices!
             </p>
           )}
         </div>
@@ -154,23 +225,17 @@ const VoiceGenerator: React.FC<VoiceGeneratorProps> = ({ text, onVoiceSelected, 
                 </option>
               ))}
             </select>
-            {selectedTheme === '2016VideoMaker' && (
-              <div className="mt-1 p-2 bg-yellow-100 rounded text-xs">
-                <p className="text-yellow-600 font-bold">Flash Required</p>
-                <p>The 2016 Video Maker requires Adobe Flash. Use Puffin Browser for compatibility.</p>
-              </div>
-            )}
           </div>
         )}
         
         <div>
-          <label className="block text-sm font-bold mb-1">Randomize Voice</label>
+          <label className="block text-sm font-bold mb-1">Make it Weird!</label>
           <CustomButton 
             variant="accent" 
-            className="w-full"
+            className="w-full bg-red-500 hover:bg-red-600 text-white font-bold"
             onClick={handleRandomize}
           >
-            Make it Weird!
+            🤪 Random Bad Voice
           </CustomButton>
         </div>
         
@@ -202,7 +267,7 @@ const VoiceGenerator: React.FC<VoiceGeneratorProps> = ({ text, onVoiceSelected, 
       </div>
       
       {isPremium && (
-        <div className="mb-4 p-3 bg-yellow-100 rounded-lg text-sm">
+        <div className="mb-4 p-3 bg-yellow-100 rounded-lg text-sm border-2 border-yellow-400">
           <p className="font-bold">PlotPlus 3-Week Free Trial</p>
           <p>Enjoy better voices and premium themes for 21 days. Your subscription will automatically begin after your trial ends.</p>
         </div>
@@ -212,29 +277,29 @@ const VoiceGenerator: React.FC<VoiceGeneratorProps> = ({ text, onVoiceSelected, 
         {isPlaying ? (
           <CustomButton 
             variant="outline" 
-            className="flex-1"
+            className="flex-1 bg-red-500 hover:bg-red-600 text-white font-bold border-4 border-red-700"
             onClick={handleStop}
           >
-            Stop
+            ⏹️ Stop
           </CustomButton>
         ) : (
           <CustomButton 
             variant="primary" 
-            className="flex-1"
+            className="flex-1 bg-green-500 hover:bg-green-600 text-white font-bold border-4 border-green-700"
             onClick={handlePlay}
             disabled={!text}
           >
-            Preview Voice
+            ▶️ Preview Voice
           </CustomButton>
         )}
         
         <CustomButton 
           variant="secondary" 
-          className="flex-1"
+          className="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-bold border-4 border-blue-700"
           onClick={handleSave}
           disabled={!text}
         >
-          Save Voice
+          💾 Save Voice
         </CustomButton>
       </div>
     </div>

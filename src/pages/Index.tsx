@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { AnimationProject } from '@/types/animation';
 import { createNewProject } from '@/utils/animationUtils';
@@ -6,6 +5,7 @@ import CharacterSelector from '@/components/CharacterSelector';
 import SceneEditor from '@/components/SceneEditor';
 import VoiceGenerator from '@/components/VoiceGenerator';
 import AnimationPreview from '@/components/AnimationPreview';
+import VideoPreviewer2010 from '@/components/VideoPreviewer2010';
 import CustomButton from '@/components/ui/CustomButton';
 import Watermark from '@/components/Watermark';
 import SubscriptionManager from '@/components/SubscriptionManager';
@@ -13,7 +13,7 @@ import { SpeechOptions } from '@/utils/speechUtils';
 
 const Index = () => {
   const [project, setProject] = useState<AnimationProject>(() => createNewProject('My Animation'));
-  const [activeTab, setActiveTab] = useState<'characters' | 'editor' | 'voice' | 'preview'>('characters');
+  const [activeTab, setActiveTab] = useState<'characters' | 'editor' | 'voice' | 'preview' | 'preview2010'>('characters');
   const [savedVoices, setSavedVoices] = useState<Record<string, SpeechOptions>>({});
   const [selectedSequence, setSelectedSequence] = useState<AnimationProject['sequences'][number] | null>(null);
   const [isSubscribed, setIsSubscribed] = useState<boolean>(false);
@@ -146,7 +146,7 @@ const Index = () => {
           </div>
         ) : null}
         
-        {/* Classic 2013 Tab Navigation */}
+        {/* Enhanced Tab Navigation with 2010 Preview */}
         <div className="mb-6 bg-white rounded-lg shadow-lg p-2 border-2 border-gray-300">
           <div className="flex flex-wrap gap-1">
             <CustomButton
@@ -194,7 +194,18 @@ const Index = () => {
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               } px-4 py-2 rounded-md font-bold text-sm transition-all`}
             >
-              ▶️ Preview
+              ▶️ Preview (2013)
+            </CustomButton>
+            <CustomButton
+              variant={activeTab === 'preview2010' ? 'primary' : 'outline'}
+              onClick={() => setActiveTab('preview2010')}
+              className={`${
+                activeTab === 'preview2010' 
+                  ? 'bg-purple-500 text-white shadow-md' 
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              } px-4 py-2 rounded-md font-bold text-sm transition-all`}
+            >
+              📺 Preview (2010)
             </CustomButton>
           </div>
         </div>
@@ -225,6 +236,13 @@ const Index = () => {
           
           {activeTab === 'preview' && (
             <AnimationPreview 
+              project={project}
+              savedVoices={savedVoices}
+            />
+          )}
+          
+          {activeTab === 'preview2010' && (
+            <VideoPreviewer2010 
               project={project}
               savedVoices={savedVoices}
             />
