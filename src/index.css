@@ -83,23 +83,116 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: Arial, sans-serif;
+    font-family: "Trebuchet MS", Arial, sans-serif;
   }
 }
 
 @layer utilities {
+  /* 2013 GoAnimate Flash-style effects */
+  .flash-button {
+    background: linear-gradient(145deg, #4CAF50, #45a049);
+    border: 2px solid #388e3c;
+    box-shadow: 
+      0 4px 8px rgba(0,0,0,0.2),
+      inset 0 1px 0 rgba(255,255,255,0.3),
+      inset 0 -1px 0 rgba(0,0,0,0.1);
+    transition: all 0.1s ease;
+  }
+  
+  .flash-button:hover {
+    background: linear-gradient(145deg, #5CBF60, #4CAF50);
+    transform: translateY(-1px);
+    box-shadow: 
+      0 6px 12px rgba(0,0,0,0.25),
+      inset 0 1px 0 rgba(255,255,255,0.4);
+  }
+  
+  .flash-button:active {
+    transform: translateY(1px);
+    box-shadow: 
+      0 2px 4px rgba(0,0,0,0.2),
+      inset 0 1px 0 rgba(0,0,0,0.1);
+  }
+
+  /* Classic 2013 card styling */
+  .goanimate-card {
+    background: linear-gradient(145deg, #ffffff, #f5f5f5);
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 
+      0 4px 8px rgba(0,0,0,0.1),
+      inset 0 1px 0 rgba(255,255,255,0.8);
+  }
+
+  /* 2013 Flash-style gradients */
+  .flash-gradient-blue {
+    background: linear-gradient(145deg, #2196F3, #1976D2);
+  }
+  
+  .flash-gradient-orange {
+    background: linear-gradient(145deg, #FF9800, #F57C00);
+  }
+  
+  .flash-gradient-green {
+    background: linear-gradient(145deg, #4CAF50, #388E3C);
+  }
+
+  /* Retro animations */
+  .bounce-in {
+    animation: bounceIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  @keyframes bounceIn {
+    0% {
+      transform: scale(0.3);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    70% {
+      transform: scale(0.9);
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .pulse-glow {
+    animation: pulseGlow 2s infinite;
+  }
+  
+  @keyframes pulseGlow {
+    0%, 100% {
+      box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(33, 150, 243, 0.8);
+    }
+  }
+
+  /* Legacy pixel-border updated for 2013 style */
   .pixel-border {
-    box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 0.5);
-    border: 3px solid black;
+    border: 2px solid #333;
+    border-radius: 4px;
+    box-shadow: 
+      2px 2px 0px 0px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255,255,255,0.2);
   }
   
   .retro-text {
-    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+    text-shadow: 
+      1px 1px 0px rgba(0, 0, 0, 0.3),
+      2px 2px 4px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
   }
   
+  /* 2013 Flash-style glitch effect (updated) */
   .glitch-effect {
     position: relative;
     display: inline-block;
+    font-weight: bold;
   }
   
   .glitch-effect::before,
@@ -114,36 +207,36 @@
   
   .glitch-effect::before {
     left: 2px;
-    text-shadow: -2px 0 #ff00ff;
+    text-shadow: -2px 0 #ff6b35;
     clip: rect(24px, 550px, 90px, 0);
-    animation: glitch-animation 3s infinite linear alternate-reverse;
+    animation: flash-glitch 3s infinite linear alternate-reverse;
   }
   
   .glitch-effect::after {
     left: -2px;
-    text-shadow: -2px 0 #00ffff;
+    text-shadow: -2px 0 #00bcd4;
     clip: rect(85px, 550px, 140px, 0);
-    animation: glitch-animation 2.5s infinite linear alternate-reverse;
+    animation: flash-glitch 2.5s infinite linear alternate-reverse;
   }
   
-  @keyframes glitch-animation {
-    0% {
-      clip: rect(24px, 550px, 90px, 0);
-    }
-    20% {
-      clip: rect(45px, 550px, 70px, 0);
-    }
-    40% {
-      clip: rect(12px, 550px, 55px, 0);
-    }
-    60% {
-      clip: rect(78px, 550px, 120px, 0);
-    }
-    80% {
-      clip: rect(33px, 550px, 160px, 0);
-    }
-    100% {
-      clip: rect(53px, 550px, 30px, 0);
-    }
+  @keyframes flash-glitch {
+    0% { clip: rect(24px, 550px, 90px, 0); }
+    20% { clip: rect(45px, 550px, 70px, 0); }
+    40% { clip: rect(12px, 550px, 55px, 0); }
+    60% { clip: rect(78px, 550px, 120px, 0); }
+    80% { clip: rect(33px, 550px, 160px, 0); }
+    100% { clip: rect(53px, 550px, 30px, 0); }
+  }
+
+  /* Flash-style loading animation */
+  .flash-loading {
+    background: linear-gradient(90deg, #f0f0f0 25%, transparent 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: flashLoad 1.5s infinite;
+  }
+  
+  @keyframes flashLoad {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
   }
 }
