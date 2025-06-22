@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { 
   Sheet,
@@ -37,18 +38,14 @@ const SubscriptionManager: React.FC<SubscriptionManagerProps> = ({
   const [selectedVideoMaker, setSelectedVideoMaker] = useState<string>(currentVideoMaker);
   const { toast } = useToast();
 
-  const isPuffinBrowser = () => {
-    return /Puffin/i.test(navigator.userAgent);
-  };
-
   const handleVideoMakerChange = (value: string) => {
     setSelectedVideoMaker(value);
     
-    if (value.includes('goanimate') && !isPuffinBrowser()) {
+    if (value.includes('goanimate')) {
       toast({
-        title: "Browser Compatibility Warning",
-        description: "GoAnimate video makers require Puffin Browser to work properly. Please switch to Puffin Browser for the best experience.",
-        variant: "destructive",
+        title: "Premium Video Maker Selected",
+        description: "This GoAnimate video maker is built with modern TypeScript and CSS, fully compatible with iPad and all modern browsers!",
+        variant: "default",
       });
     }
   };
@@ -62,11 +59,11 @@ const SubscriptionManager: React.FC<SubscriptionManagerProps> = ({
     <Sheet open={isOpen} onOpenChange={onClose}>
       <SheetContent>
         <SheetHeader>
-          <SheetTitle>Manage Subscription</SheetTitle>
+          <SheetTitle>Manage GoPlus Subscription</SheetTitle>
           <SheetDescription>
             {isSubscribed 
-              ? `Your subscription is active. ${trialDaysRemaining ? `Trial ends in ${trialDaysRemaining} days.` : ''}`
-              : 'Upgrade to access premium features!'}
+              ? `Your GoPlus subscription is active. ${trialDaysRemaining ? `Trial ends in ${trialDaysRemaining} days.` : ''}`
+              : 'Upgrade to GoPlus to access premium features!'}
           </SheetDescription>
         </SheetHeader>
         
@@ -74,7 +71,7 @@ const SubscriptionManager: React.FC<SubscriptionManagerProps> = ({
           <div className="space-y-2">
             <h3 className="text-lg font-medium">Video Maker Style</h3>
             <p className="text-sm text-gray-500">
-              Choose which animation style to use
+              Choose which animation style to use. All premium video makers are built with modern TypeScript and CSS.
             </p>
             
             <Select 
@@ -91,7 +88,7 @@ const SubscriptionManager: React.FC<SubscriptionManagerProps> = ({
                     value={type.id}
                     disabled={type.isPremium && !isSubscribed}
                   >
-                    {type.name} {type.isPremium && !isSubscribed ? '(Premium)' : ''}
+                    {type.name} {type.isPremium && !isSubscribed ? '(GoPlus)' : ''}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -99,18 +96,22 @@ const SubscriptionManager: React.FC<SubscriptionManagerProps> = ({
           </div>
           
           {!isSubscribed && (
-            <div className="bg-yellow-50 p-4 rounded-md border border-yellow-200">
-              <h4 className="font-medium text-yellow-800">Premium Features</h4>
-              <p className="text-sm text-yellow-700 mt-1">
-                Subscribe to access GoAnimate video makers and premium backgrounds!
-              </p>
+            <div className="bg-gradient-to-r from-orange-50 to-yellow-50 p-4 rounded-md border-2 border-orange-200">
+              <h4 className="font-medium text-orange-800">🎬 GoPlus Premium Features</h4>
+              <ul className="text-sm text-orange-700 mt-2 space-y-1">
+                <li>• Access to GoAnimate video makers</li>
+                <li>• Premium backgrounds and characters</li>
+                <li>• Built with modern TypeScript & CSS</li>
+                <li>• Full iPad compatibility</li>
+                <li>• No watermarks on exported videos</li>
+              </ul>
             </div>
           )}
           
           <div className="space-y-2">
             <h3 className="text-lg font-medium">Billing Management</h3>
             <p className="text-sm text-gray-500">
-              Manage your subscription details
+              Manage your GoPlus subscription details
             </p>
             
             {isSubscribed ? (
@@ -118,9 +119,9 @@ const SubscriptionManager: React.FC<SubscriptionManagerProps> = ({
                 <CustomButton 
                   variant="outline" 
                   className="w-full"
-                  onClick={() => console.log("Cancel subscription")}
+                  onClick={() => console.log("Cancel GoPlus subscription")}
                 >
-                  Cancel Subscription
+                  Cancel GoPlus Subscription
                 </CustomButton>
                 <CustomButton 
                   variant="outline" 
@@ -133,10 +134,10 @@ const SubscriptionManager: React.FC<SubscriptionManagerProps> = ({
             ) : (
               <CustomButton 
                 variant="primary" 
-                className="w-full"
-                onClick={() => console.log("Subscribe now")}
+                className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700"
+                onClick={() => console.log("Subscribe to GoPlus now")}
               >
-                Subscribe Now
+                Subscribe to GoPlus Now
               </CustomButton>
             )}
           </div>
@@ -151,6 +152,7 @@ const SubscriptionManager: React.FC<SubscriptionManagerProps> = ({
             <CustomButton 
               variant="primary" 
               onClick={handleSave}
+              className="bg-orange-500 hover:bg-orange-600"
             >
               Save Changes
             </CustomButton>

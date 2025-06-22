@@ -264,9 +264,9 @@ const Index = () => {
           <div className="mt-2 flex justify-center space-x-4 text-xs text-gray-400">
             <span>© 2013 GoAnimate Inc.</span>
             <span>•</span>
-            <span>Flash Player Required</span>
+            <span>Built with TypeScript & CSS</span>
             <span>•</span>
-            <span>Compatible with Puffin Browser</span>
+            <span>iPad Compatible</span>
           </div>
         </div>
       </footer>
