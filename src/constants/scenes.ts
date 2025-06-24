@@ -56,6 +56,27 @@ export const AVAILABLE_SCENES: Scene[] = [
     isPremium: true,
     style: 'goanimate'
   },
+  {
+    id: 'goanimate5',
+    name: 'Comedy World Bedroom',
+    background: 'bedroom',
+    isPremium: true,
+    style: 'goanimate'
+  },
+  {
+    id: 'goanimate6',
+    name: 'Comedy World Kitchen',
+    background: 'kitchen',
+    isPremium: true,
+    style: 'goanimate'
+  },
+  {
+    id: 'goanimate7',
+    name: 'Comedy World Living Room',
+    background: 'living-room',
+    isPremium: true,
+    style: 'goanimate'
+  },
   // ScratchVerse scenes
   {
     id: 'scratch1',
@@ -75,7 +96,7 @@ export const AVAILABLE_SCENES: Scene[] = [
     background: 'scratch-city',
     style: 'scratchverse'
   },
-  // NEW: Inanimate Insanity Invitational Scenes (Free)
+  // Inanimate Insanity Scenes
   {
     id: 'ii1',
     name: 'Hotel OJ Lobby',
