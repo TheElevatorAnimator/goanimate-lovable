@@ -1,7 +1,9 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AnimationProject } from '@/types/animation';
 import { createNewProject } from '@/utils/animationUtils';
+import ThemeSelector from '@/components/ThemeSelector';
 import CharacterSelector from '@/components/CharacterSelector';
 import SceneEditor from '@/components/SceneEditor';
 import VoiceGenerator from '@/components/VoiceGenerator';
