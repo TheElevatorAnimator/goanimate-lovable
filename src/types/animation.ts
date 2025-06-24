@@ -4,6 +4,7 @@ export type Character = {
   name: string;
   model: string;
   animations: string[];
+  isPremium?: boolean;
 };
 
 export type Scene = {
@@ -11,7 +12,7 @@ export type Scene = {
   name: string;
   background: string;
   isPremium?: boolean;
-  style?: 'goanimate' | 'plotagon' | 'default' | 'scratchverse';
+  style?: 'goanimate' | 'plotagon' | 'default' | 'scratchverse' | 'bfdi';
 };
 
 export type AnimationSequence = {
