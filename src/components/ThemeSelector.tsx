@@ -119,6 +119,7 @@ const ThemeSelector: React.FC<ThemeSelectorProps> = ({
           <CustomButton
             variant="outline"
             className="text-blue-600 border-blue-600 hover:bg-blue-50"
+            onClick={() => window.location.hash = '#quick'}
           >
             Quick Video Maker ▶
           </CustomButton>

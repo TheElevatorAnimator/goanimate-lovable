@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AnimationProject } from '@/types/animation';
@@ -13,10 +12,11 @@ import CustomButton from '@/components/ui/CustomButton';
 import Watermark from '@/components/Watermark';
 import SubscriptionManager from '@/components/SubscriptionManager';
 import { SpeechOptions } from '@/utils/speechUtils';
+import QuickVideoMaker from '@/components/QuickVideoMaker';
 
 const VideoMaker = () => {
   const [project, setProject] = useState<AnimationProject>(() => createNewProject('My Animation'));
-  const [activeTab, setActiveTab] = useState<'characters' | 'editor' | 'voice' | 'music' | 'sounds' | 'preview' | 'preview2010'>('characters');
+  const [activeTab, setActiveTab] = useState<'quick' | 'themes' | 'characters' | 'editor' | 'voice' | 'music' | 'sounds' | 'preview' | 'preview2010'>('quick');
   const [savedVoices, setSavedVoices] = useState<Record<string, SpeechOptions>>({});
   const [selectedSequence, setSelectedSequence] = useState<AnimationProject['sequences'][number] | null>(null);
   const [isSubscribed, setIsSubscribed] = useState<boolean>(false);
@@ -174,6 +174,28 @@ const VideoMaker = () => {
         <div className="mb-6 bg-white rounded-lg shadow-lg p-2 border-2 border-gray-300">
           <div className="flex flex-wrap gap-1">
             <CustomButton
+              variant={activeTab === 'quick' ? 'primary' : 'outline'}
+              onClick={() => setActiveTab('quick')}
+              className={`${
+                activeTab === 'quick' 
+                  ? 'bg-orange-500 text-white shadow-md' 
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              } px-4 py-2 rounded-md font-bold text-sm transition-all`}
+            >
+              ⚡ Quick Maker
+            </CustomButton>
+            <CustomButton
+              variant={activeTab === 'themes' ? 'primary' : 'outline'}
+              onClick={() => setActiveTab('themes')}
+              className={`${
+                activeTab === 'themes' 
+                  ? 'bg-blue-500 text-white shadow-md' 
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              } px-4 py-2 rounded-md font-bold text-sm transition-all`}
+            >
+              🎭 Themes
+            </CustomButton>
+            <CustomButton
               variant={activeTab === 'characters' ? 'primary' : 'outline'}
               onClick={() => setActiveTab('characters')}
               className={`${
@@ -257,6 +279,18 @@ const VideoMaker = () => {
         </div>
         
         <div className="grid grid-cols-1 gap-6">
+          {activeTab === 'quick' && (
+            <QuickVideoMaker />
+          )}
+          
+          {activeTab === 'themes' && (
+            <ThemeSelector 
+              selectedTheme={selectedTheme}
+              onThemeSelect={handleThemeSelect}
+              isSubscribed={isSubscribed}
+            />
+          )}
+          
           {activeTab === 'characters' && (
             <CharacterSelector 
               selectedCharacters={project.characters}
