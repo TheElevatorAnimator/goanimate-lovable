@@ -23,7 +23,7 @@ const CharacterSelector: React.FC<CharacterSelectorProps> = ({
           👥 Choose Your Characters
         </h2>
         <p className="text-blue-100 text-sm mt-1">
-          Select characters for your video. Free users get access to all character themes!
+          Select characters for your video. GoPlus subscribers get BFDI characters!
         </p>
       </div>
       
@@ -46,6 +46,9 @@ const CharacterSelector: React.FC<CharacterSelectorProps> = ({
             <span className="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-medium">
               Inanimate Insanity
             </span>
+            <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">
+              BFDI (GoPlus)
+            </span>
           </div>
         </div>
         
@@ -63,6 +66,12 @@ const CharacterSelector: React.FC<CharacterSelectorProps> = ({
                     : 'bg-gradient-to-b from-gray-100 to-gray-200 border-2 border-gray-300 hover:from-blue-100 hover:to-blue-200 hover:border-blue-400 hover:shadow-md'
                 }`}
               >
+                {character.isPremium && (
+                  <div className="absolute -top-2 -left-2 bg-yellow-400 text-yellow-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
+                    ⭐
+                  </div>
+                )}
+                
                 {isSelected && (
                   <div className="absolute -top-2 -right-2 bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
                     ✓
@@ -84,6 +93,10 @@ const CharacterSelector: React.FC<CharacterSelectorProps> = ({
                     {character.model.includes('lil') && '👶'}
                     {character.model.includes('chibi') && '🥷'}
                     {character.model.includes('domo') && '👹'}
+                    {character.model.includes('bfdi-leafy') && '🍃'}
+                    {character.model.includes('bfdi-firey') && '🔥'}
+                    {character.model.includes('bfdi-bubble') && '🫧'}
+                    {character.model.includes('bfdi-pen') && '✒️'}
                   </div>
                   
                   <h3 className="font-bold text-sm mb-1 text-gray-800">
@@ -111,8 +124,9 @@ const CharacterSelector: React.FC<CharacterSelectorProps> = ({
                       size="sm"
                       onClick={() => onSelectCharacter(character.id)}
                       className="bg-green-500 hover:bg-green-600 text-white font-bold text-xs px-3 py-1 shadow-md"
+                      disabled={character.isPremium && !true} // TODO: Replace with actual subscription status
                     >
-                      Add Character
+                      {character.isPremium ? 'GoPlus Only' : 'Add Character'}
                     </CustomButton>
                   )}
                 </div>

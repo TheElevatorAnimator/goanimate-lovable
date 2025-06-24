@@ -14,7 +14,7 @@ import { SpeechOptions } from '@/utils/speechUtils';
 
 const VideoMaker = () => {
   const [project, setProject] = useState<AnimationProject>(() => createNewProject('My Animation'));
-  const [activeTab, setActiveTab] = useState<'characters' | 'editor' | 'voice' | 'preview' | 'preview2010'>('characters');
+  const [activeTab, setActiveTab] = useState<'characters' | 'editor' | 'voice' | 'music' | 'sounds' | 'preview' | 'preview2010'>('characters');
   const [savedVoices, setSavedVoices] = useState<Record<string, SpeechOptions>>({});
   const [selectedSequence, setSelectedSequence] = useState<AnimationProject['sequences'][number] | null>(null);
   const [isSubscribed, setIsSubscribed] = useState<boolean>(false);
@@ -205,7 +205,29 @@ const VideoMaker = () => {
                     : 'bg-gray-300 text-gray-500 cursor-not-allowed'
               } px-4 py-2 rounded-md font-bold text-sm transition-all`}
             >
-              🎤 Voice Generator
+              🎤 Voice
+            </CustomButton>
+            <CustomButton
+              variant={activeTab === 'music' ? 'primary' : 'outline'}
+              onClick={() => setActiveTab('music')}
+              className={`${
+                activeTab === 'music' 
+                  ? 'bg-green-500 text-white shadow-md' 
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              } px-4 py-2 rounded-md font-bold text-sm transition-all`}
+            >
+              🎵 Music
+            </CustomButton>
+            <CustomButton
+              variant={activeTab === 'sounds' ? 'primary' : 'outline'}
+              onClick={() => setActiveTab('sounds')}
+              className={`${
+                activeTab === 'sounds' 
+                  ? 'bg-yellow-500 text-white shadow-md' 
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              } px-4 py-2 rounded-md font-bold text-sm transition-all`}
+            >
+              🔊 Sounds
             </CustomButton>
             <CustomButton
               variant={activeTab === 'preview' ? 'primary' : 'outline'}
@@ -254,6 +276,122 @@ const VideoMaker = () => {
               onVoiceSelected={handleVoiceSelected}
               isPremium={isSubscribed}
             />
+          )}
+          
+          {activeTab === 'music' && (
+            <div className="bg-white rounded-lg shadow-lg border-2 border-green-300">
+              <div className="bg-gradient-to-r from-green-500 to-green-600 p-4 rounded-t-lg">
+                <h2 className="text-2xl font-bold text-white drop-shadow-md flex items-center">
+                  🎵 Music Library
+                </h2>
+                <p className="text-green-100 text-sm mt-1">
+                  Add background music to your video
+                </p>
+              </div>
+              <div className="p-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-gray-100 p-4 rounded-lg">
+                    <h3 className="font-bold mb-2">🎼 Free Music</h3>
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between bg-white p-2 rounded">
+                        <span>Happy Tune</span>
+                        <CustomButton size="sm" variant="outline">▶️</CustomButton>
+                      </div>
+                      <div className="flex items-center justify-between bg-white p-2 rounded">
+                        <span>Upbeat Pop</span>
+                        <CustomButton size="sm" variant="outline">▶️</CustomButton>
+                      </div>
+                      <div className="flex items-center justify-between bg-white p-2 rounded">
+                        <span>Calm Ambient</span>
+                        <CustomButton size="sm" variant="outline">▶️</CustomButton>
+                      </div>
+                    </div>
+                  </div>
+                  {isSubscribed && (
+                    <div className="bg-yellow-100 p-4 rounded-lg">
+                      <h3 className="font-bold mb-2">✨ GoPlus Music</h3>
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between bg-white p-2 rounded">
+                          <span>BFDI Theme</span>
+                          <CustomButton size="sm" variant="outline">▶️</CustomButton>
+                        </div>
+                        <div className="flex items-center justify-between bg-white p-2 rounded">
+                          <span>Epic Battle</span>
+                          <CustomButton size="sm" variant="outline">▶️</CustomButton>
+                        </div>
+                        <div className="flex items-center justify-between bg-white p-2 rounded">
+                          <span>Dramatic Strings</span>
+                          <CustomButton size="sm" variant="outline">▶️</CustomButton>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+          
+          {activeTab === 'sounds' && (
+            <div className="bg-white rounded-lg shadow-lg border-2 border-yellow-300">
+              <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 p-4 rounded-t-lg">
+                <h2 className="text-2xl font-bold text-white drop-shadow-md flex items-center">
+                  🔊 Sound Effects & Voice Import
+                </h2>
+                <p className="text-yellow-100 text-sm mt-1">
+                  Add sound effects or import voice clips
+                </p>
+              </div>
+              <div className="p-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="bg-gray-100 p-4 rounded-lg">
+                    <h3 className="font-bold mb-3">🎯 Sound Effects</h3>
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between bg-white p-2 rounded">
+                        <span>Applause</span>
+                        <CustomButton size="sm" variant="outline">▶️</CustomButton>
+                      </div>
+                      <div className="flex items-center justify-between bg-white p-2 rounded">
+                        <span>Explosion</span>
+                        <CustomButton size="sm" variant="outline">▶️</CustomButton>
+                      </div>
+                      <div className="flex items-center justify-between bg-white p-2 rounded">
+                        <span>Door Slam</span>
+                        <CustomButton size="sm" variant="outline">▶️</CustomButton>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-orange-100 p-4 rounded-lg">
+                    <h3 className="font-bold mb-3">🎤 Import Voice Clips</h3>
+                    <p className="text-sm text-gray-600 mb-3">
+                      Import TTS voice clips from external tools
+                    </p>
+                    <div className="space-y-3">
+                      <CustomButton 
+                        variant="outline" 
+                        className="w-full bg-white border-orange-400 text-orange-600 hover:bg-orange-50"
+                      >
+                        📂 Upload Audio File
+                      </CustomButton>
+                      <div className="text-center text-xs text-gray-500">
+                        Supported: MP3, WAV, OGG
+                      </div>
+                      <div className="border-t pt-3">
+                        <p className="text-sm font-medium mb-2">External TTS Tools:</p>
+                        <div className="flex space-x-2">
+                          <CustomButton size="sm" variant="outline" className="text-xs">
+                            lazypy.ro
+                          </CustomButton>
+                          <CustomButton size="sm" variant="outline" className="text-xs">
+                            ttstool.com
+                          </CustomButton>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           )}
           
           {activeTab === 'preview' && (

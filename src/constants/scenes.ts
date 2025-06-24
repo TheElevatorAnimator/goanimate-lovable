@@ -121,4 +121,33 @@ export const AVAILABLE_SCENES: Scene[] = [
     background: 'challenge-field',
     style: 'default'
   },
+  // BFDI Scenes (GoPlus Exclusive)
+  {
+    id: 'bfdi1',
+    name: 'Goiky',
+    background: 'bfdi-goiky',
+    isPremium: true,
+    style: 'bfdi'
+  },
+  {
+    id: 'bfdi2',
+    name: 'Dream Island',
+    background: 'bfdi-dream-island',
+    isPremium: true,
+    style: 'bfdi'
+  },
+  {
+    id: 'bfdi3',
+    name: 'Elimination Area',
+    background: 'bfdi-elimination',
+    isPremium: true,
+    style: 'bfdi'
+  },
+  {
+    id: 'bfdi4',
+    name: 'Contest Grounds',
+    background: 'bfdi-contest',
+    isPremium: true,
+    style: 'bfdi'
+  }
 ];

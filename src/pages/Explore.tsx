@@ -4,48 +4,72 @@ import { Link } from 'react-router-dom';
 import CustomButton from '@/components/ui/CustomButton';
 
 const Explore = () => {
-  const videoMakers = [
+  const featuredVideos = [
     {
-      id: 'comedy-world',
-      name: 'Comedy World',
-      description: 'Create hilarious videos with classic GoAnimate characters',
-      thumbnail: '🎭',
-      isPremium: true
+      id: 'classroom-intro',
+      title: 'My Blog Introduction',
+      author: 'meteor_ads',
+      thumbnail: '/lovable-uploads/c703a1fb-8ce5-40fe-8633-779a08af993e.png',
+      duration: '00:39',
+      views: 0,
+      likes: 0,
+      isPublic: true,
+      description: 'A classic Comedy World classroom scene introduction video'
     },
     {
-      id: 'anime',
-      name: 'Anime Studio',
-      description: 'Make epic anime-style animations',
-      thumbnail: '⚔️',
-      isPremium: true
-    },
-    {
-      id: 'space-citizens',
-      name: 'Space Citizens',
-      description: 'Explore the galaxy with futuristic characters',
-      thumbnail: '🚀',
-      isPremium: true
-    },
-    {
-      id: 'plotagon',
-      name: 'Plotagon',
-      description: 'Simple 3D character animations',
+      id: 'obama-animation',
+      title: 'Obama Animation',
+      author: 'meteor_ads',
       thumbnail: '🎬',
-      isPremium: false
+      duration: '01:24',
+      views: 12,
+      likes: 3,
+      isPublic: true,
+      description: 'Political figure animation in Comedy World style'
     },
     {
-      id: 'scratchverse',
-      name: 'ScratchVerse',
-      description: 'Colorful Scratch-inspired animations',
-      thumbnail: '🐱',
-      isPremium: false
+      id: 'trial-error',
+      title: 'Trial Error',
+      author: 'meteor_ads',
+      thumbnail: '⚖️',
+      duration: '02:15',
+      views: 8,
+      likes: 1,
+      isPublic: true,
+      description: 'Courtroom drama animation'
     },
     {
-      id: 'inanimate-insanity',
-      name: 'Inanimate Insanity',
-      description: 'Object show style animations',
-      thumbnail: '🏆',
-      isPremium: false
+      id: 'anime-adventure',
+      title: 'Anime Adventure',
+      author: 'sakura_fan',
+      thumbnail: '⚔️',
+      duration: '03:42',
+      views: 156,
+      likes: 28,
+      isPublic: true,
+      description: 'Epic anime-style battle sequence'
+    },
+    {
+      id: 'space-mission',
+      title: 'Space Mission Alpha',
+      author: 'cosmic_creator',
+      thumbnail: '🚀',
+      duration: '02:58',
+      views: 89,
+      likes: 15,
+      isPublic: true,
+      description: 'Intergalactic adventure with Space Citizens'
+    },
+    {
+      id: 'comedy-skit',
+      title: 'Office Comedy Skit',
+      author: 'funny_bones',
+      thumbnail: '😂',
+      duration: '01:47',
+      views: 234,
+      likes: 42,
+      isPublic: true,
+      description: 'Hilarious office workplace comedy'
     }
   ];
 
@@ -63,7 +87,7 @@ const Explore = () => {
                 <h1 className="text-3xl font-bold text-white drop-shadow-lg">
                   GoAnimate
                 </h1>
-                <p className="text-orange-100 text-sm">Explore Video Makers</p>
+                <p className="text-orange-100 text-sm">Explore Community Videos</p>
               </div>
             </Link>
             <nav className="flex items-center space-x-4">
@@ -85,40 +109,108 @@ const Explore = () => {
       <main className="container mx-auto p-8">
         <div className="text-center mb-8">
           <h2 className="text-4xl font-bold text-white mb-4 drop-shadow-lg">
-            🌟 Explore Video Makers
+            🌟 Explore Community Videos
           </h2>
           <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-            Choose from our collection of video makers, each with unique characters and themes!
+            Discover amazing animations created by our community! Watch, like, and get inspired!
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {videoMakers.map((maker) => (
-            <div key={maker.id} className="bg-white/90 rounded-lg shadow-lg border-4 border-white overflow-hidden">
-              <div className="bg-gradient-to-br from-gray-100 to-gray-200 h-32 flex items-center justify-center">
-                <span className="text-6xl">{maker.thumbnail}</span>
+        {/* Featured Video */}
+        <div className="mb-8 bg-white/90 rounded-lg shadow-lg border-4 border-white overflow-hidden">
+          <div className="bg-gradient-to-r from-purple-400 to-purple-500 p-4">
+            <h3 className="text-xl font-bold text-white">🎬 Featured Video</h3>
+          </div>
+          <div className="p-6">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="relative bg-black rounded-lg overflow-hidden aspect-video">
+                <img 
+                  src={featuredVideos[0].thumbnail} 
+                  alt={featuredVideos[0].title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                  <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center cursor-pointer hover:bg-white transition-colors">
+                    <span className="text-2xl ml-1">▶️</span>
+                  </div>
+                </div>
+                <div className="absolute bottom-2 right-2 bg-black/80 text-white px-2 py-1 rounded text-sm">
+                  {featuredVideos[0].duration}
+                </div>
               </div>
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-xl font-bold text-gray-800">{maker.name}</h3>
-                  {maker.isPremium && (
-                    <span className="bg-yellow-400 text-yellow-800 px-2 py-1 rounded-full text-xs font-bold">
-                      GoPlus
-                    </span>
+              <div>
+                <h4 className="text-2xl font-bold text-gray-800 mb-2">{featuredVideos[0].title}</h4>
+                <p className="text-gray-600 mb-4">by {featuredVideos[0].author}</p>
+                <p className="text-gray-700 mb-4">{featuredVideos[0].description}</p>
+                <div className="flex items-center space-x-4 text-sm text-gray-600">
+                  <span>👁️ {featuredVideos[0].views} views</span>
+                  <span>👍 {featuredVideos[0].likes} likes</span>
+                  <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full">PUBLIC</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Video Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {featuredVideos.slice(1).map((video) => (
+            <div key={video.id} className="bg-white/90 rounded-lg shadow-lg border-4 border-white overflow-hidden hover:transform hover:scale-105 transition-all duration-200">
+              <div className="relative bg-gray-800 aspect-video flex items-center justify-center">
+                {typeof video.thumbnail === 'string' && video.thumbnail.startsWith('/') ? (
+                  <img src={video.thumbnail} alt={video.title} className="w-full h-full object-cover" />
+                ) : (
+                  <span className="text-6xl">{video.thumbnail}</span>
+                )}
+                <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                  <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center cursor-pointer">
+                    <span className="text-xl ml-1">▶️</span>
+                  </div>
+                </div>
+                <div className="absolute bottom-2 right-2 bg-black/80 text-white px-2 py-1 rounded text-xs">
+                  {video.duration}
+                </div>
+              </div>
+              <div className="p-4">
+                <h3 className="text-lg font-bold text-gray-800 mb-1 truncate">{video.title}</h3>
+                <p className="text-sm text-gray-600 mb-2">by {video.author}</p>
+                <p className="text-xs text-gray-700 mb-3 line-clamp-2">{video.description}</p>
+                <div className="flex items-center justify-between text-xs text-gray-600">
+                  <div className="flex items-center space-x-2">
+                    <span>👁️ {video.views}</span>
+                    <span>👍 {video.likes}</span>
+                  </div>
+                  {video.isPublic && (
+                    <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full">PUBLIC</span>
                   )}
                 </div>
-                <p className="text-gray-600 mb-4">{maker.description}</p>
-                <Link to="/video-maker">
-                  <CustomButton 
-                    variant="primary" 
-                    className="w-full bg-blue-500 hover:bg-blue-600"
-                  >
-                    Try This Maker
-                  </CustomButton>
-                </Link>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Import TTS Section */}
+        <div className="mt-12 bg-gradient-to-r from-orange-300 to-orange-400 p-6 rounded-lg shadow-lg border-4 border-orange-500">
+          <div className="text-center">
+            <h3 className="text-2xl font-bold text-orange-800 mb-4">🎤 Import TTS Voice Clips</h3>
+            <p className="text-orange-700 mb-4">
+              Get professional voice clips from lazypy.ro and ttstool.com for your animations!
+            </p>
+            <div className="flex justify-center space-x-4">
+              <CustomButton 
+                variant="outline" 
+                className="bg-white text-orange-600 border-orange-600 hover:bg-orange-50 font-bold"
+              >
+                Visit lazypy.ro
+              </CustomButton>
+              <CustomButton 
+                variant="outline" 
+                className="bg-white text-orange-600 border-orange-600 hover:bg-orange-50 font-bold"
+              >
+                Visit ttstool.com
+              </CustomButton>
+            </div>
+          </div>
         </div>
       </main>
 
