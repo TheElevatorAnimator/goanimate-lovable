@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { useToast } from "@/hooks/use-toast";
 import CustomButton from './ui/CustomButton';
 
 interface CharacterCreatorProps {
@@ -18,8 +17,6 @@ const CharacterCreator: React.FC<CharacterCreatorProps> = ({
   isSubscribed, 
   onCharacterCreated 
 }) => {
-  const { toast } = useToast();
-
   const handleOpenCreator = () => {
     // This would normally open the character creator iframe/window
     // For now, we'll just create a basic character
@@ -33,10 +30,8 @@ const CharacterCreator: React.FC<CharacterCreatorProps> = ({
       onCharacterCreated(character);
     }
 
-    toast({
-      title: "Character Created!",
-      description: "Your custom character has been created successfully.",
-    });
+    // Simple alert instead of toast for now
+    alert("Character Created! Your custom character has been created successfully.");
   };
 
   return (

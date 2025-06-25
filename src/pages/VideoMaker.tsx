@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import ThemeSelector from '@/components/ThemeSelector';
 import CharacterCreator from '@/components/CharacterCreator';
 import QuickVideoMaker from '@/components/QuickVideoMaker';
-import PropsPanel from '@/components/PropsPanel';
 
 const VideoMaker = () => {
   const [selectedTheme, setSelectedTheme] = useState('');
@@ -18,10 +17,6 @@ const VideoMaker = () => {
   const handleCharacterCreated = (character: any) => {
     setCreatedCharacter(character);
     console.log('Character created:', character);
-  };
-
-  const handlePropImported = (prop: any) => {
-    console.log('Prop imported:', prop);
   };
 
   return (
@@ -91,18 +86,11 @@ const VideoMaker = () => {
             />
             
             {selectedTheme && (
-              <>
-                <CharacterCreator
-                  selectedTheme={selectedTheme}
-                  isSubscribed={isSubscribed}
-                  onCharacterCreated={handleCharacterCreated}
-                />
-                
-                <PropsPanel
-                  selectedTheme={selectedTheme}
-                  onPropImported={handlePropImported}
-                />
-              </>
+              <CharacterCreator
+                selectedTheme={selectedTheme}
+                isSubscribed={isSubscribed}
+                onCharacterCreated={handleCharacterCreated}
+              />
             )}
           </div>
         )}
