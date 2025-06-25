@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import ThemeSelector from '@/components/ThemeSelector';
 import CharacterCreator from '@/components/CharacterCreator';
@@ -7,12 +8,16 @@ const VideoMaker = () => {
   const [selectedTheme, setSelectedTheme] = useState('');
   const [activeTab, setActiveTab] = useState<'quick' | 'full'>('quick');
   const [isSubscribed] = useState(false); // Mock subscription status
+  const [createdCharacter, setCreatedCharacter] = useState<any>(null);
 
   const handleThemeSelect = (themeId: string) => {
     setSelectedTheme(themeId);
   };
 
-  // Mock data and other state variables
+  const handleCharacterCreated = (character: any) => {
+    setCreatedCharacter(character);
+    console.log('Character created:', character);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-400 via-blue-500 to-blue-600">
@@ -79,6 +84,7 @@ const VideoMaker = () => {
               <CharacterCreator
                 selectedTheme={selectedTheme}
                 isSubscribed={isSubscribed}
+                onCharacterCreated={handleCharacterCreated}
               />
             )}
           </div>

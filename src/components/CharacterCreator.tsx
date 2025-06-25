@@ -5,14 +5,20 @@ import CustomButton from './ui/CustomButton';
 import { isPuffinBrowser } from '@/utils/animationUtils';
 
 interface CharacterCreatorProps {
-  onCharacterCreated: (character: {
+  selectedTheme: string;
+  isSubscribed: boolean;
+  onCharacterCreated?: (character: {
     name: string;
     model: string;
     animations: string[];
   }) => void;
 }
 
-const CharacterCreator: React.FC<CharacterCreatorProps> = ({ onCharacterCreated }) => {
+const CharacterCreator: React.FC<CharacterCreatorProps> = ({ 
+  selectedTheme, 
+  isSubscribed, 
+  onCharacterCreated 
+}) => {
   const { toast } = useToast();
 
   const handleOpenCreator = () => {
@@ -27,11 +33,15 @@ const CharacterCreator: React.FC<CharacterCreatorProps> = ({ onCharacterCreated 
 
     // This would normally open the character creator iframe/window
     // For now, we'll just create a basic character
-    onCharacterCreated({
+    const character = {
       name: "Custom Character",
-      model: "comedy-custom",
+      model: `${selectedTheme}-custom`,
       animations: ['walk', 'talk', 'dance', 'jump', 'wave', 'think', 'laugh', 'point'],
-    });
+    };
+
+    if (onCharacterCreated) {
+      onCharacterCreated(character);
+    }
   };
 
   return (
@@ -39,10 +49,10 @@ const CharacterCreator: React.FC<CharacterCreatorProps> = ({ onCharacterCreated 
       {/* Header */}
       <div className="bg-gradient-to-r from-purple-500 to-purple-600 p-4 rounded-t-lg">
         <h2 className="text-2xl font-bold text-white drop-shadow-md flex items-center">
-          🎨 Comedy World Character Creator
+          🎨 {selectedTheme === 'comedy' ? 'Comedy World' : 'Character'} Creator
         </h2>
         <p className="text-purple-100 text-sm mt-1">
-          Create your own custom Comedy World character (2013 Edition)
+          Create your own custom {selectedTheme} character (2013 Edition)
         </p>
       </div>
       
