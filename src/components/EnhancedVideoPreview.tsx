@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { AnimationProject, AnimationSequence } from '@/types/animation';
 import { AVAILABLE_SCENES } from '@/constants/scenes';
@@ -19,6 +18,27 @@ const EnhancedVideoPreview: React.FC<EnhancedVideoPreviewProps> = ({ project, sa
   
   const currentScene = AVAILABLE_SCENES.find(scene => scene.id === project.scene);
   const totalDuration = Math.max(...project.sequences.map(seq => seq.startTime + seq.duration), 10);
+
+  const getCharacterImage = (characterId: string) => {
+    const imageMap: Record<string, string> = {
+      'comedy-eric': 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face',
+      'comedy-jennifer': 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face',
+      'comedy-joey': 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face',
+      'anime-sakura': 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&crop=face',
+      'anime-kenji': 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop&crop=face',
+      'space-captain': 'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=100&h=100&fit=crop&crop=face',
+      'space-robot': 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=100&h=100&fit=crop',
+      'lil-tommy': 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=100&h=100&fit=crop&crop=face',
+      'lil-sarah': 'https://images.unsplash.com/photo-1519457431-44c20addeb47?w=100&h=100&fit=crop&crop=face',
+      'scratch-cat': 'https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=100&h=100&fit=crop',
+      'scratch-dog': 'https://images.unsplash.com/photo-1552053831-71594a27632d?w=100&h=100&fit=crop',
+      'ii-bot': 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=100&h=100&fit=crop',
+      'ii-cabby': 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=100&h=100&fit=crop',
+      'ii-test-tube': 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=100&h=100&fit=crop'
+    };
+    
+    return imageMap[characterId] || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face';
+  };
 
   const handlePlay = () => {
     if (project.sequences.length === 0) {
@@ -81,34 +101,6 @@ const EnhancedVideoPreview: React.FC<EnhancedVideoPreviewProps> = ({ project, sa
     return character ? character.name : 'Unknown Character';
   };
 
-  const getCharacterVisual = (characterId: string) => {
-    const character = AVAILABLE_CHARACTERS.find(char => char.id === characterId);
-    if (!character) return '👤';
-    
-    // Map characters to visual representations
-    const characterVisuals: Record<string, string> = {
-      'comedy1': '👨‍💼', // Eric
-      'comedy2': '👩‍💼', // Julie  
-      'comedy3': '👨‍🦱', // David
-      'comedy4': '👩‍🦰', // Sarah
-      'comedy5': '👨‍👔', // Boris
-      'comedy6': '👩‍👗', // Doris
-      'comedy7': '👧', // Rosie
-      'anime1': '🥷', // Kenji
-      'anime2': '👸', // Sakura
-      'space1': '👨‍🚀', // Commander Zax
-      'space2': '👩‍🚀', // Captain Nova
-      'scratch1': '🐱', // Scratch Cat
-      'ii1': '🤖', // Bot
-      'ii2': '🚕', // Cabby
-      'ii3': '🧪', // Test Tube
-      'ii4': '🌀', // Fan
-      'ii5': '💡', // Lightbulb
-    };
-    
-    return characterVisuals[characterId] || '👤';
-  };
-
   const getSceneBackground = () => {
     if (!currentScene) return 'bg-gradient-to-br from-gray-800 to-gray-900';
     
@@ -169,8 +161,15 @@ const EnhancedVideoPreview: React.FC<EnhancedVideoPreviewProps> = ({ project, sa
             <div className="flex space-x-8">
               {activeSequences.map(seq => (
                 <div key={seq.id} className="text-center animate-bounce">
-                  <div className="text-6xl mb-2">
-                    {getCharacterVisual(seq.characterId)}
+                  <div className="w-16 h-16 mb-2 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                    <img 
+                      src={getCharacterImage(seq.characterId)}
+                      alt={getCharacterName(seq.characterId)}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.currentTarget.src = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face';
+                      }}
+                    />
                   </div>
                   <div className="bg-black/70 text-white px-3 py-1 rounded-full text-sm">
                     {getCharacterName(seq.characterId)}

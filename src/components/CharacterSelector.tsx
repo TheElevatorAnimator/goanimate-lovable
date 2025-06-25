@@ -15,6 +15,32 @@ const CharacterSelector: React.FC<CharacterSelectorProps> = ({
   onSelectCharacter,
   onRemoveCharacter,
 }) => {
+  const getCharacterImage = (character: Character) => {
+    // Map characters to Google Images or placeholder images
+    const imageMap: Record<string, string> = {
+      'comedy-eric': 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
+      'comedy-jennifer': 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
+      'comedy-joey': 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
+      'anime-sakura': 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face',
+      'anime-kenji': 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop&crop=face',
+      'space-captain': 'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=150&h=150&fit=crop&crop=face',
+      'space-robot': 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=150&h=150&fit=crop',
+      'lil-tommy': 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=150&h=150&fit=crop&crop=face',
+      'lil-sarah': 'https://images.unsplash.com/photo-1519457431-44c20addeb47?w=150&h=150&fit=crop&crop=face',
+      'scratch-cat': 'https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=150&h=150&fit=crop',
+      'scratch-dog': 'https://images.unsplash.com/photo-1552053831-71594a27632d?w=150&h=150&fit=crop',
+      'ii-bot': 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=150&h=150&fit=crop',
+      'ii-cabby': 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=150&h=150&fit=crop',
+      'ii-test-tube': 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=150&h=150&fit=crop',
+      'bfdi-leafy': 'https://images.unsplash.com/photo-1441260038675-7329ab4cc264?w=150&h=150&fit=crop',
+      'bfdi-firey': 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=150&h=150&fit=crop',
+      'bfdi-bubble': 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=150&h=150&fit=crop',
+      'bfdi-pen': 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=150&h=150&fit=crop'
+    };
+    
+    return imageMap[character.id] || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face';
+  };
+
   return (
     <div className="bg-white rounded-lg shadow-lg border-2 border-blue-300">
       {/* 2013 GoAnimate Style Header */}
@@ -79,24 +105,21 @@ const CharacterSelector: React.FC<CharacterSelectorProps> = ({
                 )}
                 
                 <div className="flex flex-col items-center text-center">
-                  {/* Character Avatar with 2013 Flash-style */}
-                  <div className={`w-16 h-16 rounded-full mb-2 flex items-center justify-center text-2xl font-bold shadow-md ${
+                  {/* Character Image */}
+                  <div className={`w-16 h-16 rounded-full mb-2 overflow-hidden shadow-md border-2 ${
                     isSelected 
-                      ? 'bg-gradient-to-b from-green-400 to-green-500 text-white' 
-                      : 'bg-gradient-to-b from-blue-400 to-blue-500 text-white'
+                      ? 'border-green-500' 
+                      : 'border-blue-400'
                   }`}>
-                    {character.model.includes('comedy') && '🤓'}
-                    {character.model.includes('anime') && '⚡'}
-                    {character.model.includes('space') && '🚀'}
-                    {character.model.includes('scratch') && '🐱'}
-                    {character.model.includes('ii-') && '🔧'}
-                    {character.model.includes('lil') && '👶'}
-                    {character.model.includes('chibi') && '🥷'}
-                    {character.model.includes('domo') && '👹'}
-                    {character.model.includes('bfdi-leafy') && '🍃'}
-                    {character.model.includes('bfdi-firey') && '🔥'}
-                    {character.model.includes('bfdi-bubble') && '🫧'}
-                    {character.model.includes('bfdi-pen') && '✒️'}
+                    <img 
+                      src={getCharacterImage(character)}
+                      alt={character.name}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        // Fallback to a default image if the image fails to load
+                        e.currentTarget.src = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face';
+                      }}
+                    />
                   </div>
                   
                   <h3 className="font-bold text-sm mb-1 text-gray-800">
