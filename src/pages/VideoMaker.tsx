@@ -2,13 +2,43 @@
 import React, { useState } from 'react';
 import ThemeSelector from '@/components/ThemeSelector';
 import CharacterCreator from '@/components/CharacterCreator';
-import QuickVideoMaker from '@/components/QuickVideoMaker';
+import QuickVideoMakerWrapper from '@/components/QuickVideoMakerWrapper';
+import EnhancedVideoPreview from '@/components/EnhancedVideoPreview';
+import { AnimationProject } from '@/types/animation';
 
 const VideoMaker = () => {
   const [selectedTheme, setSelectedTheme] = useState('');
   const [activeTab, setActiveTab] = useState<'quick' | 'full'>('quick');
   const [isSubscribed] = useState(false); // Mock subscription status
   const [createdCharacter, setCreatedCharacter] = useState<any>(null);
+  const [showVideoMaker, setShowVideoMaker] = useState(false);
+  
+  // Default project for video preview
+  const [currentProject] = useState<AnimationProject>({
+    id: 'demo-project',
+    name: 'Demo Video',
+    scene: 'comedy-world-school',
+    characters: ['comedy-eric', 'comedy-jennifer'],
+    sequences: [
+      {
+        id: 'seq1',
+        characterId: 'comedy-eric',
+        animationName: 'talk',
+        startTime: 0,
+        duration: 3,
+        speech: 'Welcome to GoAnimate!'
+      },
+      {
+        id: 'seq2', 
+        characterId: 'comedy-jennifer',
+        animationName: 'wave',
+        startTime: 2,
+        duration: 2,
+        speech: 'Let\'s make awesome videos!'
+      }
+    ],
+    isPremium: false
+  });
 
   const handleThemeSelect = (themeId: string) => {
     setSelectedTheme(themeId);
@@ -17,6 +47,11 @@ const VideoMaker = () => {
   const handleCharacterCreated = (character: any) => {
     setCreatedCharacter(character);
     console.log('Character created:', character);
+  };
+
+  const handleOpenVideoMaker = () => {
+    setShowVideoMaker(true);
+    setActiveTab('full');
   };
 
   return (
@@ -76,21 +111,30 @@ const VideoMaker = () => {
 
         {/* Content */}
         {activeTab === 'quick' ? (
-          <QuickVideoMaker />
+          <QuickVideoMakerWrapper onOpenVideoMaker={handleOpenVideoMaker} />
         ) : (
           <div className="space-y-8">
-            <ThemeSelector
-              selectedTheme={selectedTheme}
-              onThemeSelect={handleThemeSelect}
-              isSubscribed={isSubscribed}
-            />
-            
-            {selectedTheme && (
-              <CharacterCreator
-                selectedTheme={selectedTheme}
-                isSubscribed={isSubscribed}
-                onCharacterCreated={handleCharacterCreated}
+            {showVideoMaker ? (
+              <EnhancedVideoPreview 
+                project={currentProject}
+                savedVoices={{}}
               />
+            ) : (
+              <>
+                <ThemeSelector
+                  selectedTheme={selectedTheme}
+                  onThemeSelect={handleThemeSelect}
+                  isSubscribed={isSubscribed}
+                />
+                
+                {selectedTheme && (
+                  <CharacterCreator
+                    selectedTheme={selectedTheme}
+                    isSubscribed={isSubscribed}
+                    onCharacterCreated={handleCharacterCreated}
+                  />
+                )}
+              </>
             )}
           </div>
         )}
