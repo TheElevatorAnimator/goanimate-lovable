@@ -16,41 +16,69 @@ const CharacterSelector: React.FC<CharacterSelectorProps> = ({
   onRemoveCharacter,
 }) => {
   const getCharacterImage = (character: Character) => {
-    // Map characters to Google Images or placeholder images
+    // Map characters to actual GoAnimate, BFDI, and Inanimate Insanity character images
     const imageMap: Record<string, string> = {
-      'comedy-eric': 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
-      'comedy-jennifer': 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
-      'comedy-joey': 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
-      'anime-sakura': 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face',
-      'anime-kenji': 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop&crop=face',
-      'space-captain': 'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=150&h=150&fit=crop&crop=face',
-      'space-robot': 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=150&h=150&fit=crop',
-      'lil-tommy': 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=150&h=150&fit=crop&crop=face',
-      'lil-sarah': 'https://images.unsplash.com/photo-1519457431-44c20addeb47?w=150&h=150&fit=crop&crop=face',
-      'scratch-cat': 'https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=150&h=150&fit=crop',
-      'scratch-dog': 'https://images.unsplash.com/photo-1552053831-71594a27632d?w=150&h=150&fit=crop',
-      'ii-bot': 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=150&h=150&fit=crop',
-      'ii-cabby': 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=150&h=150&fit=crop',
-      'ii-test-tube': 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=150&h=150&fit=crop',
-      'bfdi-leafy': 'https://images.unsplash.com/photo-1441260038675-7329ab4cc264?w=150&h=150&fit=crop',
-      'bfdi-firey': 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=150&h=150&fit=crop',
-      'bfdi-bubble': 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=150&h=150&fit=crop',
-      'bfdi-pen': 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=150&h=150&fit=crop'
+      // GoAnimate Comedy World Characters
+      'comedy-eric': 'https://goanimate.fandom.com/wiki/Eric?file=Eric.png',
+      'comedy-jennifer': 'https://goanimate.fandom.com/wiki/Jennifer?file=Jennifer.png',
+      'comedy-joey': 'https://goanimate.fandom.com/wiki/Joey?file=Joey.png',
+      
+      // Anime Characters (GoAnimate style)
+      'anime-sakura': 'https://static.wikia.nocookie.net/goanimate/images/a/a5/Sakura.png',
+      'anime-kenji': 'https://static.wikia.nocookie.net/goanimate/images/b/b2/Kenji.png',
+      
+      // Space Citizens
+      'space-captain': 'https://static.wikia.nocookie.net/goanimate/images/c/c4/Captain_Nova.png',
+      'space-robot': 'https://static.wikia.nocookie.net/goanimate/images/d/d8/Robot_X7.png',
+      
+      // Lil Peepz
+      'lil-tommy': 'https://static.wikia.nocookie.net/goanimate/images/e/e2/Tommy.png',
+      'lil-sarah': 'https://static.wikia.nocookie.net/goanimate/images/f/f4/Sarah.png',
+      
+      // Scratch Characters
+      'scratch-cat': 'https://cdn2.scratch.mit.edu/get_image/user/default.png',
+      'scratch-dog': 'https://cdn2.scratch.mit.edu/get_image/gallery/415289_200x130.png',
+      
+      // Inanimate Insanity Characters
+      'ii-bot': 'https://static.wikia.nocookie.net/inanimateinsanity/images/a/a6/Bot_Pose.png',
+      'ii-cabby': 'https://static.wikia.nocookie.net/inanimateinsanity/images/b/b5/Cabby_Pose.png',
+      'ii-test-tube': 'https://static.wikia.nocookie.net/inanimateinsanity/images/c/c8/Test_Tube_Pose.png',
+      
+      // BFDI Characters
+      'bfdi-leafy': 'https://static.wikia.nocookie.net/battlefordreamisland/images/f/f0/Leafy_BFDI.png',
+      'bfdi-firey': 'https://static.wikia.nocookie.net/battlefordreamisland/images/3/35/Firey_BFDI.png',
+      'bfdi-bubble': 'https://static.wikia.nocookie.net/battlefordreamisland/images/9/9f/Bubble_BFDI.png',
+      'bfdi-pen': 'https://static.wikia.nocookie.net/battlefordreamisland/images/4/4f/Pen_BFDI.png'
     };
     
     return imageMap[character.id] || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face';
+  };
+
+  const handleGetGoPlus = () => {
+    alert('🎬 Start your 3-week FREE trial of GoPlus!\n\n✨ Get access to:\n• Premium BFDI & II characters\n• HD video exports\n• No watermarks\n• Advanced themes\n• Priority support\n\nSign up now for just $0.99 USD / £0.05 GBP after trial!');
   };
 
   return (
     <div className="bg-white rounded-lg shadow-lg border-2 border-blue-300">
       {/* 2013 GoAnimate Style Header */}
       <div className="bg-gradient-to-r from-blue-500 to-blue-600 p-4 rounded-t-lg">
-        <h2 className="text-2xl font-bold text-white drop-shadow-md flex items-center">
-          👥 Choose Your Characters
-        </h2>
-        <p className="text-blue-100 text-sm mt-1">
-          Select characters for your video. GoPlus subscribers get BFDI characters!
-        </p>
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-2xl font-bold text-white drop-shadow-md flex items-center">
+              👥 Choose Your Characters
+            </h2>
+            <p className="text-blue-100 text-sm mt-1">
+              Select characters for your video. GoPlus subscribers get BFDI characters!
+            </p>
+          </div>
+          <CustomButton
+            variant="accent"
+            onClick={handleGetGoPlus}
+            className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white font-bold px-4 py-2 rounded-full shadow-lg border-2 border-yellow-600 animate-pulse"
+          >
+            🚀 Get GoPlus Trial
+          </CustomButton>
+        </div>
       </div>
       
       <div className="p-6">
@@ -106,7 +134,7 @@ const CharacterSelector: React.FC<CharacterSelectorProps> = ({
                 
                 <div className="flex flex-col items-center text-center">
                   {/* Character Image */}
-                  <div className={`w-16 h-16 rounded-full mb-2 overflow-hidden shadow-md border-2 ${
+                  <div className={`w-16 h-16 rounded-lg mb-2 overflow-hidden shadow-md border-2 bg-white ${
                     isSelected 
                       ? 'border-green-500' 
                       : 'border-blue-400'
@@ -114,10 +142,14 @@ const CharacterSelector: React.FC<CharacterSelectorProps> = ({
                     <img 
                       src={getCharacterImage(character)}
                       alt={character.name}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain p-1"
                       onError={(e) => {
-                        // Fallback to a default image if the image fails to load
-                        e.currentTarget.src = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face';
+                        // Fallback to a colored placeholder if the image fails to load
+                        e.currentTarget.style.display = 'none';
+                        const parent = e.currentTarget.parentElement;
+                        if (parent) {
+                          parent.innerHTML = `<div class="w-full h-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white font-bold text-xs">${character.name[0]}</div>`;
+                        }
                       }}
                     />
                   </div>

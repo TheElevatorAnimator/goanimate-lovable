@@ -15,6 +15,10 @@ const Watermark: React.FC<WatermarkProps> = ({
   isSubscribed,
   pricingInfo = { usd: '0.99', gbp: '0.05' }
 }) => {
+  const handleGetGoPlus = () => {
+    alert('🎬 Start your 3-week FREE trial of GoPlus!\n\n✨ Get access to:\n• Premium BFDI & II characters\n• HD video exports\n• No watermarks\n• Advanced themes\n• Priority support\n\nSign up now for just $0.99 USD / £0.05 GBP after trial!');
+  };
+
   if (isSubscribed) return null;
   
   return (
@@ -64,7 +68,7 @@ const Watermark: React.FC<WatermarkProps> = ({
                 variant="theme"
                 theme="comedyWorld"
                 size="sm"
-                onClick={() => alert('Please subscribe to GoPlus to remove the watermark from exported videos!')}
+                onClick={handleGetGoPlus}
                 className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold px-6 py-3 rounded-full shadow-lg border-2 border-green-700"
               >
                 <X size={16} />
