@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import ThemeSelector from '@/components/ThemeSelector';
 import CharacterCreator from '@/components/CharacterCreator';
 import QuickVideoMaker from '@/components/QuickVideoMaker';
+import PropsPanel from '@/components/PropsPanel';
 
 const VideoMaker = () => {
   const [selectedTheme, setSelectedTheme] = useState('');
@@ -19,6 +20,10 @@ const VideoMaker = () => {
     console.log('Character created:', character);
   };
 
+  const handlePropImported = (prop: any) => {
+    console.log('Prop imported:', prop);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-400 via-blue-500 to-blue-600">
       {/* Header */}
@@ -30,9 +35,14 @@ const VideoMaker = () => {
                 <span className="text-2xl font-bold text-orange-500">G</span>
               </div>
               <div>
-                <h1 className="text-3xl font-bold text-white drop-shadow-lg">
-                  GoAnimate Video Maker
-                </h1>
+                <div className="flex items-center space-x-2">
+                  <h1 className="text-3xl font-bold text-white drop-shadow-lg">
+                    GoAnimate Video Maker
+                  </h1>
+                  <span className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse">
+                    BETA
+                  </span>
+                </div>
                 <p className="text-orange-100 text-sm">Create Amazing Videos Online!</p>
               </div>
             </div>
@@ -81,11 +91,18 @@ const VideoMaker = () => {
             />
             
             {selectedTheme && (
-              <CharacterCreator
-                selectedTheme={selectedTheme}
-                isSubscribed={isSubscribed}
-                onCharacterCreated={handleCharacterCreated}
-              />
+              <>
+                <CharacterCreator
+                  selectedTheme={selectedTheme}
+                  isSubscribed={isSubscribed}
+                  onCharacterCreated={handleCharacterCreated}
+                />
+                
+                <PropsPanel
+                  selectedTheme={selectedTheme}
+                  onPropImported={handlePropImported}
+                />
+              </>
             )}
           </div>
         )}

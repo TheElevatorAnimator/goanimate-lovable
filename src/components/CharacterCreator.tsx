@@ -2,7 +2,6 @@
 import React from 'react';
 import { useToast } from "@/hooks/use-toast";
 import CustomButton from './ui/CustomButton';
-import { isPuffinBrowser } from '@/utils/animationUtils';
 
 interface CharacterCreatorProps {
   selectedTheme: string;
@@ -22,15 +21,6 @@ const CharacterCreator: React.FC<CharacterCreatorProps> = ({
   const { toast } = useToast();
 
   const handleOpenCreator = () => {
-    if (!isPuffinBrowser()) {
-      toast({
-        title: "Browser Compatibility Warning",
-        description: "The GoAnimate Character Creator requires Puffin Browser to work properly. Please switch to Puffin Browser to use this feature.",
-        variant: "destructive",
-      });
-      return;
-    }
-
     // This would normally open the character creator iframe/window
     // For now, we'll just create a basic character
     const character = {
@@ -42,6 +32,11 @@ const CharacterCreator: React.FC<CharacterCreatorProps> = ({
     if (onCharacterCreated) {
       onCharacterCreated(character);
     }
+
+    toast({
+      title: "Character Created!",
+      description: "Your custom character has been created successfully.",
+    });
   };
 
   return (
@@ -90,14 +85,6 @@ const CharacterCreator: React.FC<CharacterCreatorProps> = ({
               <li>• Expressions</li>
             </ul>
           </div>
-        </div>
-        
-        {/* Browser Requirements */}
-        <div className="bg-yellow-100 border-l-4 border-yellow-500 p-3 mb-4">
-          <h4 className="font-bold text-yellow-800 text-sm">⚠️ Browser Requirements</h4>
-          <p className="text-yellow-700 text-xs mt-1">
-            The GoAnimate Character Creator requires Puffin Browser for Adobe Flash compatibility.
-          </p>
         </div>
         
         {/* Action Button */}
