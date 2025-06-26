@@ -67,7 +67,13 @@ const Home = () => {
           </div>
           
           <div className="bg-white/90 p-6 rounded-lg shadow-lg border-4 border-white">
-            <div className="text-4xl mb-4">🎭</div>
+            <div className="mb-4">
+              <img 
+                src="/lovable-uploads/2cfd1c2e-bb23-4de5-a49b-f37d78674ee8.png" 
+                alt="GoAnimate Video Maker Interface"
+                className="w-16 h-16 mx-auto object-cover rounded-lg shadow-md"
+              />
+            </div>
             <h3 className="text-xl font-bold text-gray-800 mb-2">Amazing Scenes</h3>
             <p className="text-gray-600">Perfect backgrounds for any story you want to tell.</p>
           </div>
