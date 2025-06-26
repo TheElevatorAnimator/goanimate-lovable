@@ -120,21 +120,12 @@ const VideoMaker = () => {
                 savedVoices={{}}
               />
             ) : (
-              <>
-                <ThemeSelector
-                  selectedTheme={selectedTheme}
-                  onThemeSelect={handleThemeSelect}
-                  isSubscribed={isSubscribed}
-                />
-                
-                {selectedTheme && (
-                  <CharacterCreator
-                    selectedTheme={selectedTheme}
-                    isSubscribed={isSubscribed}
-                    onCharacterCreated={handleCharacterCreated}
-                  />
-                )}
-              </>
+              <ThemeSelector
+                selectedTheme={selectedTheme}
+                onThemeSelect={handleThemeSelect}
+                onOpenVideoMaker={handleOpenVideoMaker}
+                isSubscribed={isSubscribed}
+              />
             )}
           </div>
         )}

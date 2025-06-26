@@ -6,14 +6,21 @@ import CustomButton from './ui/CustomButton';
 interface ThemeSelectorProps {
   selectedTheme: string;
   onThemeSelect: (themeId: string) => void;
+  onOpenVideoMaker: () => void;
   isSubscribed: boolean;
 }
 
 const ThemeSelector: React.FC<ThemeSelectorProps> = ({
   selectedTheme,
   onThemeSelect,
+  onOpenVideoMaker,
   isSubscribed
 }) => {
+  const handleThemeSelect = (themeId: string) => {
+    onThemeSelect(themeId);
+    onOpenVideoMaker();
+  };
+
   return (
     <div className="bg-white rounded-lg shadow-lg border-2 border-blue-300">
       {/* Header */}
@@ -39,7 +46,7 @@ const ThemeSelector: React.FC<ThemeSelectorProps> = ({
                 className={`relative cursor-pointer transition-all duration-200 ${
                   !canUse ? 'opacity-60' : ''
                 }`}
-                onClick={() => canUse && onThemeSelect(theme.id)}
+                onClick={() => canUse && handleThemeSelect(theme.id)}
               >
                 {/* Theme Card */}
                 <div className={`
@@ -132,7 +139,7 @@ const ThemeSelector: React.FC<ThemeSelectorProps> = ({
               🎬 Theme Selected: {GOANIMATE_THEMES.find(t => t.id === selectedTheme)?.name}
             </h3>
             <p className="text-green-700 text-sm">
-              Ready to create your video! Continue to character selection.
+              Opening video maker...
             </p>
           </div>
         )}
