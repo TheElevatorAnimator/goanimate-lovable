@@ -83,160 +83,132 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: "Trebuchet MS", Arial, sans-serif;
+    font-family: "Arial", "Helvetica", sans-serif;
+    background: linear-gradient(135deg, #4a90e2 0%, #357abd 50%, #1e5f99 100%);
   }
 }
 
 @layer utilities {
-  /* 2013 GoAnimate Flash-style effects */
-  .flash-button {
-    background: linear-gradient(145deg, #4CAF50, #45a049);
-    border: 2px solid #388e3c;
-    box-shadow: 
-      0 4px 8px rgba(0,0,0,0.2),
-      inset 0 1px 0 rgba(255,255,255,0.3),
-      inset 0 -1px 0 rgba(0,0,0,0.1);
-    transition: all 0.1s ease;
-  }
-  
-  .flash-button:hover {
-    background: linear-gradient(145deg, #5CBF60, #4CAF50);
-    transform: translateY(-1px);
-    box-shadow: 
-      0 6px 12px rgba(0,0,0,0.25),
-      inset 0 1px 0 rgba(255,255,255,0.4);
-  }
-  
-  .flash-button:active {
-    transform: translateY(1px);
-    box-shadow: 
-      0 2px 4px rgba(0,0,0,0.2),
-      inset 0 1px 0 rgba(0,0,0,0.1);
-  }
-
-  /* Classic 2013 card styling */
-  .goanimate-card {
-    background: linear-gradient(145deg, #ffffff, #f5f5f5);
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 
-      0 4px 8px rgba(0,0,0,0.1),
-      inset 0 1px 0 rgba(255,255,255,0.8);
-  }
-
-  /* 2013 Flash-style gradients */
-  .flash-gradient-blue {
-    background: linear-gradient(145deg, #2196F3, #1976D2);
-  }
-  
-  .flash-gradient-orange {
-    background: linear-gradient(145deg, #FF9800, #F57C00);
-  }
-  
-  .flash-gradient-green {
-    background: linear-gradient(145deg, #4CAF50, #388E3C);
-  }
-
-  /* Retro animations */
-  .bounce-in {
-    animation: bounceIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-  
-  @keyframes bounceIn {
-    0% {
-      transform: scale(0.3);
-      opacity: 0;
-    }
-    50% {
-      transform: scale(1.05);
-    }
-    70% {
-      transform: scale(0.9);
-    }
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
-
-  .pulse-glow {
-    animation: pulseGlow 2s infinite;
-  }
-  
-  @keyframes pulseGlow {
-    0%, 100% {
-      box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
-    }
-    50% {
-      box-shadow: 0 0 20px rgba(33, 150, 243, 0.8);
-    }
-  }
-
-  /* Legacy pixel-border updated for 2013 style */
-  .pixel-border {
-    border: 2px solid #333;
+  /* 2011 GoAnimate Flash-style effects */
+  .goanimate-2011-button {
+    background: linear-gradient(to bottom, #ffffff 0%, #e8e8e8 50%, #d0d0d0 51%, #b8b8b8 100%);
+    border: 1px solid #999;
     border-radius: 4px;
     box-shadow: 
-      2px 2px 0px 0px rgba(0, 0, 0, 0.3),
-      inset 0 1px 0 rgba(255,255,255,0.2);
-  }
-  
-  .retro-text {
-    text-shadow: 
-      1px 1px 0px rgba(0, 0, 0, 0.3),
-      2px 2px 4px rgba(0, 0, 0, 0.2);
+      0 1px 3px rgba(0,0,0,0.3),
+      inset 0 1px 0 rgba(255,255,255,0.8),
+      inset 0 -1px 0 rgba(0,0,0,0.1);
+    transition: all 0.1s ease;
+    color: #333;
     font-weight: bold;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.8);
   }
   
-  /* 2013 Flash-style glitch effect (updated) */
-  .glitch-effect {
-    position: relative;
-    display: inline-block;
-    font-weight: bold;
+  .goanimate-2011-button:hover {
+    background: linear-gradient(to bottom, #f0f0f0 0%, #d8d8d8 50%, #c0c0c0 51%, #a8a8a8 100%);
+    box-shadow: 
+      0 2px 5px rgba(0,0,0,0.4),
+      inset 0 1px 0 rgba(255,255,255,0.9);
   }
   
-  .glitch-effect::before,
-  .glitch-effect::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .glitch-effect::before {
-    left: 2px;
-    text-shadow: -2px 0 #ff6b35;
-    clip: rect(24px, 550px, 90px, 0);
-    animation: flash-glitch 3s infinite linear alternate-reverse;
-  }
-  
-  .glitch-effect::after {
-    left: -2px;
-    text-shadow: -2px 0 #00bcd4;
-    clip: rect(85px, 550px, 140px, 0);
-    animation: flash-glitch 2.5s infinite linear alternate-reverse;
-  }
-  
-  @keyframes flash-glitch {
-    0% { clip: rect(24px, 550px, 90px, 0); }
-    20% { clip: rect(45px, 550px, 70px, 0); }
-    40% { clip: rect(12px, 550px, 55px, 0); }
-    60% { clip: rect(78px, 550px, 120px, 0); }
-    80% { clip: rect(33px, 550px, 160px, 0); }
-    100% { clip: rect(53px, 550px, 30px, 0); }
+  .goanimate-2011-button:active {
+    background: linear-gradient(to bottom, #c0c0c0 0%, #d0d0d0 50%, #e0e0e0 51%, #f0f0f0 100%);
+    box-shadow: 
+      inset 0 1px 3px rgba(0,0,0,0.3),
+      0 1px 0 rgba(255,255,255,0.8);
   }
 
-  /* Flash-style loading animation */
-  .flash-loading {
-    background: linear-gradient(90deg, #f0f0f0 25%, transparent 50%, #f0f0f0 75%);
-    background-size: 200% 100%;
-    animation: flashLoad 1.5s infinite;
+  .goanimate-2011-button-green {
+    background: linear-gradient(to bottom, #7fb142 0%, #699934 50%, #5a8629 51%, #4e731f 100%);
+    border: 1px solid #3d5a1a;
+    color: white;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.3);
   }
   
-  @keyframes flashLoad {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
+  .goanimate-2011-button-green:hover {
+    background: linear-gradient(to bottom, #8fc252 0%, #79a944 50%, #6a9639 51%, #5e832f 100%);
+  }
+
+  .goanimate-2011-button-orange {
+    background: linear-gradient(to bottom, #ff8c00 0%, #e67300 50%, #cc5f00 51%, #b34c00 100%);
+    border: 1px solid #994000;
+    color: white;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.3);
+  }
+  
+  .goanimate-2011-button-orange:hover {
+    background: linear-gradient(to bottom, #ff9c10 0%, #f68310 50%, #dd6f10 51%, #c45c10 100%);
+  }
+
+  /* 2011 GoAnimate card styling */
+  .goanimate-2011-card {
+    background: linear-gradient(to bottom, #ffffff 0%, #f8f8f8 100%);
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 
+      0 2px 4px rgba(0,0,0,0.1),
+      inset 0 1px 0 rgba(255,255,255,0.9);
+  }
+
+  .goanimate-2011-card-header {
+    background: linear-gradient(to bottom, #f0f0f0 0%, #e0e0e0 100%);
+    border-bottom: 1px solid #ccc;
+    border-radius: 6px 6px 0 0;
+    padding: 8px 12px;
+    font-weight: bold;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+  }
+
+  /* 2011 Flash-style gradients */
+  .goanimate-2011-gradient-blue {
+    background: linear-gradient(to bottom, #4a90e2 0%, #357abd 50%, #1e5f99 100%);
+  }
+  
+  .goanimate-2011-gradient-orange {
+    background: linear-gradient(to bottom, #ff8c00 0%, #e67300 50%, #cc5f00 100%);
+  }
+  
+  .goanimate-2011-gradient-green {
+    background: linear-gradient(to bottom, #7fb142 0%, #699934 50%, #5a8629 100%);
+  }
+
+  /* 2011 GoAnimate header style */
+  .goanimate-2011-header {
+    background: linear-gradient(to bottom, #ff8c00 0%, #e67300 50%, #cc5f00 100%);
+    border-bottom: 2px solid #994000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+
+  /* Template card styles for Quick Video Maker */
+  .template-card {
+    background: white;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+
+  .template-card:hover {
+    border-color: #ff8c00;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transform: translateY(-2px);
+  }
+
+  .template-card.selected {
+    border-color: #7fb142;
+    box-shadow: 0 0 0 2px rgba(127, 177, 66, 0.3);
+  }
+
+  /* 2011 style text */
+  .goanimate-2011-text {
+    text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+    font-weight: bold;
+  }
+
+  .goanimate-2011-text-white {
+    text-shadow: 0 1px 0 rgba(0,0,0,0.3);
+    font-weight: bold;
+    color: white;
   }
 }

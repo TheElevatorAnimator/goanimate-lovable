@@ -55,52 +55,52 @@ const VideoMaker = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-400 via-blue-500 to-blue-600">
+    <div className="min-h-screen goanimate-2011-gradient-blue">
       {/* Header */}
-      <header className="bg-gradient-to-r from-orange-400 to-orange-500 shadow-lg border-b-4 border-orange-600">
-        <div className="container mx-auto p-4">
+      <header className="goanimate-2011-header">
+        <div className="container mx-auto p-3">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md">
-                <span className="text-2xl font-bold text-orange-500">G</span>
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-white rounded border border-gray-400 flex items-center justify-center shadow-sm">
+                <span className="text-xl font-bold text-orange-600">G</span>
               </div>
               <div>
                 <div className="flex items-center space-x-2">
-                  <h1 className="text-3xl font-bold text-white drop-shadow-lg">
+                  <h1 className="text-2xl font-bold goanimate-2011-text-white">
                     GoAnimate Video Maker
                   </h1>
-                  <span className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse">
+                  <span className="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded animate-pulse">
                     BETA
                   </span>
                 </div>
-                <p className="text-orange-100 text-sm">Create Amazing Videos Online!</p>
+                <p className="text-orange-200 text-xs">Create Amazing Videos Online!</p>
               </div>
             </div>
           </div>
         </div>
       </header>
 
-      <main className="container mx-auto p-8">
+      <main className="container mx-auto p-6">
         {/* Tab Navigation */}
-        <div className="mb-8">
-          <div className="bg-white rounded-lg shadow-lg border-2 border-blue-300 overflow-hidden">
+        <div className="mb-6">
+          <div className="goanimate-2011-card overflow-hidden">
             <div className="flex">
               <button
                 onClick={() => setActiveTab('quick')}
-                className={`flex-1 p-4 font-bold text-lg transition-colors ${
+                className={`flex-1 p-3 font-bold transition-colors ${
                   activeTab === 'quick'
-                    ? 'bg-green-500 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'goanimate-2011-button-green text-white'
+                    : 'goanimate-2011-button'
                 }`}
               >
                 ⚡ Quick Video Maker
               </button>
               <button
                 onClick={() => setActiveTab('full')}
-                className={`flex-1 p-4 font-bold text-lg transition-colors ${
+                className={`flex-1 p-3 font-bold transition-colors ${
                   activeTab === 'full'
-                    ? 'bg-blue-500 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'goanimate-2011-button-orange text-white'
+                    : 'goanimate-2011-button'
                 }`}
               >
                 🎭 Full Video Maker
@@ -113,7 +113,7 @@ const VideoMaker = () => {
         {activeTab === 'quick' ? (
           <QuickVideoMakerWrapper onOpenVideoMaker={handleOpenVideoMaker} />
         ) : (
-          <div className="space-y-8">
+          <div className="space-y-6">
             {showVideoMaker ? (
               <EnhancedVideoPreview 
                 project={currentProject}
