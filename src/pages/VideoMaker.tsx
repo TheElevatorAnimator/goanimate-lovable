@@ -3,40 +3,23 @@ import React, { useState } from 'react';
 import ThemeSelector from '@/components/ThemeSelector';
 import CharacterCreator from '@/components/CharacterCreator';
 import QuickVideoMakerWrapper from '@/components/QuickVideoMakerWrapper';
-import EnhancedVideoPreview from '@/components/EnhancedVideoPreview';
+import GoAnimate2011VideoMaker from '@/components/GoAnimate2011VideoMaker';
 import { AnimationProject } from '@/types/animation';
 
 const VideoMaker = () => {
   const [selectedTheme, setSelectedTheme] = useState('');
   const [activeTab, setActiveTab] = useState<'quick' | 'full'>('quick');
-  const [isSubscribed] = useState(false); // Mock subscription status
+  const [isSubscribed] = useState(false);
   const [createdCharacter, setCreatedCharacter] = useState<any>(null);
   const [showVideoMaker, setShowVideoMaker] = useState(false);
   
-  // Default project for video preview
-  const [currentProject] = useState<AnimationProject>({
+  // Default project for video maker
+  const [currentProject, setCurrentProject] = useState<AnimationProject>({
     id: 'demo-project',
     name: 'Demo Video',
-    scene: 'comedy-world-school',
+    scene: 'comedy-world-bedroom',
     characters: ['comedy-eric', 'comedy-jennifer'],
-    sequences: [
-      {
-        id: 'seq1',
-        characterId: 'comedy-eric',
-        animationName: 'talk',
-        startTime: 0,
-        duration: 3,
-        speech: 'Welcome to GoAnimate!'
-      },
-      {
-        id: 'seq2', 
-        characterId: 'comedy-jennifer',
-        animationName: 'wave',
-        startTime: 2,
-        duration: 2,
-        speech: 'Let\'s make awesome videos!'
-      }
-    ],
+    sequences: [],
     isPremium: false
   });
 
@@ -115,9 +98,9 @@ const VideoMaker = () => {
         ) : (
           <div className="space-y-6">
             {showVideoMaker ? (
-              <EnhancedVideoPreview 
+              <GoAnimate2011VideoMaker 
                 project={currentProject}
-                savedVoices={{}}
+                onUpdateProject={setCurrentProject}
               />
             ) : (
               <ThemeSelector
