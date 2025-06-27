@@ -141,6 +141,8 @@ const GoAnimate2011VideoMaker = ({ project, onUpdateProject }: GoAnimate2011Vide
     );
   };
 
+  const tabs = ['characters', 'speech', 'props', 'sounds', 'effects'] as const;
+
   return (
     <div className="w-full h-screen bg-gray-200 flex flex-col">
       {/* Site Moving Warning */}
@@ -173,7 +175,7 @@ const GoAnimate2011VideoMaker = ({ project, onUpdateProject }: GoAnimate2011Vide
         <div className="w-64 bg-white border-r border-gray-300 flex flex-col">
           {/* Tab Navigation */}
           <div className="flex border-b border-gray-300">
-            {(['characters', 'speech', 'props', 'sounds', 'effects'] as const).map((tab) => (
+            {tabs.map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
