@@ -5,6 +5,11 @@ import { Link } from 'react-router-dom';
 const Home = () => {
   return (
     <div className="min-h-screen bg-white">
+      {/* Site Moving Warning */}
+      <div className="bg-red-600 text-white p-3 text-center font-bold animate-pulse">
+        ⚠️ IMPORTANT NOTICE: This site is moving to a new home! Stay tuned for updates. ⚠️
+      </div>
+
       {/* Top Navigation Bar */}
       <nav className="bg-gray-800 text-white py-2">
         <div className="container mx-auto px-4 flex justify-end items-center space-x-4 text-sm">
