@@ -1,10 +1,10 @@
-
 export type Character = {
   id: string;
   name: string;
   model: string;
   animations: string[];
   isPremium?: boolean;
+  imageUrl?: string;
 };
 
 export type Scene = {

@@ -15,45 +15,6 @@ const CharacterSelector: React.FC<CharacterSelectorProps> = ({
   onSelectCharacter,
   onRemoveCharacter,
 }) => {
-  const getCharacterImage = (character: Character) => {
-    // Map characters to actual GoAnimate, BFDI, and Inanimate Insanity character images
-    const imageMap: Record<string, string> = {
-      // GoAnimate Comedy World Characters
-      'comedy-eric': 'https://goanimate.fandom.com/wiki/Eric?file=Eric.png',
-      'comedy-jennifer': 'https://goanimate.fandom.com/wiki/Jennifer?file=Jennifer.png',
-      'comedy-joey': 'https://goanimate.fandom.com/wiki/Joey?file=Joey.png',
-      
-      // Anime Characters (GoAnimate style)
-      'anime-sakura': 'https://static.wikia.nocookie.net/goanimate/images/a/a5/Sakura.png',
-      'anime-kenji': 'https://static.wikia.nocookie.net/goanimate/images/b/b2/Kenji.png',
-      
-      // Space Citizens
-      'space-captain': 'https://static.wikia.nocookie.net/goanimate/images/c/c4/Captain_Nova.png',
-      'space-robot': 'https://static.wikia.nocookie.net/goanimate/images/d/d8/Robot_X7.png',
-      
-      // Lil Peepz
-      'lil-tommy': 'https://static.wikia.nocookie.net/goanimate/images/e/e2/Tommy.png',
-      'lil-sarah': 'https://static.wikia.nocookie.net/goanimate/images/f/f4/Sarah.png',
-      
-      // Scratch Characters
-      'scratch-cat': 'https://cdn2.scratch.mit.edu/get_image/user/default.png',
-      'scratch-dog': 'https://cdn2.scratch.mit.edu/get_image/gallery/415289_200x130.png',
-      
-      // Inanimate Insanity Characters
-      'ii-bot': 'https://static.wikia.nocookie.net/inanimateinsanity/images/a/a6/Bot_Pose.png',
-      'ii-cabby': 'https://static.wikia.nocookie.net/inanimateinsanity/images/b/b5/Cabby_Pose.png',
-      'ii-test-tube': 'https://static.wikia.nocookie.net/inanimateinsanity/images/c/c8/Test_Tube_Pose.png',
-      
-      // BFDI Characters
-      'bfdi-leafy': 'https://static.wikia.nocookie.net/battlefordreamisland/images/f/f0/Leafy_BFDI.png',
-      'bfdi-firey': 'https://static.wikia.nocookie.net/battlefordreamisland/images/3/35/Firey_BFDI.png',
-      'bfdi-bubble': 'https://static.wikia.nocookie.net/battlefordreamisland/images/9/9f/Bubble_BFDI.png',
-      'bfdi-pen': 'https://static.wikia.nocookie.net/battlefordreamisland/images/4/4f/Pen_BFDI.png'
-    };
-    
-    return imageMap[character.id] || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face';
-  };
-
   const handleGetGoPlus = () => {
     alert('🎬 Start your 3-week FREE trial of GoPlus!\n\n✨ Get access to:\n• Premium BFDI & II characters\n• HD video exports\n• No watermarks\n• Advanced themes\n• Priority support\n\nSign up now for just $0.99 USD / £0.05 GBP after trial!');
   };
@@ -139,19 +100,45 @@ const CharacterSelector: React.FC<CharacterSelectorProps> = ({
                       ? 'border-green-500' 
                       : 'border-blue-400'
                   }`}>
-                    <img 
-                      src={getCharacterImage(character)}
-                      alt={character.name}
-                      className="w-full h-full object-contain p-1"
-                      onError={(e) => {
-                        // Fallback to a colored placeholder if the image fails to load
-                        e.currentTarget.style.display = 'none';
-                        const parent = e.currentTarget.parentElement;
-                        if (parent) {
-                          parent.innerHTML = `<div class="w-full h-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white font-bold text-xs">${character.name[0]}</div>`;
-                        }
-                      }}
-                    />
+                    {character.imageUrl ? (
+                      <img 
+                        src={character.imageUrl}
+                        alt={character.name}
+                        className="w-full h-full object-contain p-1"
+                        onError={(e) => {
+                          // Fallback to emoji if the image fails to load
+                          e.currentTarget.style.display = 'none';
+                          const parent = e.currentTarget.parentElement;
+                          if (parent) {
+                            parent.innerHTML = `<div class="w-full h-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white font-bold text-2xl">${
+                              character.name.includes('Eric') ? '👨' : 
+                              character.name.includes('Jennifer') ? '👩' : 
+                              character.name.includes('Joey') ? '👦' : 
+                              character.name.includes('Sakura') ? '👧' : 
+                              character.name.includes('Robot') ? '🤖' : 
+                              character.name.includes('Leafy') ? '🍃' : 
+                              character.name.includes('Firey') ? '🔥' : 
+                              character.name.includes('Bubble') ? '🫧' : 
+                              character.name.includes('Bot') ? '🤖' : 
+                              character.name.includes('Cat') ? '🐱' : '👤'
+                            }</div>`;
+                          }
+                        }}
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white font-bold text-2xl">
+                        {character.name.includes('Eric') ? '👨' : 
+                         character.name.includes('Jennifer') ? '👩' : 
+                         character.name.includes('Joey') ? '👦' : 
+                         character.name.includes('Sakura') ? '👧' : 
+                         character.name.includes('Robot') ? '🤖' : 
+                         character.name.includes('Leafy') ? '🍃' : 
+                         character.name.includes('Firey') ? '🔥' : 
+                         character.name.includes('Bubble') ? '🫧' : 
+                         character.name.includes('Bot') ? '🤖' : 
+                         character.name.includes('Cat') ? '🐱' : '👤'}
+                      </div>
+                    )}
                   </div>
                   
                   <h3 className="font-bold text-sm mb-1 text-gray-800">
