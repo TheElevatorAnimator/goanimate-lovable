@@ -7,7 +7,7 @@ const Home = () => {
     <div className="min-h-screen bg-white">
       {/* Site Moving Warning */}
       <div className="bg-red-600 text-white p-3 text-center font-bold animate-pulse">
-        ⚠️ IMPORTANT NOTICE: This site is moving to a new home! Stay tuned for updates. ⚠️
+        ⚠️ IMPORTANT NOTICE: This site is moving to a new home on Glitch! Stay tuned for updates. ⚠️
       </div>
 
       {/* Top Navigation Bar */}
