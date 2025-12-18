@@ -151,5 +151,12 @@ export const GOANIMATE_THEMES = [
     description: 'Object show competition theme',
     isPremium: false,
     style: 'inanimate-insanity'
+  },
+  {
+    id: 'pokemon-alola',
+    name: 'Pokémon Alola (Gen 7)',
+    description: 'Alola region Pokémon adventures',
+    isPremium: false,
+    style: 'pokemon-alola'
   }
 ];

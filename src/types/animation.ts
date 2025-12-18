@@ -12,7 +12,7 @@ export type Scene = {
   name: string;
   background: string;
   isPremium?: boolean;
-  style?: 'goanimate' | 'plotagon' | 'default' | 'scratchverse' | 'bfdi';
+  style?: 'goanimate' | 'plotagon' | 'default' | 'scratchverse' | 'bfdi' | 'pokemon-alola';
 };
 
 export type AnimationSequence = {
