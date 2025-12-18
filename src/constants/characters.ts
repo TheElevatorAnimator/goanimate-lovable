@@ -8,21 +8,21 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     name: 'Eric',
     model: 'comedy-world-eric',
     animations: ['wave', 'talk', 'walk', 'point', 'laugh', 'think'],
-    imageUrl: 'https://static.wikia.nocookie.net/goanimate/images/9/9c/Eric.png'
+    imageUrl: 'https://i.imgur.com/qK7KrZy.png'
   },
   {
     id: 'comedy-jennifer',
     name: 'Jennifer',
     model: 'comedy-world-jennifer',
     animations: ['wave', 'talk', 'walk', 'point', 'laugh', 'think'],
-    imageUrl: 'https://static.wikia.nocookie.net/goanimate/images/4/4b/Jennifer.png'
+    imageUrl: 'https://i.imgur.com/8VdKQmP.png'
   },
   {
     id: 'comedy-joey',    
     name: 'Joey',
     model: 'comedy-world-joey',
     animations: ['wave', 'talk', 'walk', 'point', 'laugh', 'think'],
-    imageUrl: 'https://static.wikia.nocookie.net/goanimate/images/8/8f/Joey.png'
+    imageUrl: 'https://i.imgur.com/RJwNxHT.png'
   },
   
   // Anime Characters
@@ -31,14 +31,14 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     name: 'Sakura',
     model: 'anime-sakura',
     animations: ['bow', 'talk', 'run', 'fight', 'magic', 'smile'],
-    imageUrl: 'https://static.wikia.nocookie.net/goanimate/images/a/a5/Sakura.png'
+    imageUrl: 'https://i.imgur.com/7VCKmLB.png'
   },
   {
     id: 'anime-kenji',
     name: 'Kenji',
     model: 'anime-kenji',
     animations: ['bow', 'talk', 'run', 'fight', 'magic', 'serious'],
-    imageUrl: 'https://static.wikia.nocookie.net/goanimate/images/b/b2/Kenji.png'
+    imageUrl: 'https://i.imgur.com/YNQwvT8.png'
   },
   
   // Space Citizens
@@ -47,14 +47,14 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     name: 'Captain Nova',
     model: 'space-captain-nova',
     animations: ['salute', 'talk', 'float', 'command', 'explore', 'alert'],
-    imageUrl: 'https://static.wikia.nocookie.net/goanimate/images/c/c4/Captain_Nova.png'
+    imageUrl: 'https://i.imgur.com/G3fQzKL.png'
   },
   {
     id: 'space-robot',
     name: 'Robot X-7',
     model: 'space-robot-x7',
     animations: ['beep', 'talk', 'hover', 'scan', 'compute', 'malfunction'],
-    imageUrl: 'https://static.wikia.nocookie.net/goanimate/images/d/d8/Robot_X7.png'
+    imageUrl: 'https://i.imgur.com/KHQr9Td.png'
   },
   
   // Lil' Peepz
@@ -63,14 +63,14 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     name: 'Tommy',
     model: 'lil-tommy',
     animations: ['giggle', 'talk', 'run', 'play', 'cry', 'excited'],
-    imageUrl: 'https://static.wikia.nocookie.net/goanimate/images/e/e2/Tommy.png'
+    imageUrl: 'https://i.imgur.com/9QpVvNL.png'
   },
   {
     id: 'lil-sarah',
     name: 'Sarah',
     model: 'lil-sarah',
     animations: ['giggle', 'talk', 'skip', 'play', 'pout', 'happy'],
-    imageUrl: 'https://static.wikia.nocookie.net/goanimate/images/f/f4/Sarah.png'
+    imageUrl: 'https://i.imgur.com/Wx8HkgP.png'
   },
   
   // ScratchVerse Characters
@@ -79,14 +79,14 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     name: 'Scratch Cat',
     model: 'scratch-cat',
     animations: ['meow', 'talk', 'jump', 'dance', 'spin', 'bounce'],
-    imageUrl: 'https://cdn2.scratch.mit.edu/get_image/user/default.png'
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Scratchcat.svg'
   },
   {
     id: 'scratch-dog',
     name: 'Scratch Dog',
     model: 'scratch-dog',
     animations: ['bark', 'talk', 'jump', 'wag', 'fetch', 'roll'],
-    imageUrl: 'https://cdn.scratch.mit.edu/static/site/projects/thumbnails/415/289.png'
+    imageUrl: 'https://i.imgur.com/TpK8NvM.png'
   },
   
   // Inanimate Insanity Characters
@@ -95,21 +95,21 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     name: 'Bot',
     model: 'ii-bot',
     animations: ['compute', 'talk', 'walk', 'analyze', 'error', 'happy'],
-    imageUrl: 'https://static.wikia.nocookie.net/inanimateinsanity/images/a/a6/Bot_Pose.png'
+    imageUrl: 'https://i.imgur.com/q7VLyJP.png'
   },
   {
     id: 'ii-cabby',
     name: 'Cabby',
     model: 'ii-cabby',
     animations: ['organize', 'talk', 'walk', 'file', 'search', 'excited'],
-    imageUrl: 'https://static.wikia.nocookie.net/inanimateinsanity/images/b/b5/Cabby_Pose.png'
+    imageUrl: 'https://i.imgur.com/6KpVNhR.png'
   },
   {
     id: 'ii-test-tube',
     name: 'Test Tube',
     model: 'ii-test-tube',
     animations: ['experiment', 'talk', 'walk', 'think', 'discover', 'proud'],
-    imageUrl: 'https://static.wikia.nocookie.net/inanimateinsanity/images/c/c8/Test_Tube_Pose.png'
+    imageUrl: 'https://i.imgur.com/3NfLwKH.png'
   },
   
   // BFDI Characters (GoPlus Exclusive)
@@ -119,7 +119,7 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     model: 'bfdi-leafy',
     animations: ['nice', 'talk', 'bounce', 'help', 'smile', 'excited'],
     isPremium: true,
-    imageUrl: 'https://static.wikia.nocookie.net/battlefordreamisland/images/f/f0/Leafy_BFDI.png'
+    imageUrl: 'https://i.imgur.com/MpQwvHT.png'
   },
   {
     id: 'bfdi-firey',
@@ -127,7 +127,7 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     model: 'bfdi-firey',
     animations: ['burn', 'talk', 'jump', 'angry', 'hot', 'competitive'],
     isPremium: true,
-    imageUrl: 'https://static.wikia.nocookie.net/battlefordreamisland/images/3/35/Firey_BFDI.png'
+    imageUrl: 'https://i.imgur.com/LNfvKpR.png'
   },
   {
     id: 'bfdi-bubble',
@@ -135,7 +135,7 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     model: 'bfdi-bubble',
     animations: ['float', 'talk', 'pop', 'giggle', 'happy', 'scared'],
     isPremium: true,
-    imageUrl: 'https://static.wikia.nocookie.net/battlefordreamisland/images/9/9f/Bubble_BFDI.png'
+    imageUrl: 'https://i.imgur.com/WQpNxKL.png'
   },
   {
     id: 'bfdi-pen',
@@ -143,6 +143,89 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     model: 'bfdi-pen',
     animations: ['write', 'talk', 'walk', 'point', 'cool', 'confident'],
     isPremium: true,
-    imageUrl: 'https://static.wikia.nocookie.net/battlefordreamisland/images/4/4f/Pen_BFDI.png'
+    imageUrl: 'https://i.imgur.com/KQwPvHM.png'
+  },
+
+  // Pokémon Alola (Gen 7) Characters
+  {
+    id: 'pokemon-rowlet',
+    name: 'Rowlet',
+    model: 'pokemon-rowlet',
+    animations: ['fly', 'peck', 'sleep', 'leafage', 'happy', 'curious'],
+    imageUrl: '/assets/pokemon/rowlet.png'
+  },
+  {
+    id: 'pokemon-litten',
+    name: 'Litten',
+    model: 'pokemon-litten',
+    animations: ['scratch', 'ember', 'lick', 'growl', 'play', 'angry'],
+    imageUrl: '/assets/pokemon/litten.png'
+  },
+  {
+    id: 'pokemon-popplio',
+    name: 'Popplio',
+    model: 'pokemon-popplio',
+    animations: ['bubble', 'sing', 'splash', 'balance', 'happy', 'perform'],
+    imageUrl: '/assets/pokemon/popplio.png'
+  },
+  {
+    id: 'pokemon-decidueye',
+    name: 'Decidueye',
+    model: 'pokemon-decidueye',
+    animations: ['arrow', 'fly', 'stealth', 'spirit-shackle', 'focus', 'aim'],
+    imageUrl: '/assets/pokemon/decidueye.png'
+  },
+  {
+    id: 'pokemon-incineroar',
+    name: 'Incineroar',
+    model: 'pokemon-incineroar',
+    animations: ['flex', 'darkest-lariat', 'taunt', 'roar', 'pose', 'fight'],
+    imageUrl: '/assets/pokemon/incineroar.png'
+  },
+  {
+    id: 'pokemon-primarina',
+    name: 'Primarina',
+    model: 'pokemon-primarina',
+    animations: ['sing', 'sparkling-aria', 'dance', 'wave', 'elegant', 'perform'],
+    imageUrl: '/assets/pokemon/primarina.png'
+  },
+  {
+    id: 'pokemon-tapu-koko',
+    name: 'Tapu Koko',
+    model: 'pokemon-tapu-koko',
+    animations: ['electric-surge', 'fly', 'shell', 'spark', 'guard', 'attack'],
+    isPremium: true,
+    imageUrl: '/assets/pokemon/tapu-koko.png'
+  },
+  {
+    id: 'pokemon-solgaleo',
+    name: 'Solgaleo',
+    model: 'pokemon-solgaleo',
+    animations: ['sunsteel-strike', 'roar', 'radiant', 'charge', 'shine', 'majesty'],
+    isPremium: true,
+    imageUrl: '/assets/pokemon/solgaleo.png'
+  },
+  {
+    id: 'pokemon-lunala',
+    name: 'Lunala',
+    model: 'pokemon-lunala',
+    animations: ['moongeist-beam', 'fly', 'phantom', 'glow', 'eclipse', 'graceful'],
+    isPremium: true,
+    imageUrl: '/assets/pokemon/lunala.png'
+  },
+  {
+    id: 'pokemon-mimikyu',
+    name: 'Mimikyu',
+    model: 'pokemon-mimikyu',
+    animations: ['disguise', 'shadow-sneak', 'play-rough', 'peek', 'sad', 'spooky'],
+    imageUrl: '/assets/pokemon/mimikyu.png'
+  },
+  {
+    id: 'pokemon-marshadow',
+    name: 'Marshadow',
+    model: 'pokemon-marshadow',
+    animations: ['spectral-thief', 'shadow', 'punch', 'hide', 'emerge', 'fight'],
+    isPremium: true,
+    imageUrl: '/assets/pokemon/marshadow.png'
   }
 ];

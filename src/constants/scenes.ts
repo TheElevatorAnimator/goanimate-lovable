@@ -149,5 +149,38 @@ export const AVAILABLE_SCENES: Scene[] = [
     background: 'bfdi-contest',
     isPremium: true,
     style: 'bfdi'
+  },
+  // Pokémon Alola Scenes
+  {
+    id: 'pokemon1',
+    name: 'Melemele Island',
+    background: 'pokemon-melemele',
+    style: 'pokemon-alola'
+  },
+  {
+    id: 'pokemon2',
+    name: 'Alola Beach',
+    background: 'pokemon-beach',
+    style: 'pokemon-alola'
+  },
+  {
+    id: 'pokemon3',
+    name: 'Pokémon Center',
+    background: 'pokemon-center',
+    style: 'pokemon-alola'
+  },
+  {
+    id: 'pokemon4',
+    name: 'Ultra Wormhole',
+    background: 'pokemon-ultra-wormhole',
+    isPremium: true,
+    style: 'pokemon-alola'
+  },
+  {
+    id: 'pokemon5',
+    name: 'Altar of the Sunne',
+    background: 'pokemon-altar-sunne',
+    isPremium: true,
+    style: 'pokemon-alola'
   }
 ];
