@@ -20,7 +20,7 @@ const Explore = () => {
       id: 'obama-animation',
       title: 'Obama Animation',
       author: 'meteor_ads',
-      thumbnail: '🎬',
+      thumbnail: '/lovable-uploads/2cfd1c2e-bb23-4de5-a49b-f37d78674ee8.png',
       duration: '01:24',
       views: 12,
       likes: 3,
@@ -31,7 +31,7 @@ const Explore = () => {
       id: 'trial-error',
       title: 'Trial Error',
       author: 'meteor_ads',
-      thumbnail: '⚖️',
+      thumbnail: '/lovable-uploads/c703a1fb-8ce5-40fe-8633-779a08af993e.png',
       duration: '02:15',
       views: 8,
       likes: 1,
@@ -42,7 +42,7 @@ const Explore = () => {
       id: 'anime-adventure',
       title: 'Anime Adventure',
       author: 'sakura_fan',
-      thumbnail: '⚔️',
+      thumbnail: '/lovable-uploads/2cfd1c2e-bb23-4de5-a49b-f37d78674ee8.png',
       duration: '03:42',
       views: 156,
       likes: 28,
@@ -53,7 +53,7 @@ const Explore = () => {
       id: 'space-mission',
       title: 'Space Mission Alpha',
       author: 'cosmic_creator',
-      thumbnail: '🚀',
+      thumbnail: '/lovable-uploads/c703a1fb-8ce5-40fe-8633-779a08af993e.png',
       duration: '02:58',
       views: 89,
       likes: 15,
@@ -64,7 +64,7 @@ const Explore = () => {
       id: 'comedy-skit',
       title: 'Office Comedy Skit',
       author: 'funny_bones',
-      thumbnail: '😂',
+      thumbnail: '/lovable-uploads/2cfd1c2e-bb23-4de5-a49b-f37d78674ee8.png',
       duration: '01:47',
       views: 234,
       likes: 42,
@@ -157,11 +157,7 @@ const Explore = () => {
           {featuredVideos.slice(1).map((video) => (
             <div key={video.id} className="bg-white/90 rounded-lg shadow-lg border-4 border-white overflow-hidden hover:transform hover:scale-105 transition-all duration-200">
               <div className="relative bg-gray-800 aspect-video flex items-center justify-center">
-                {typeof video.thumbnail === 'string' && video.thumbnail.startsWith('/') ? (
-                  <img src={video.thumbnail} alt={video.title} className="w-full h-full object-cover" />
-                ) : (
-                  <span className="text-6xl">{video.thumbnail}</span>
-                )}
+                <img src={video.thumbnail} alt={video.title} className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
                   <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center cursor-pointer">
                     <span className="text-xl ml-1">▶️</span>
