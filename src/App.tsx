@@ -7,6 +7,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Explore from "./pages/Explore";
 import VideoMaker from "./pages/VideoMaker";
+import QuickVideoMaker from "./pages/QuickVideoMaker";
+import FullVideoMaker from "./pages/FullVideoMaker";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -21,6 +23,8 @@ const App = () => (
           <Route path="/" element={<Home />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/video-maker" element={<VideoMaker />} />
+          <Route path="/quick-video-maker" element={<QuickVideoMaker />} />
+          <Route path="/full-video-maker" element={<FullVideoMaker />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
