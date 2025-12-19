@@ -145,10 +145,12 @@ const GoAnimate2011VideoMaker = ({ project, onUpdateProject }: GoAnimate2011Vide
 
   return (
     <div className="w-full h-screen bg-gray-200 flex flex-col">
-      {/* Site Moving Warning */}
-      <div className="bg-red-600 text-white p-2 text-center font-bold animate-pulse">
-        ⚠️ NOTICE: This site is moving to a new home on Glitch! Stay tuned for updates. ⚠️
-      </div>
+      {/* Site Moving Warning - Hidden until April 2026 */}
+      {new Date() >= new Date('2026-04-01') && (
+        <div className="bg-red-600 text-white p-2 text-center font-bold animate-pulse">
+          ⚠️ NOTICE: This site is moving to a new home on Glitch! Stay tuned for updates. ⚠️
+        </div>
+      )}
 
       {/* Header */}
       <div className="bg-gradient-to-r from-orange-500 to-orange-600 p-2 border-b-2 border-orange-700">

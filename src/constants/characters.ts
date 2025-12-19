@@ -8,21 +8,21 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     name: 'Eric',
     model: 'comedy-world-eric',
     animations: ['wave', 'talk', 'walk', 'point', 'laugh', 'think'],
-    imageUrl: 'https://i.imgur.com/qK7KrZy.png'
+    imageUrl: '/assets/goanimate/eric.png'
   },
   {
     id: 'comedy-jennifer',
     name: 'Jennifer',
     model: 'comedy-world-jennifer',
     animations: ['wave', 'talk', 'walk', 'point', 'laugh', 'think'],
-    imageUrl: 'https://i.imgur.com/8VdKQmP.png'
+    imageUrl: '/assets/goanimate/jennifer.png'
   },
   {
     id: 'comedy-joey',    
     name: 'Joey',
     model: 'comedy-world-joey',
     animations: ['wave', 'talk', 'walk', 'point', 'laugh', 'think'],
-    imageUrl: 'https://i.imgur.com/RJwNxHT.png'
+    imageUrl: '/assets/goanimate/joey.png'
   },
   
   // Anime Characters
@@ -95,7 +95,7 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     name: 'Bot',
     model: 'ii-bot',
     animations: ['compute', 'talk', 'walk', 'analyze', 'error', 'happy'],
-    imageUrl: 'https://static.wikia.nocookie.net/inanimateinsanity/images/a/a8/Cammy.png'
+    imageUrl: 'https://static.miraheze.org/objectshowfanonpaboreteloewikiwiki/b/b4/BotIII.png'
   },
   {
     id: 'ii-cabby',
@@ -145,8 +145,16 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     isPremium: true,
     imageUrl: 'https://static.wikia.nocookie.net/battlefordreamisland/images/4/4f/Pen_BFDI.png'
   },
+  {
+    id: 'bfdi-coiny',
+    name: 'Coiny',
+    model: 'bfdi-coiny',
+    animations: ['flip', 'talk', 'roll', 'bounce', 'shine', 'happy'],
+    isPremium: true,
+    imageUrl: '/assets/bfdi/coiny.png'
+  },
 
-  // Pokémon Gen 1 Characters
+  // Pokémon Gen 1 Characters (First evolutions are FREE)
   {
     id: 'pokemon-bulbasaur',
     name: 'Bulbasaur',
@@ -159,6 +167,7 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     name: 'Ivysaur',
     model: 'pokemon-ivysaur',
     animations: ['razor-leaf', 'tackle', 'bloom', 'growl', 'happy', 'sunny'],
+    isPremium: true,
     imageUrl: '/assets/pokemon/ivysaur.png'
   },
   {
@@ -166,6 +175,7 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     name: 'Venusaur',
     model: 'pokemon-venusaur',
     animations: ['solar-beam', 'earthquake', 'bloom', 'roar', 'happy', 'sunny'],
+    isPremium: true,
     imageUrl: '/assets/pokemon/venusaur.png'
   },
   {
@@ -180,6 +190,7 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     name: 'Charmeleon',
     model: 'pokemon-charmeleon',
     animations: ['flamethrower', 'slash', 'rage', 'growl', 'fierce', 'flame'],
+    isPremium: true,
     imageUrl: '/assets/pokemon/charmeleon.png'
   },
   {
@@ -202,6 +213,7 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     name: 'Wartortle',
     model: 'pokemon-wartortle',
     animations: ['water-pulse', 'bite', 'withdraw', 'bubble', 'wise', 'splash'],
+    isPremium: true,
     imageUrl: '/assets/pokemon/wartortle.png'
   },
   {
@@ -224,6 +236,7 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     name: 'Raichu',
     model: 'pokemon-raichu',
     animations: ['thunder', 'volt-tackle', 'thunder-wave', 'spark', 'happy', 'electric'],
+    isPremium: true,
     imageUrl: '/assets/pokemon/raichu.png'
   },
   {
@@ -272,7 +285,7 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     imageUrl: '/assets/pokemon/mew.png'
   },
 
-  // Pokémon Gen 6 Characters
+  // Pokémon Gen 6 Characters (First evolutions are FREE)
   {
     id: 'pokemon-chespin',
     name: 'Chespin',
@@ -285,6 +298,7 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     name: 'Quilladin',
     model: 'pokemon-quilladin',
     animations: ['needle-arm', 'tackle', 'rollout', 'spiky-shield', 'happy', 'guard'],
+    isPremium: true,
     imageUrl: '/assets/pokemon/quilladin.png'
   },
   {
@@ -307,6 +321,7 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     name: 'Braixen',
     model: 'pokemon-braixen',
     animations: ['fire-spin', 'psybeam', 'wand', 'howl', 'graceful', 'magic'],
+    isPremium: true,
     imageUrl: '/assets/pokemon/braixen.png'
   },
   {
@@ -329,6 +344,7 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     name: 'Frogadier',
     model: 'pokemon-frogadier',
     animations: ['water-shuriken', 'quick-attack', 'bubble', 'acrobatics', 'cool', 'ninja'],
+    isPremium: true,
     imageUrl: '/assets/pokemon/frogadier.png'
   },
   {
@@ -371,7 +387,7 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     imageUrl: '/assets/pokemon/zygarde.png'
   },
 
-  // Pokémon Gen 7 Characters
+  // Pokémon Gen 7 Characters (First evolutions are FREE)
   {
     id: 'pokemon-rowlet',
     name: 'Rowlet',
@@ -384,6 +400,7 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     name: 'Dartrix',
     model: 'pokemon-dartrix',
     animations: ['razor-leaf', 'peck', 'pluck', 'leafage', 'vain', 'fly'],
+    isPremium: true,
     imageUrl: '/assets/pokemon/dartrix.png'
   },
   {
@@ -391,6 +408,7 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     name: 'Decidueye',
     model: 'pokemon-decidueye',
     animations: ['arrow', 'fly', 'stealth', 'spirit-shackle', 'focus', 'aim'],
+    isPremium: true,
     imageUrl: '/assets/pokemon/decidueye.png'
   },
   {
@@ -405,6 +423,7 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     name: 'Torracat',
     model: 'pokemon-torracat',
     animations: ['fire-fang', 'scratch', 'flame-charge', 'growl', 'fierce', 'bell'],
+    isPremium: true,
     imageUrl: '/assets/pokemon/torracat.png'
   },
   {
@@ -412,6 +431,7 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     name: 'Incineroar',
     model: 'pokemon-incineroar',
     animations: ['flex', 'darkest-lariat', 'taunt', 'roar', 'pose', 'fight'],
+    isPremium: true,
     imageUrl: '/assets/pokemon/incineroar.png'
   },
   {
@@ -426,6 +446,7 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     name: 'Brionne',
     model: 'pokemon-brionne',
     animations: ['bubble-beam', 'sing', 'dance', 'balance', 'graceful', 'perform'],
+    isPremium: true,
     imageUrl: '/assets/pokemon/brionne.png'
   },
   {
@@ -433,6 +454,7 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     name: 'Primarina',
     model: 'pokemon-primarina',
     animations: ['sing', 'sparkling-aria', 'dance', 'wave', 'elegant', 'perform'],
+    isPremium: true,
     imageUrl: '/assets/pokemon/primarina.png'
   },
   {
