@@ -446,7 +446,6 @@ export const AVAILABLE_CHARACTERS: Character[] = [
     name: 'Brionne',
     model: 'pokemon-brionne',
     animations: ['bubble-beam', 'sing', 'dance', 'balance', 'graceful', 'perform'],
-    isPremium: true,
     imageUrl: '/assets/pokemon/brionne.png'
   },
   {
