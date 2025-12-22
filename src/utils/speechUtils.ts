@@ -1,9 +1,13 @@
 
-// Speech synthesis utility for our intentionally bad TTS voices
+// Speech synthesis utility using lazypy.ro/tts (StreamElements API)
 import { GOANIMATE_VOICES, GoAnimateVoice, getGoAnimateVoice, getRandomGoAnimateVoice, getIpadOptimizedVoices } from './goAnimateVoices';
+import { playLazypyTTS, playCharacterTTS, CHARACTER_VOICE_MAP, LAZYPY_VOICES, stopTTS } from './lazypyTTS';
 
 const SPEECH_RATES = [0.5, 0.7, 1.2, 1.5];
 const PITCH_VALUES = [0.5, 0.7, 1.3, 1.5, 2.0];
+
+// Current audio element for stopping
+let currentAudio: HTMLAudioElement | null = null;
 
 export interface SpeechOptions {
   text: string;
@@ -13,6 +17,8 @@ export interface SpeechOptions {
   theme?: GoAnimateTheme;
   accent?: 'US' | 'UK';
   goAnimateVoiceId?: string;
+  useLazypyTTS?: boolean;
+  lazypyVoiceId?: string;
 }
 
 export type GoAnimateTheme = 
@@ -65,12 +71,41 @@ export const getAvailableVoices = (accent?: 'US' | 'UK'): SpeechSynthesisVoice[]
   return voices.filter(voice => voice.lang.includes('en-US'));
 };
 
-export const speakText = (options: SpeechOptions): void => {
-  const { text, rate = 1, pitch = 1, voiceIndex = 0, accent, goAnimateVoiceId } = options;
+// Main speak function - now uses lazypy.ro TTS by default
+export const speakText = async (options: SpeechOptions): Promise<void> => {
+  const { text, rate = 1, pitch = 1, voiceIndex = 0, accent, goAnimateVoiceId, useLazypyTTS = true, lazypyVoiceId } = options;
   
+  // Stop any currently playing audio
+  stopSpeaking();
+  
+  // Use lazypy.ro TTS (StreamElements API) by default
+  if (useLazypyTTS) {
+    try {
+      // If a specific lazypy voice is specified, use it
+      if (lazypyVoiceId) {
+        currentAudio = await playLazypyTTS(text, lazypyVoiceId);
+        return;
+      }
+      
+      // If a GoAnimate voice ID is specified, map to lazypy voice
+      if (goAnimateVoiceId && CHARACTER_VOICE_MAP[goAnimateVoiceId]) {
+        currentAudio = await playCharacterTTS(text, goAnimateVoiceId);
+        return;
+      }
+      
+      // Default to Brian voice (the famous StreamElements TTS voice)
+      currentAudio = await playLazypyTTS(text, 'Brian');
+      return;
+    } catch (error) {
+      console.warn('lazypy.ro TTS failed, falling back to browser TTS:', error);
+      // Fall through to browser TTS
+    }
+  }
+  
+  // Fallback: Use browser's SpeechSynthesis API
   const utterance = new SpeechSynthesisUtterance(text);
   
-  // Use GoAnimate voice if specified
+  // Use GoAnimate voice settings if specified
   if (goAnimateVoiceId) {
     const goAnimateVoice = getGoAnimateVoice(goAnimateVoiceId);
     if (goAnimateVoice) {
@@ -115,9 +150,12 @@ export const generateBadVoice = (text: string, accent: 'US' | 'UK' = 'US'): Spee
   };
 };
 
-// Generate GoAnimate-style voice
+// Generate GoAnimate-style voice using lazypy TTS
 export const generateGoAnimateVoice = (text: string, theme?: GoAnimateTheme): SpeechOptions => {
   const randomVoice = getRandomGoAnimateVoice();
+  
+  // Pick a random lazypy voice for variety
+  const randomLazypyVoice = LAZYPY_VOICES[Math.floor(Math.random() * LAZYPY_VOICES.length)];
   
   return {
     text,
@@ -125,12 +163,17 @@ export const generateGoAnimateVoice = (text: string, theme?: GoAnimateTheme): Sp
     pitch: randomVoice.pitch,
     accent: randomVoice.accent,
     theme: theme || null,
-    goAnimateVoiceId: randomVoice.id
+    goAnimateVoiceId: randomVoice.id,
+    useLazypyTTS: true,
+    lazypyVoiceId: randomLazypyVoice.id
   };
 };
 
-// For premium voices (PlotPlus subscribers)
+// For premium voices (PlotPlus subscribers) - uses high-quality Wavenet voices
 export const generateBetterVoice = (text: string, theme: GoAnimateTheme = null, accent: 'US' | 'UK' = 'US'): SpeechOptions => {
+  // Use Wavenet voices for premium
+  const wavenetVoice = accent === 'UK' ? 'en-GB-Wavenet-A' : 'en-US-Wavenet-A';
+  
   return {
     text,
     rate: 1.0,
@@ -138,12 +181,22 @@ export const generateBetterVoice = (text: string, theme: GoAnimateTheme = null, 
     voiceIndex: 0,
     theme,
     accent,
+    useLazypyTTS: true,
+    lazypyVoiceId: wavenetVoice
   };
 };
 
 export const stopSpeaking = (): void => {
+  // Stop lazypy audio
+  if (currentAudio) {
+    stopTTS(currentAudio);
+    currentAudio = null;
+  }
+  // Also stop browser TTS
   window.speechSynthesis.cancel();
 };
 
 // Export GoAnimate voices for use in components
 export { GOANIMATE_VOICES, getGoAnimateVoice, getIpadOptimizedVoices };
+// Export lazypy voices
+export { LAZYPY_VOICES, playLazypyTTS, playCharacterTTS } from './lazypyTTS';
